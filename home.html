@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maharashtra Heritage</title>
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Prata&display=swap" rel="stylesheet"> -->
+    <style>
+        :root {
+            /* --- APPLIED USER VARIABLES --- */
+            --charcoalGrey: #384248;
+            --primaryColor: #ad8b3a; /* Gold Accent */
+            --primaryTextColor: #FFFFFF;
+            --highlightedMarkdownBackground: #fff6d7;
+            --highlightedMarkdownText: #384248;
+            
+            /* Extended Palette based on input */
+            --color-bg-main: #FFFFFF;
+            --color-bg-section: #F9F9F9; /* Slight off-white for contrast */
+            --color-text-main: #45443F;
+            --color-text-muted: #60686d;
+            --color-border: #E5E5E5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            /* --- APPLIED USER BODY STYLES --- */
+            -webkit-font-smoothing: antialiased;
+            color: var(--color-text-main);
+            font-family: Inter, InterNeue, Inter Neue, sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.5;
+            background-color: var(--color-bg-main);
+            overflow-x: hidden;
+        }
+
+        /* --- Header / Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .logo {
+            font-family: 'Prata', serif;
+            font-size: 1.8rem;
+            /* color: var(--charcoalGrey); */
+            letter-spacing: 1px;
+            text-decoration: none;
+            font-weight: bold;
+            background-clip: text;
+            color: transparent;
+            background-image: url("https://i.pinimg.com/736x/6f/6e/df/6f6edf1e9ee5b47570d4b03eb71d81f1.jpg");
+        }
+
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: black;
+            text-decoration: none;
+            font-size:15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+            right: 70px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primaryColor);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primaryColor);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            background-color: #FFFFFF;
+            background: transparent; 
+            background: #FFFFFF;  /* ADD THIS */
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-image: url('https://images.unsplash.com/photo-1590077428593-a55bb07c4665?q=80&w=2000&auto=format&fit=crop'); */
+           background-image: url('heritage2.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.0;   /* Visible but soft */
+            filter: grayscale(-50%) sepia(30%) hue-rotate(-10deg);
+            transform: scale(1);
+            animation: slowZoom 20s infinite alternate;
+            z-index: 0;
+        }
+
+        /* Gradient overlay to fade into white */
+       /*.hero::after{
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.4),
+    var(--color-bg-main)
+  );
+}*/
+.hero::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0.9)
+  );
+  z-index:1;
+}
+
+.content-image img {
+  opacity: 0.9;   /* 0.1 = very light, 1 = full */
+}
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 900px;
+            top: 120px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--primaryColor);
+            margin-bottom: 3rem;
+            display: block;
+            font-weight: 900;
+        }
+
+        .hero h1 {
+            font-family: 'Prata', serif;
+            font-size: 7rem;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            color: black;
+        }
+        .hero p {
+            color: var(--color-text-muted);
+            
+        }
+        /* ===== HERO DOCUMENT ANIMATION (CENTER) ===== */
+
+.hero-slider{
+  position:absolute;
+  top:55%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:100%;
+  overflow:hidden;
+  padding:40px 0;
+  z-index:1;
+  opacity: 0.70;
+
+}
+
+/* Moving Track */
+.hero-slide-track{
+  display:flex;
+  gap:30px;
+  animation:heroScroll 20s linear infinite;
+}
+
+/* Cards */
+.hero-card{
+  min-width:300px;
+  height:450px;
+  background:#ffff;
+  border-radius:8px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.15);
+  /* transform:rotate(-2deg); */
+  overflow:hidden;
+  
+}
+
+.hero-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Scroll Animation */
+@keyframes heroScroll{
+  0%{ transform:translateX(0); }
+  100%{ transform:translateX(-80%); }
+}
+
+/* Keep text above animation */
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+
+        /* --- Button Styles --- */
+        .btn-hero {
+            display: inline-block;
+            padding: 18px 40px;
+            border: 3px solid var(--primaryColor);
+            color: var(--primaryColor);
+            background: transparent;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 1;
+            font-weight: 600;
+        }
+
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--primaryColor);
+            transition: width 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-hero:hover {
+            color: var(--primaryTextColor);
+            border-color: var(--primaryColor);
+            box-shadow: 0 10px 30px rgba(173, 139, 58, 0.2);
+        }
+
+        .btn-hero:hover::before {
+            width: 100%;
+        }
+
+        /* --- Content Section --- */
+        .content-section {
+            padding: 8rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+            background-color: var(--color-bg-main);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .content-image {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border: 1px solid var(--color-border);
+        }
+
+        .content-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .content-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .content-text h2 {
+            font-family: 'Prata', serif;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--charcoalGrey);
+        }
+
+        .content-text h2 span {
+            color: var(--primaryColor);
+            font-style: italic;
+        }
+
+        .content-text p {
+            color: var(--color-text-muted);
+            line-height: 2;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        /* --- Cards Section --- */
+          .cards-section {
+            padding: 8rem 5% 4rem;
+            background-color: var(--color-bg-section);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Prata', serif;
+            font-size: 3rem;
+            color: var(--charcoalGrey);
+        }
+
+
+        .section-title p {
+            color: var(--primaryColor);
+            margin-top: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Updated to 4 cards */
+            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+
+        }
+
+        .card {
+            background-color: var(--color-bg-main);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+            border-color: var(--primaryColor);
+        }
+
+        .card-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            font-family: 'Prata', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--charcoalGrey);
+        }
+
+        .card-content p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Card Button */
+        .card-btn {
+            padding: 12px 25px;
+            border: 1px solid var(--primaryColor);
+            color: var(--primaryColor);
+            background: transparent;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            z-index: 1;
+            font-weight: 600;
+        }
+
+        .card-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--primaryColor);
+            z-index: -1;
+            transition: width 0.4s ease;
+        }
+
+        .card-btn:hover {
+            color: var(--primaryTextColor);
+        }
+
+        .card-btn:hover::before {
+            width: 100%;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--charcoalGrey);
+            color: var(--highlightedMarkdownBackground);
+            padding: 6rem 5% 2rem 5%;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primaryColor);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            align-items: center;
+        }
+
+        .footer-about h3 {
+            font-family: 'Prata', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primaryTextColor);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-about h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primaryColor);
+        }
+
+        .footer-about p {
+            color: #B0B7BC;
+            line-height: 1.8;
+            font-size: 1rem;
+            max-width: 500px;
+        }
+
+        .footer-links {
+            text-align: right;
+        }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--primaryTextColor);
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #B0B7BC;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 400;
+        }
+
+        .footer-links a:hover {
+            color: var(--primaryColor);
+            transform: translateY(-2px);
+        }
+
+        /* --- Social Icons Section --- */
+        .footer-social {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-text {
+            font-family: 'Prata', serif;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--primaryTextColor);
+        }
+
+        .social-icons-container {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primaryTextColor);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primaryColor);
+            transition: top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 1;
+        }
+
+        .social-icon:hover::before {
+            top: 0;
+        }
+
+        .social-icon:hover {
+            border-color: var(--primaryColor);
+            transform: translateY(-5px);
+        }
+
+        .social-icon:hover svg {
+            fill: var(--charcoalGrey);
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #889095;
+            margin-top: 2rem;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .nav-menu { display: none; }
+            .content-section { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr; }
+            
+            .footer-grid { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+            }
+            .footer-about h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .footer-links {
+                text-align: center;
+                margin-top: 2rem;
+            }
+            .footer-links ul {
+                justify-content: center;
+            }
+            .footer-bottom { flex-direction: column; gap: 1rem; }
+        }
+        
+     
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo"> Maharashtra Heritage </a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="collections.html">Collections</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+   <!---- <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="hero-subtitle">The Land of Warriors</span>
+            <h1>Maharashtra<br>Heritage</h1>
+            <p style="margin-bottom: 40px; font-size: 1.1rem; font-weight: 300;">
+                From the formidable forts of the Sahyadris to the serene caves of Ajanta.
+            </p>
+            <a href="collction.html" class="btn-hero">Explore The Legacy</a>
+        </div>
+    </section>-->
+    <section class="hero">
+
+    <div class="hero-bg"></div>
+
+    <!-- ===== DOCUMENT ANIMATION IN HERO CENTER ===== -->
+    <div class="hero-slider">
+      <div class="hero-slide-track">
+
+        <!-- Original Set -->
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/1200x/52/85/9b/52859b4f3dc06bbfeb6183951cd8bfab.jpg">
+        </div>
+
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/736x/b2/75/cc/b275cc4633c91acce83b8947c92ea723.jpg">
+        </div>
+
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/1200x/32/59/b6/3259b65bf809cfa97ff356ed81e0b553.jpg">
+        </div>
+
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/736x/7e/bc/e3/7ebce3de46902e27a2337444bee9eef5.jpg">
+        </div>
+
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/1200x/a4/86/ca/a486ca45e43685c3ef1c4cfbb8a6440b.jpg">
+        </div>
+
+        <!-- Duplicate Set -->
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/1200x/52/85/9b/52859b4f3dc06bbfeb6183951cd8bfab.jpg">
+        </div>
+
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/736x/b2/75/cc/b275cc4633c91acce83b8947c92ea723.jpg">
+        </div>
+
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/1200x/32/59/b6/3259b65bf809cfa97ff356ed81e0b553.jpg">
+        </div>
+
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/736x/7e/bc/e3/7ebce3de46902e27a2337444bee9eef5.jpg">
+        </div>
+
+        <div class="hero-card">
+          <img src="https://i.pinimg.com/1200x/a4/86/ca/a486ca45e43685c3ef1c4cfbb8a6440b.jpg">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HERO TEXT -->
+      
+    <div class="hero-content">
+        <span class="hero-subtitle">The Land of Warriors</span>
+        <h1>Maharashtra<br>Heritage</h1>
+
+        <p style="margin-bottom:40px; font-size:1.1rem; font-weight: bold;color: var(--charcoalGrey); letter-spacing: 5px;">
+            The Soul of Maharashtra
+        </p>
+
+        <a href="about.html" class="btn-hero">Explore The Maharashtra</a>
+    </div>
+
+</section>
+
+
+    <!-- Content Section -->
+    <section class="content-section" id="content">
+        <div class="content-image">
+            <!-- <img src="https://i.pinimg.com/736x/2e/09/ab/2e09abdf30dcfc8353315c1a56c20003.jpg"> -->
+             <img src="heritage.png">
+        </div>
+        <div class="content-text">
+            <h2>A Story Carved in <span>Stone</span></h2>
+            <p>
+                Maharashtra has a long and glorious history that dates back to ancient times. Powerful dynasties like the Satavahanas and Rashtrakutas ruled the region and contributed to trade, art, and architecture, creating famous monuments such as the Ajanta and Ellora Caves. These rulers helped shape Maharashtra’s cultural and religious heritage.
+            </p>
+            <p>
+                The most remarkable period came in the 17th century under Chhatrapati Shivaji Maharaj, who founded the Maratha Empire and built strong forts and administration while resisting Mughal rule. Later, the Marathas became a dominant power in India before the British took control. After India’s independence, Maharashtra was officially formed as a separate state on 1 May 1960.
+            </p>     
+            <div style="margin-top: 20px;">
+                <a href="destination.html" class="btn-hero">Explore The Legacy</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+    <div class="section-title">
+        <p>Discover</p>
+        <h2>Iconic Destinations</h2>
+    </div>
+
+    <div class="cards-grid">
+
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="card-image">
+                <img src="https://i.pinimg.com/1200x/52/85/9b/52859b4f3dc06bbfeb6183951cd8bfab.jpg">
+            </div>
+            <div class="card-content">
+                <h3>Forts</h3>
+                <p>The capital of the Maratha Empire, standing tall amidst the Sahyadri mountains.</p>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="card-image">
+                <img src="https://i.pinimg.com/1200x/21/b5/8f/21b58f1311a5a2f005acafefc2518455.jpg">
+            </div>
+            <div class="card-content">
+                <h3> Caves</h3>
+                <p>Ancient Buddhist rock-cut caves known for their magnificent paintings and sculptures.</p>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <div class="card-image">
+                <img src="https://i.pinimg.com/1200x/6c/e1/b1/6ce1b1bb873c2dba7ed6bd20730bd352.jpg">
+            </div>
+            <div class="card-content">
+                <h3>Temples</h3>
+                <p>A sacred temple dedicated to Goddess Mahalaxmi and an important Shakti Peetha.</p>
+            </div>
+        </div>
+
+        <!-- NEW CARD 4 -->
+        <div class="card">
+            <div class="card-image">
+                <img src="https://i.pinimg.com/736x/42/0f/8f/420f8f455a37a7632f8d5137274350b0.jpg">
+            </div>
+            <div class="card-content">
+                <h3>Hills</h3>
+                <p>A scenic hill station known for its breathtaking viewpoints and cool climate.</p>
+            </div>
+        </div>
+        <!-- Card 5 -->
+<div class="card">
+    <div class="card-image">
+        <img src="https://i.pinimg.com/1200x/10/17/b9/1017b9a615f5cccce571273f6203a61e.jpg">
+    </div>
+    <div class="card-content">
+        <h3>Museums</h3>
+        <p>An iconic monument in Mumbai built during the British Raj overlooking the Arabian Sea.</p>
+    </div>
+</div>
+
+<!-- Card 6 -->
+<div class="card">
+    <div class="card-image">
+        <img src="https://i.pinimg.com/1200x/47/23/0d/47230da87621c2bfb573b23fe4a22af8.jpg">
+    </div>
+    <div class="card-content">
+        <h3>Lake</h3>
+        <p>UNESCO World Heritage site featuring rock-cut temples and monasteries.</p>
+    </div>
+</div>
+
+<!-- Card 7 -->
+<div class="card">
+    <div class="card-image">
+        <img src="https://i.pinimg.com/1200x/e3/b0/f5/e3b0f5a5c3b1c00b558e8ebd3a8d3d74.jpg">
+    </div>
+    <div class="card-content">
+        <h3>Palace</h3>
+        <p>Historic fortification palace in Pune and former seat of the Peshwas.</p>
+    </div>
+</div>
+
+<!-- Card 8 -->
+<div class="card">
+    <div class="card-image">
+        <img src="https://i.pinimg.com/1200x/33/0d/aa/330daa87e86b2ebd75dcd68ba50d62bd.jpg">
+    </div>
+    <div class="card-content">
+        <h3>Waterfalls</h3>
+        <p>Crystal clear waters and white sand beaches perfect for relaxation and water sports.</p>
+    </div>
+</div>
+
+
+    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>Discover MH</h3>
+                <p>
+                    We are dedicated to preserving the visual history of Maharashtra. Our mission is to document the architectural wonders and cultural nuances of this great land for future generations.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="collections.html?category=Fort">Forts</a></li>
+                    <li><a href="collections.html?category=Cave">Caves</a></li>
+                    <li><a href="collections.html?category=Temple">Temples</a></li>
+                    <li><a href="collections.html?category=Museum">Museums</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <span class="social-text">Follow Our Journey</span>
+                <div class="social-icons-container">
+                    <a href="#" class="social-icon" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" title="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" title="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" title="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Maharashtra Heritage . All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const selectedId = params.get("id");
+        const selectedCategory = params.get("category");
+
+        // Placeholder logic
+        if (typeof artifacts !== 'undefined') {
+            if(selectedId){
+              const filteredById = artifacts.filter(item => item.id == selectedId);
+              displayArtifacts(filteredById);
+            } else if(selectedCategory){
+              const filteredByCategory = artifacts.filter(item => item.category === selectedCategory);
+              displayArtifacts(filteredByCategory);
+            } else {
+              displayArtifacts(artifacts);
+            }
+        }
+        
+
+    </script>
+</body>
+</html>

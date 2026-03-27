@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÉLÉGANCE | Luxury Beauty Desktop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      --bg: #FAF7F2; --bg-alt: #F0EDE8; --fg: #1A1A1A; --muted: #8B8178;
+      --accent: #B8956E; --accent-hover: #9A7B58; --card: #FFFFFF; --border: #E8E2D9;
+      --success: #2E7D32; --error: #C62828; --glass: rgba(250, 247, 242, 0.95);
+    }
+    [data-theme="dark"] {
+      --bg: #121212; --bg-alt: #1E1E1E; --fg: #FAF7F2; --muted: #9E9E9E;
+      --accent: #D4B896; --accent-hover: #E5CFB8; --card: #1E1E1E; --border: #333333;
+      --glass: rgba(18, 18, 18, 0.95);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #FAF7F2;
+      color: #1A1A1A;
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+
+    /* Scrollbar */
+    /* ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-alt); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; } */
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-up { animation: fadeUp 0.6s ease-out forwards; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* UI Components */
+    .glass-nav {
+      background:  rgba(250, 247, 242, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid  #E8E2D9;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #D4B896 0%,  #B8956E 100%);
+      color: white; border: none; padding: 14px 32px;
+      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 12px; cursor: pointer; transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(184, 149, 110, 0.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(184, 149, 110, 0.35); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .btn-outline {
+      border: 1px solid var(--accent); background: transparent;
+      color:  #B8956E; padding: 12px 28px;
+      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 11px; cursor: pointer; transition: all 0.3s;
+    }
+    .btn-outline:hover { background:  #B8956E; color: white; }
+
+    .btn-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid #E8E2D9; background: #FFFFFF;;
+      color:  #1A1A1A;; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .btn-icon:hover { border-color: #B8956E; color:  #B8956E; background: #F0EDE8; }
+
+    /* Product Card Desktop */
+    .product-card { background: #FFFFFF; position: relative; transition: all 0.4s; }
+    .product-card::after { content: ''; position: absolute; inset: 0; border: 1px solid transparent; transition: 0.3s; pointer-events: none; }
+    .product-card:hover::after { border-color: #B8956E; }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.07); }
+    
+    .product-img-box { overflow: hidden; position: relative; background:  #F0EDE8; }
+    .product-img { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; height: 100%; object-fit: cover; }
+    .product-card:hover .product-img { transform: scale(1.08); }
+    
+    .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); opacity: 0; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+    .product-card:hover .overlay { opacity: 1; }
+
+    /* Sidebar */
+    .sidebar-link {
+      display: block; padding: 12px 0; border-bottom: 1px solid #E8E2D9; 
+      font-size: 14px; color:  #1A1A1A;; text-decoration: none; transition: 0.2s;
+    }
+    .sidebar-link:hover, .sidebar-link.active { color: #B8956E; border-color: #B8956E; }
+    
+    /* Inputs */
+    .form-input {
+      width: 100%; padding: 12px 16px; border: 1px solid #E8E2D9;
+      background: #FAF7F2; color: #1A1A1A; font-family: inherit;
+      transition: border 0.2s;
+    }
+    .form-input:focus { outline: none; border-color: #B8956E; }
+
+    /* Overlay Drawers */
+    .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99; opacity: 0; visibility: hidden; transition: 0.3s; }
+    .backdrop.active { opacity: 1; visibility: visible; }
+    
+    .drawer { position: fixed; top: 0; right: 0; width: 100%; max-width: 480px; height: 100%; background: #FFFFFF; z-index: 100; transform: translateX(100%); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
+    .drawer.active { transform: translateX(0); }
+    
+    .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: #FFFFFF; z-index: 100; width: 90%; max-width: 1200px; max-height: 90vh; overflow: auto; opacity: 0; visibility: hidden; transition: 0.3s; border: 1px solid #E8E2D9; }
+    .modal.active { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
+
+    /* Quantity Control */
+    .qty-box { display: flex; border: 1px solid #E8E2D9; width: fit-content; }
+    .qty-btn { width: 32px; background: transparent; border: none; color: #1A1A1A; cursor: pointer; font-size: 14px; transition: 0.2s; }
+    .qty-btn:hover { background:#F0EDE8; }
+    .qty-val { width: 40px; text-align: center; line-height: 30px; border-left: 1px solid #E8E2D9; border-right: 1px solid #E8E2D9; font-size: 13px; }
+
+    /* Utilities */
+    .toast-container { position: fixed; bottom: 40px; left: 40px; z-index: 200; display: flex; flex-direction: column; gap: 8px; }
+    .toast { background:  #1A1A1A;; color: #FAF7F2; padding: 16px 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: fadeUp 0.3s ease-out; }
+    
+    .badge { position: absolute; top: 15px; left: 15px; padding: 6px 12px; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; z-index: 2; }
+    .badge-sale { background: #C62828; color: white; }
+    .badge-low { background: #FFF3E0; color: #E65100; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation (Desktop Focused) -->
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50 h-24">
+    <div class="max-w-[1600px] mx-auto px-12 h-full flex items-center justify-between">
+      <!-- Left: Nav Links -->
+      <div class="flex items-center gap-12">
+        <a href="#" class="font-display text-3xl tracking-wide">ÉLÉGANCE</a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="#products" class="nav-link">Shop</a>
+          <a href="#story" class="nav-link">Story</a>
+        </div>
+      </div>
+
+      <!-- Right: Actions -->
+      <div class="flex items-center gap-4">
+        <button onclick="App.toggleTheme()" class="btn-icon" aria-label="Theme">
+          <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button onclick="UI.openSearch()" class="btn-icon" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <button onclick="UI.openWishlist()" class="btn-icon relative" aria-label="Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span id="wishlistCounter" class="absolute -top-1 -right-1 w-5 h-5 text-[10px] rounded-full text-white flex items-center justify-center" style="background: var(--accent); display: none;">0</span>
+        </button>
+        <button onclick="UI.openCart()" class="btn-icon relative" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="cartCounter" class="absolute -top-1 -right-1 w-5 h-5 text-[10px] rounded-full text-white flex items-center justify-center" style="background: var(--accent); display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="min-h-screen flex items-center pt-24" style="background: var(--bg)">
+    <div class="max-w-[1600px] mx-auto px-12 w-full grid grid-cols-2 gap-20 items-center">
+      <div>
+        <span class="inline-block text-xs tracking-[0.4em] uppercase mb-6 animate-fade-up" style="color: var(--accent); opacity: 0; animation-delay: 0.1s;">New Collection 2025</span>
+        <h1 class="font-display text-7xl lg:text-9xl font-light leading-[0.85] mb-8 animate-fade-up" style="opacity: 0; animation-delay: 0.2s;">
+          Timeless<br><span class="italic">Beauty</span>
+        </h1>
+        <p class="text-lg mb-10 max-w-md animate-fade-up" style="color: var(--muted); opacity: 0; animation-delay: 0.3s;">
+          Discover the perfect synergy of nature and science. Luxury skincare crafted for the modern ritual.
+        </p>
+        <div class="flex gap-6 animate-fade-up" style="opacity: 0; animation-delay: 0.4s;">
+          <a href="#products" class="btn-primary">Shop Collection</a>
+          <a href="#story" class="btn-outline">Read Story</a>
+        </div>
+      </div>
+      <div class="relative h-full min-h-[600px] animate-fade-up" style="opacity: 0; animation-delay: 0.2s;">
+        <div class="absolute top-0 right-0 w-3/4 h-full">
+          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1000&q=80" class="w-full h-full object-cover rounded-sm shadow-2xl" alt="Hero">
+        </div>
+        <div class="absolute bottom-20 left-0 w-1/2 h-2/3 shadow-xl rounded-sm overflow-hidden border-4 z-10" style="border-color: var(--bg)">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&q=80" class="w-full h-full object-cover" alt="Product">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Products Section (With Sidebar) -->
+  <section id="products" class="py-24" style="background: #F0EDE8">
+    <div class="max-w-[1600px] mx-auto px-12">
+      <div class="flex gap-16">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 flex-shrink-0 sticky top-28 h-fit hidden lg:block">
+          <div class="mb-10">
+            <h4 class="font-display text-xl mb-4">Categories</h4>
+            <nav class="flex flex-col">
+              <a href="#" class="sidebar-link active" data-cat="all">All Products</a>
+              <a href="#" class="sidebar-link" data-cat="skincare">Skincare</a>
+              <a href="#" class="sidebar-link" data-cat="makeup">Makeup</a>
+              <a href="#" class="sidebar-link" data-cat="fragrance">Fragrance</a>
+            </nav>
+          </div>
+          <div>
+             <h4 class="font-display text-xl mb-4">Sort By</h4>
+             <select id="sortSelect" class="form-input text-xs uppercase tracking-wider py-3">
+                <option value="default">Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+              </select>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+          <div class="flex justify-between items-end mb-12 border-b pb-4" style="border-color: var(--border)">
+             <h2 class="font-display text-4xl">Shop</h2>
+             <span id="resultCount" class="text-sm" style="color: var(--muted)">12 Results</span>
+          </div>
+          <div id="productsGrid" class="grid grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section id="story" class="py-32" style="background: var(--bg)">
+    <div class="max-w-[1600px] mx-auto px-12 grid grid-cols-2 gap-24 items-center">
+      <div class="reveal">
+        <div class="aspect-[4/5] rounded-sm overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000&q=80" class="w-full h-full object-cover">
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="text-xs tracking-[0.4em] uppercase" style="color: var(--accent)">Our Philosophy</span>
+        <h2 class="font-display text-5xl lg:text-6xl mt-6 mb-8">Science Meets Nature</h2>
+        <p class="text-xl leading-relaxed mb-8" style="color: var(--muted)">
+          We believe luxury should be responsible. Our formulas combine rare botanical extracts with advanced peptide technology.
+        </p>
+        <div class="grid grid-cols-2 gap-12 mb-10">
+          <div>
+            <span class="font-display text-4xl block mb-2" style="color: var(--accent)">98%</span>
+            <span class="text-xs tracking-wider uppercase" style="color: var(--muted)">Natural Ingredients</span>
+          </div>
+          <div>
+            <span class="font-display text-4xl block mb-2" style="color: var(--accent)">Zero</span>
+            <span class="text-xs tracking-wider uppercase" style="color: var(--muted)">Carbon Footprint</span>
+          </div>
+        </div>
+        <a href="#" class="btn-outline inline-block">Read More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-20" style="background: var(--fg); color: var(--bg);">
+    <div class="max-w-[1600px] mx-auto px-12 text-center">
+      <span class="font-display text-3xl">ÉLÉGANCE</span>
+      <p class="text-sm opacity-50 mt-4">© 2025 ÉLÉGANCE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- UI Overlays -->
+  
+  <!-- Cart Drawer -->
+  <div id="cartBackdrop" class="backdrop" onclick="UI.closeCart()"></div>
+  <div id="cartDrawer" class="drawer">
+    <div class="p-8 border-b flex justify-between" style="border-color: var(--border)">
+      <h3 class="font-display text-2xl">Your Bag</h3>
+      <button onclick="UI.closeCart()" class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div id="cartItems" class="flex-1 overflow-y-auto p-8"></div>
+    <div id="cartFooter" class="p-8 border-t" style="border-color: var(--border)">
+      <div class="mb-6">
+        <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">Promo Code</label>
+        <div class="flex gap-2">
+          <input type="text" id="promoInput" class="form-input text-sm" placeholder="Enter code">
+          <button onclick="App.applyPromo()" class="btn-outline text-xs px-4">Apply</button>
+        </div>
+        <div id="promoMsg" class="text-xs mt-2 hidden"></div>
+      </div>
+      <div class="space-y-2 mb-6 text-sm">
+        <div class="flex justify-between"><span>Subtotal</span><span id="cartSubtotal">₹0.00</span></div>
+        <div id="discountRow" class="flex justify-between hidden" style="color: var(--success)"><span>Discount</span><span id="discountVal">-₹0.00</span></div>
+        <div class="flex justify-between font-bold text-base pt-4 border-t mt-4" style="border-color: var(--border)"><span>Total</span><span id="cartTotal" style="color: var(--accent)">₹0.00</span></div>
+      </div>
+      <!-- Updated Button to open Checkout Modal -->
+      <button onclick="UI.openCheckout()" class="btn-primary w-full">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Checkout Modal (New) -->
+  <div id="checkoutModal" class="backdrop" onclick="if(event.target === this) UI.closeCheckout()">
+    <div class="modal grid grid-cols-1 md:grid-cols-2 h-screen md:h-auto max-h-full" style="max-width: 1200px; top: 50%;">
+      <!-- Left: Shipping Form -->
+      <div class="p-8 md:p-12 overflow-y-auto">
+        <div class="flex justify-between items-center mb-8">
+          <h3 class="font-display text-3xl">Shipping Details</h3>
+          <button onclick="UI.closeCheckout()" class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <form id="checkoutForm" onsubmit="App.processOrder(event)">
+          <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">First Name *</label>
+                <input type="text" name="firstName" class="form-input" required>
+              </div>
+              <div>
+                <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">Last Name *</label>
+                <input type="text" name="lastName" class="form-input" required>
+              </div>
+            </div>
+            <div>
+              <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">Email Address *</label>
+              <input type="email" name="email" class="form-input" required>
+            </div>
+            <div>
+              <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">Phone Number *</label>
+              <input type="tel" name="phone" class="form-input" required>
+            </div>
+            <div>
+              <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">Address Line 1 *</label>
+              <input type="text" name="address1" class="form-input" required placeholder="Street and number">
+            </div>
+            <div>
+              <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">Address Line 2</label>
+              <input type="text" name="address2" class="form-input" placeholder="Apartment, suite, etc. (optional)">
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">City *</label>
+                <input type="text" name="city" class="form-input" required>
+              </div>
+              <div>
+                <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">State *</label>
+                <input type="text" name="state" class="form-input" required>
+              </div>
+              <div>
+                <label class="text-xs tracking-widest uppercase block mb-2" style="color: var(--muted)">Zip Code *</label>
+                <input type="text" name="zip" class="form-input" required>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary w-full mt-8 py-4">Place Order</button>
+        </form>
+      </div>
+      
+      <!-- Right: Order Summary -->
+      <div class="p-8 md:p-12 border-l hidden md:block" style="border-color: var(--border); background: var(--bg)">
+        <h3 class="font-display text-2xl mb-6">Order Summary</h3>
+        <div id="checkoutItems" class="space-y-4 max-h-[300px] overflow-y-auto mb-6"></div>
+        <div class="border-t pt-6 space-y-2" style="border-color: var(--border)">
+          <div class="flex justify-between text-sm"><span>Subtotal</span><span id="checkSubtotal">₹0.00</span></div>
+          <div id="checkDiscountRow" class="flex justify-between text-sm hidden" style="color: var(--success)"><span>Discount</span><span id="checkDiscountVal">-₹0.00</span></div>
+          <div class="flex justify-between font-bold text-lg pt-2"><span>Total</span><span id="checkTotal" style="color: var(--accent)">₹0.00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Modal -->
+  <div id="wishlistModal" class="backdrop" onclick="if(event.target === this) UI.closeWishlist()"></div>
+  <div id="wishlistContent" class="modal p-12" style="max-width: 1000px">
+    <div class="flex justify-between items-center mb-12">
+      <h3 class="font-display text-4xl">Saved Items</h3>
+      <button onclick="UI.closeWishlist()" class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div id="wishlistGrid" class="grid grid-cols-3 gap-8"></div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div id="quickViewModal" class="backdrop" onclick="if(event.target === this) UI.closeQuickView()"></div>
+  <div id="quickViewContent" class="modal grid grid-cols-2"></div>
+
+  <!-- Search Modal -->
+  <div id="searchModal" class="backdrop" onclick="if(event.target === this) UI.closeSearch()"></div>
+  <div class="modal p-12" style="max-width: 800px">
+    <div class="flex gap-6 border-b pb-6" style="border-color: var(--border)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="flex-shrink-0 mt-1"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" class="flex-1 outline-none bg-transparent font-display text-3xl" placeholder="Search...">
+      <button onclick="UI.closeSearch()" class="btn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div id="searchResults" class="mt-8 max-h-[60vh] overflow-auto"></div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script>
+    // --- DATA ---
+    const DATA = [
+      { id: 1, name: "Midnight Renewal Serum", cat: "skincare", price: 185, img: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&q=80", desc: "A transformative night serum infused with retinol.", stock: 5 },
+      { id: 2, name: "Velvet Rose Perfume", cat: "fragrance", price: 295, img: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80", desc: "An enchanting blend of Bulgarian rose.", stock: 12 },
+      { id: 3, name: "Luminous Skin Tint", cat: "makeup", price: 78, img: "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=600&q=80", desc: "Lightweight, buildable skin tint.", stock: 25 },
+      { id: 4, name: "Hydra Glow Cream", cat: "skincare", price: 165, img: "https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=600&q=80", desc: "Intensive moisturizing cream.", stock: 8 },
+      { id: 5, name: "Silk Lip Stain", cat: "makeup", price: 48, img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&q=80", desc: "Weightless long-lasting color.", stock: 0 },
+      { id: 6, name: "Amber Noir Essence", cat: "fragrance", price: 245, img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80", desc: "Warm amber and black orchid.", stock: 2 },
+      { id: 7, name: "Crystal Eye Serum", cat: "skincare", price: 125, img: "https://images.unsplash.com/photo-1617897903246-719242758050?w=600&q=80", desc: "Targeted peptide treatment.", stock: 15 },
+      { id: 8, name: "Radiance Face Oil", cat: "skincare", price: 98, img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=600&q=80", desc: "Rosehip and vitamin E blend.", stock: 30 },
+      { id: 9, name: "Gold Night Mask", cat: "skincare", price: 350, img: "https://images.unsplash.com/photo-1599305090598-fe179d501227?w=600&q=80", desc: "24K gold infused luxury mask.", stock: 3 },
+      { id: 10, name: "Noir Mascara", cat: "makeup", price: 55, img: "https://images.unsplash.com/photo-1583241800698-e8ab01f85b87?w=600&q=80", desc: "Volumizing definition.", stock: 40 },
+      { id: 11, name: "Jasmine Candle", cat: "fragrance", price: 75, img: "https://images.unsplash.com/photo-1602607434720-2d3d4e2d3d4e?w=600&q=80", desc: "Hand-poured soy candle.", stock: 20 },
+      { id: 12, name: "Vitamin C Serum", cat: "skincare", price: 110, img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&q=80", desc: "Brightening and firming.", stock: 18 }
+    ];
+    const PROMOS = { 'ELEGANCE10': 0.1, 'LUXURY20': 0.2 };
+
+    // --- STATE ---
+    const STATE = {
+      cart: JSON.parse(localStorage.getItem('cart')) || [],
+      wishlist: JSON.parse(localStorage.getItem('wish')) || [],
+      discount: 0,
+      theme: localStorage.getItem('theme') || 'light',
+      save() {
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+        localStorage.setItem('wish', JSON.stringify(this.wishlist));
+        localStorage.setItem('theme', this.theme);
+      }
+    };
+
+    // --- APP LOGIC ---
+    const App = {
+      init() {
+        this.renderProducts();
+        this.updateUI();
+        this.events();
+        UI.initTheme();
+        UI.reveal();
+      },
+
+      renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        const activeLink = document.querySelector('.sidebar-link.active');
+        const cat = activeLink ? activeLink.dataset.cat : 'all';
+        const sort = document.getElementById('sortSelect').value;
+        
+        let items = cat === 'all' ? [...DATA] : DATA.filter(p => p.cat === cat);
+        
+        if (sort === 'price-asc') items.sort((a, b) => a.price - b.price);
+        if (sort === 'price-desc') items.sort((a, b) => b.price - a.price);
+
+        // Update count
+        document.getElementById('resultCount').textContent = `${items.length} Results`;
+
+        grid.innerHTML = items.map(p => `
+          <div class="product-card reveal">
+            <div class="product-img-box aspect-[3/4]">
+              ${p.stock === 0 ? '<span class="badge badge-sale">Sold Out</span>' : p.stock < 5 ? '<span class="badge badge-low">Low Stock</span>' : ''}
+              <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
+              <div class="overlay">
+                 <button onclick="App.quickView(${p.id})" class="btn-primary text-xs py-3 px-6">Quick View</button>
+                 <button onclick="App.toggleWish(${p.id})" class="btn-outline text-xs py-2 px-4 bg-white bg-opacity-10 border-white text-white hover:bg-white hover:text-black">
+                    ${STATE.wishlist.includes(p.id) ? 'Remove' : 'Save'}
+                 </button>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start">
+                <div>
+                  <span class="text-xs uppercase tracking-wider" style="color: var(--muted)">${p.cat}</span>
+                  <h3 class="font-display text-xl mt-1">${p.name}</h3>
+                </div>
+              </div>
+              <div class="flex justify-between items-center mt-4">
+                <p class="font-display text-2xl" style="color: var(--accent)">₹${p.price}</p>
+                <button onclick="App.addToCart(${p.id})" class="btn-icon" ${p.stock === 0 ? 'disabled style="opacity:0.5;cursor:not-allowed"' : ''}>
+                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+        UI.reveal();
+      },
+
+      addToCart(id) {
+        const product = DATA.find(p => p.id === id);
+        const inCart = STATE.cart.find(i => i.id === id);
+        
+        if (inCart) {
+          if (inCart.qty >= product.stock) return UI.toast('Max stock reached', true);
+          inCart.qty++;
+        } else {
+          STATE.cart.push({ ...product, qty: 1 });
+        }
+        
+        STATE.save();
+        this.updateUI();
+        UI.toast('Added to Bag');
+      },
+
+      removeFromCart(id) {
+        STATE.cart = STATE.cart.filter(i => i.id !== id);
+        STATE.save();
+        this.updateUI();
+      },
+
+      updateQty(id, change) {
+        const item = STATE.cart.find(i => i.id === id);
+        const product = DATA.find(p => p.id === id);
+        if (!item) return;
+
+        const newQty = item.qty + change;
+        if (newQty > product.stock) return UI.toast('Max stock reached', true);
+        if (newQty <= 0) return this.removeFromCart(id);
+
+        item.qty = newQty;
+        STATE.save();
+        this.updateUI();
+      },
+
+      toggleWish(id) {
+        if (STATE.wishlist.includes(id)) {
+          STATE.wishlist = STATE.wishlist.filter(i => i !== id);
+          UI.toast('Removed from Wishlist');
+        } else {
+          STATE.wishlist.push(id);
+          UI.toast('Added to Wishlist');
+        }
+        STATE.save();
+        this.updateUI();
+        this.renderProducts();
+      },
+
+      applyPromo() {
+        const code = document.getElementById('promoInput').value.toUpperCase().trim();
+        const msgEl = document.getElementById('promoMsg');
+        
+        if (PROMOS[code]) {
+          STATE.discount = PROMOS[code];
+          msgEl.textContent = `${code} applied successfully!`;
+          msgEl.style.color = 'var(--success)';
+          msgEl.classList.remove('hidden');
+          UI.toast('Promo Applied!');
+        } else {
+          msgEl.textContent = 'Invalid code';
+          msgEl.style.color = 'var(--error)';
+          msgEl.classList.remove('hidden');
+          STATE.discount = 0;
+        }
+        this.updateUI();
+      },
+
+      quickView(id) {
+        const p = DATA.find(x => x.id === id);
+        const modal = document.getElementById('quickViewContent');
+        modal.innerHTML = `
+          <div class="aspect-square bg-gray-100"><img src="${p.img}" class="w-full h-full object-cover"></div>
+          <div class="p-12 flex flex-col justify-center relative">
+            <button onclick="UI.closeQuickView()" class="btn-icon absolute top-6 right-6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            <span class="text-xs tracking-[0.3em] uppercase" style="color: var(--accent)">${p.cat}</span>
+            <h2 class="font-display text-5xl mt-2 mb-6">${p.name}</h2>
+            <p class="text-lg mb-8" style="color: var(--muted)">${p.desc}</p>
+            <p class="font-display text-4xl mb-10" style="color: var(--accent)">₹${p.price}</p>
+            <button onclick="App.addToCart(${p.id}); UI.closeQuickView();" class="btn-primary w-full text-lg py-4" ${p.stock === 0 ? 'disabled' : ''}>
+              ${p.stock === 0 ? 'Sold Out' : 'Add to Bag'}
+            </button>
+          </div>
+        `;
+        document.getElementById('quickViewModal').classList.add('active');
+        modal.classList.add('active');
+      },
+
+      processOrder(e) {
+        e.preventDefault();
+        const form = e.target;
+        const btn = form.querySelector('button[type="submit"]');
+        
+        // Simple validation via HTML5 required handles most
+        
+        // UI Loading State
+        btn.innerHTML = 'Processing...';
+        btn.disabled = true;
+
+        // Simulate API Call
+        setTimeout(() => {
+            STATE.cart = [];
+            STATE.discount = 0;
+            STATE.save();
+            this.updateUI();
+            UI.closeCheckout();
+            UI.closeCart();
+            UI.toast('Order Placed Successfully!');
+            
+            // Reset Form
+            form.reset();
+            btn.innerHTML = 'Place Order';
+            btn.disabled = false;
+        }, 1500);
+      },
+
+      updateUI() {
+        // Cart Count
+        const count = STATE.cart.reduce((a, b) => a + b.qty, 0);
+        document.getElementById('cartCounter').textContent = count;
+        document.getElementById('cartCounter').style.display = count ? 'flex' : 'none';
+        
+        // Wishlist Count
+        document.getElementById('wishlistCounter').textContent = STATE.wishlist.length;
+        document.getElementById('wishlistCounter').style.display = STATE.wishlist.length ? 'flex' : 'none';
+
+        // Calculations
+        const subtotal = STATE.cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+        const discountVal = subtotal * STATE.discount;
+        const total = subtotal - discountVal;
+
+        // Cart Drawer Content
+        const container = document.getElementById('cartItems');
+        if (!STATE.cart.length) {
+          container.innerHTML = '<div class="text-center py-20 font-display text-xl" style="color: var(--muted)">Your bag is empty</div>';
+          document.getElementById('cartFooter').style.display = 'none';
+        } else {
+          document.getElementById('cartSubtotal').textContent = `₹${subtotal.toFixed(2)}`;
+          document.getElementById('cartTotal').textContent = `₹${total.toFixed(2)}`;
+          
+          if (discountVal > 0) {
+            document.getElementById('discountRow').classList.remove('hidden');
+            document.getElementById('discountVal').textContent = `-₹${discountVal.toFixed(2)}`;
+          } else {
+            document.getElementById('discountRow').classList.add('hidden');
+          }
+
+          container.innerHTML = STATE.cart.map(i => `
+            <div class="flex gap-6 mb-8 pb-8 border-b" style="border-color: var(--border)">
+              <img src="${i.img}" class="w-24 h-28 object-cover">
+              <div class="flex-1">
+                <div class="flex justify-between">
+                  <h4 class="font-display text-lg">${i.name}</h4>
+                  <button onclick="App.removeFromCart(${i.id})" class="opacity-50 hover:opacity-100 text-xl">&times;</button>
+                </div>
+                <div class="flex justify-between items-center mt-6">
+                  <div class="qty-box">
+                    <button class="qty-btn" onclick="App.updateQty(${i.id}, -1)">-</button>
+                    <div class="qty-val">${i.qty}</div>
+                    <button class="qty-btn" onclick="App.updateQty(${i.id}, 1)">+</button>
+                  </div>
+                  <span class="font-display text-lg" style="color: var(--accent)">₹${(i.price * i.qty).toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+          `).join('');
+          
+          document.getElementById('cartFooter').style.display = 'block';
+        }
+
+        // Checkout Summary Update
+        if(document.getElementById('checkoutItems')) {
+            const checkItems = document.getElementById('checkoutItems');
+            if (STATE.cart.length > 0) {
+                checkItems.innerHTML = STATE.cart.map(i => `
+                    <div class="flex items-center gap-4">
+                        <img src="${i.img}" class="w-16 h-16 object-cover">
+                        <div class="flex-1">
+                            <p class="font-display text-sm">${i.name}</p>
+                            <p class="text-xs" style="color: var(--muted)">Qty: ${i.qty}</p>
+                        </div>
+                        <span class="text-sm">₹${(i.price * i.qty).toFixed(2)}</span>
+                    </div>
+                `).join('');
+                
+                document.getElementById('checkSubtotal').textContent = `₹${subtotal.toFixed(2)}`;
+                document.getElementById('checkTotal').textContent = `₹${total.toFixed(2)}`;
+                
+                if (discountVal > 0) {
+                    document.getElementById('checkDiscountRow').classList.remove('hidden');
+                    document.getElementById('checkDiscountVal').textContent = `-₹${discountVal.toFixed(2)}`;
+                } else {
+                    document.getElementById('checkDiscountRow').classList.add('hidden');
+                }
+            } else {
+                checkItems.innerHTML = '';
+            }
+        }
+
+        // Wishlist Modal Content
+        const wishContainer = document.getElementById('wishlistGrid');
+        if (!STATE.wishlist.length) {
+          wishContainer.innerHTML = '<div class="col-span-full text-center py-16 font-display text-xl" style="color: var(--muted)">No saved items yet</div>';
+        } else {
+          const items = STATE.wishlist.map(id => DATA.find(p => p.id === id));
+          wishContainer.innerHTML = items.map(p => `
+            <div class="text-center">
+              <div class="aspect-square overflow-hidden mb-4 relative group">
+                <img src="${p.img}" class="w-full h-full object-cover">
+                <button onclick="App.toggleWish(${p.id})" class="absolute top-2 right-2 btn-icon w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity bg-white">&times;</button>
+              </div>
+              <h4 class="font-display text-lg">${p.name}</h4>
+              <p class="text-sm mt-1" style="color: var(--accent)"₹${p.price}</p>
+              <button onclick="App.addToCart(${p.id}); App.toggleWish(${p.id});" class="btn-outline text-xs py-2 w-full mt-4">Move to Bag</button>
+            </div>
+          `).join('');
+        }
+      },
+
+      toggleTheme() {
+        STATE.theme = STATE.theme === 'light' ? 'dark' : 'light';
+        localStorage.setItem('theme', STATE.theme);
+        UI.initTheme();
+      },
+
+      events() {
+        // Category Filter (Sidebar)
+        document.querySelectorAll('.sidebar-link').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.sidebar-link').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            this.renderProducts();
+          });
+        });
+
+        // Sort
+        document.getElementById('sortSelect').addEventListener('change', () => this.renderProducts());
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+          const q = e.target.value.toLowerCase();
+          const res = DATA.filter(p => p.name.toLowerCase().includes(q));
+          document.getElementById('searchResults').innerHTML = res.length 
+            ? res.map(p => `<div class="flex items-center gap-6 p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 rounded" onclick="App.quickView(${p.id}); UI.closeSearch();"><img src="${p.img}" class="w-16 h-16 object-cover"><span class="font-display text-xl">${p.name}</span></div>`).join('')
+            : '<p class="text-center py-16 text-xl" style="color: var(--muted)">No results found</p>';
+        });
+      }
+    };
+
+    // --- UI CONTROLLER ---
+    const UI = {
+      initTheme() {
+        if (STATE.theme === 'dark') {
+          document.body.setAttribute('data-theme', 'dark');
+          document.getElementById('themeIcon').innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+        } else {
+          document.body.removeAttribute('data-theme');
+          document.getElementById('themeIcon').innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        }
+      },
+
+      toast(msg, isWarning = false) {
+        const el = document.createElement('div');
+        el.className = 'toast';
+        if (isWarning) el.style.borderLeft = '4px solid var(--error)';
+        el.textContent = msg;
+        document.getElementById('toastContainer').appendChild(el);
+        setTimeout(() => el.remove(), 3000);
+      },
+
+      openCart() { document.getElementById('cartDrawer').classList.add('active'); document.getElementById('cartBackdrop').classList.add('active'); },
+      closeCart() { document.getElementById('cartDrawer').classList.remove('active'); document.getElementById('cartBackdrop').classList.remove('active'); },
+      
+      openWishlist() { document.getElementById('wishlistModal').classList.add('active'); document.getElementById('wishlistContent').classList.add('active'); },
+      closeWishlist() { document.getElementById('wishlistModal').classList.remove('active'); document.getElementById('wishlistContent').classList.remove('active'); },
+      
+      openSearch() { document.getElementById('searchModal').classList.add('active'); document.getElementById('searchInput').focus(); },
+      closeSearch() { document.getElementById('searchModal').classList.remove('active'); document.getElementById('searchInput').value = ''; document.getElementById('searchResults').innerHTML = ''; },
+      
+      closeQuickView() { document.getElementById('quickViewModal').classList.remove('active'); document.getElementById('quickViewContent').classList.remove('active'); },
+      
+      openCheckout() {
+          if(STATE.cart.length === 0) return;
+          this.closeCart();
+          document.getElementById('checkoutModal').classList.add('active');
+          document.querySelector('#checkoutModal .modal').classList.add('active');
+      },
+      closeCheckout() { 
+          document.getElementById('checkoutModal').classList.remove('active'); 
+          document.querySelector('#checkoutModal .modal').classList.remove('active');
+      },
+
+      reveal() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      }
+    };
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => App.init());
+  </script>
+</body>
+</html>

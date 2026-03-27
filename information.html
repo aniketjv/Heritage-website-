@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details - Maharashtra Heritage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Prata&display=swap"rel="stylesheet"> -->
+    <style>
+        :root {
+            /* Classic Gold & White Theme */
+            --charcoalGrey: #384248;
+            --primaryColor: #ad8b3a;
+            --primaryTextColor: #FFFFFF;
+            --highlightedMarkdownBackground: #fff6d7;
+            --color-bg-main: #FFFFFF;
+            --color-bg-section: #F9F9F9;
+            --color-text-main: #45443F;
+            --color-text-muted: #60686d;
+            --color-border: #E5E5E5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            color: var(--color-text-main);
+            font-family: Inter, InterNeue, Inter Neue, sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.7;
+            background-color: var(--color-bg-main);
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .logo {
+            font-family: 'Prata', serif;
+            font-size: 1.5rem;
+            color: var(--charcoalGrey);
+            text-decoration: none;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--charcoalGrey);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--primaryColor);
+        }
+
+        /* --- Hero --- */
+        .detail-hero {
+            height: 60vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 4rem 5%;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .detail-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--primaryColor);
+            color: var(--primaryTextColor);
+            padding: 5px 15px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-family: 'Prata', serif;
+            font-size: 4rem;
+            color: var(--charcoalGrey);
+            line-height: 1.1;
+        }
+
+        /* --- Layout --- */
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+        }
+
+        /* --- Content --- */
+        .main-content h2 {
+            font-family: 'Prata', serif;
+            font-size: 2rem;
+            color: var(--charcoalGrey);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primaryColor);
+            padding-left: 1rem;
+        }
+
+        .main-content p {
+            margin-bottom: 1.5rem;
+            color: var(--color-text-muted);
+            font-size: 1.05rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            height: 250px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: grayscale(20%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .info-card {
+            background-color: var(--color-bg-section);
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card h3 {
+            font-family: 'Prata', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--charcoalGrey);
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 1rem;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--primaryColor);
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .info-text strong {
+            display: block;
+            color: var(--charcoalGrey);
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-text span {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* --- Reach Section --- */
+        .reach-section {
+            background-color: #fff;
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+        }
+
+        .transport-mode {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .transport-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primaryColor);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .transport-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        /* --- Map --- */
+        .map-container {
+            height: 250px;
+            margin-top: 2rem;
+            position: relative;
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* Background Image */
+            background-image: url("https://i.pinimg.com/1200x/fa/3b/f1/fa3bf1463710297d6031b522e0baf7ef.jpg");
+            background-size: cover;
+            /* Makes image cover full container */
+            background-position: center;
+            /* Center image */
+            background-repeat: no-repeat;
+            /* Prevent repeating */
+        }
+
+        .btn-map {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primaryColor);
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+            bottom: 15px;
+            left: 50%;
+        }
+
+        */ .btn-map:hover {
+            background-color: var(--charcoalGrey);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .detail-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                order: -1;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <!--<a href="index.html" class="logo">MH Heritage</a> -->
+        <a href="collections.html" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Back to Collections
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="detail-hero">
+        <img id="hero-image" src="https://via.placeholder.com/1600x800?text=Loading..." class="hero-bg-img"
+            alt="Place Image">
+        <div class="hero-content">
+            <!-- <span id="hero-tag" class="tag">Loading...</span> -->
+            <h1 id="hero-title">Loading Destination...</h1>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="detail-container">
+
+        <!-- Left Column: Info & Gallery -->
+        <div class="main-content">
+            <h2>History & Overview</h2>
+            <p id="content-history">Fetching historical data...</p>
+
+            <!-- Photo Gallery -->
+            <h2>Photo Gallery</h2>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Images injected by JS -->
+            </div>
+        </div>
+
+        <!-- Right Column: Sidebar -->
+        <aside class="sidebar">
+
+            <!-- Quick Info Card -->
+            <div class="info-card">
+                <h3>At a Glance</h3>
+                <div class="info-item">
+                    <svg class="info-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    <div class="info-text">
+                        <strong>Location</strong>
+                        <span id="info-location">--</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <svg class="info-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                    </svg>
+                    <div class="info-text">
+                        <strong>Best Time to Visit</strong>
+                        <span id="info-time">--</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <svg class="info-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                    <div class="info-text">
+                        <strong>Entry Fee</strong>
+                        <span id="info-fee">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How to Reach Platform -->
+            <div class="reach-section">
+                <h3>How to Reach</h3>
+
+                <div class="transport-mode">
+                    <div class="transport-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+                        </svg>
+                    </div>
+                    <div class="info-text">
+                        <strong>By Air</strong>
+                        <span id="reach-air">--</span>
+                    </div>
+                </div>
+
+                <div class="transport-mode">
+                    <div class="transport-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h12v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4zm-1.5 16c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm6-6H7.5V6h9v6z" />
+                        </svg>
+                    </div>
+                    <div class="info-text">
+                        <strong>By Train</strong>
+                        <span id="reach-train">--</span>
+                    </div>
+                </div>
+
+                <div class="transport-mode">
+                    <div class="transport-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z" />
+                        </svg>
+                    </div>
+                    <div class="info-text">
+                        <strong>By Road</strong>
+                        <span id="reach-road">--</span>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <a id="map-link" href="#" target="_blank" class="btn-map">Open in Google Maps </a>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
+    <footer
+        style="background-color: var(--charcoalGrey); color: #B0B7BC; padding: 2rem 5%; text-align: center; margin-top: 4rem;">
+        <p>&copy; 2026 Maharashtra Heritage. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT TO HANDLE 190 PLACES -->
+    <script>
+        // ---------------------------------------------------------
+        // DATA SOURCE: Contains Real Data for top places, and 
+        // logic to generate placeholders for the rest up to 190.
+        // ---------------------------------------------------------
+
+        const realPlaces = [
+            {
+                id: 1,
+                name: "Raigad Fort",
+                image: "https://i.pinimg.com/1200x/7f/32/ed/7f32ed90df3632f296c840d5976df4f4.jpg",
+                history: "Raigad is a hill fort situated in the Mahad, Raigad district. It was the capital of the Maratha Empire under Chhatrapati Shivaji Maharaj. The fort rises 820 metres above sea level and is located in the Sahyadri mountain range.Raigad Fort in Maharashtra, once called Rairi, became the Maratha Empire’s capital after Shivaji Maharaj captured and rebuilt it in 1656. Site of his 1674 coronation, the fort later changed hands between the Mughals, Siddis, Marathas, and British, who called it the “Gibraltar of the East.”A statue of Shivaji is erected in front of the ruins of the main market avenue that leads to the Jagdishwar Mandir, which has Sardar Hiroji Indulkar's name engraved on the first step, his own Samadhi and that of his dog named Waghya. The Samadhi of Rajmata Jijabai, Shivaji's mother, can be seen at the base village of Pachad. ",
+
+                gallery: ["https://i.pinimg.com/1200x/52/85/9b/52859b4f3dc06bbfeb6183951cd8bfab.jpg",
+                    "https://i.pinimg.com/1200x/7f/32/ed/7f32ed90df3632f296c840d5976df4f4.jpg",
+                    "https://i.pinimg.com/736x/9f/7d/9f/9f7d9ffbb8e88c2566f0f9627b54741f.jpg",
+                    "https://i.pinimg.com/1200x/32/59/b6/3259b65bf809cfa97ff356ed81e0b553.jpg"
+
+                ],
+                location: "Raigad District, Maharashtra",
+                bestTime: "October to February",
+                fee: "₹25 for Indians",
+                air: "Nearest Airport: Pune (140 km)",
+                train: "Nearest Station: Veer (40 km)",
+                road: "Connected via Mumbai-Goa Highway (NH66).",
+                mapQuery: "https://www.google.com/maps/place/Raigad+Fort/@18.2334679,73.4381154,17z/data=!3m1!4b1!4m6!3m5!1s0x3be8283eb38b1ce5:0xfc31826ad34a5b70!8m2!3d18.2334679!4d73.4406903!16zL20vMDQwbDdn?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 2,
+                name: "Ellora Caves",
+                image: "https://i.pinimg.com/736x/20/e9/e5/20e9e5115a8ed1fed84542f4923d393e.jpg",
+                history: "The Ellora Caves are a UNESCO World Heritage Site in Sambhaji Nagar, India. It is one of the largest rock-cut cave complexes in the world, with artwork dating from AD 600–1000, including Hindu, Buddhist, and Jain caves.The complex is a leading example of Indian rock-cut architecture, and several are not strictly caves in that they have no roof. Cave 16 features the largest single monolithic rock excavation in the world, the Kailash temple, a chariot-shaped monument dedicated to the god Shiva. The Kailash temple excavation also features sculptures depicting various Hindu deities as well as relief panels summarizing the two major Hindu epics.",
+                gallery: ["https://inditales.com/wp-content/uploads/2013/10/kailash-temple-ellora-caves.jpg",
+                    "https://magikindia.com/wp-content/uploads/2015/12/kailash-temple-ellora.jpg",
+                    "https://i.pinimg.com/736x/f3/fb/cf/f3fbcf4ec2dfc5bebe0d7e05ab496df5.jpg",
+                    "https://aurangabadtourism.in/images/places-to-visit/header/ellora-caves-aurangabad-tourism-entry-fee-timings-holidays-reviews-header.jpg"
+                ],
+                location: "Aurangabad District, Maharashtra",
+                bestTime: " October to March ",
+                fee: "₹40 (Indians) | ₹600 (Foreigners) | Free for children below 15",
+                air: "Nearest Airport: Aurangabad Airport (35 km) – Connected to Mumbai, Delhi, Hyderabad & Pune. Taxi/bus available.",
+                train: "Nearest Station: Aurangabad (30 km) – Connected to Mumbai & Pune. Taxi/bus available.",
+                road: "Well connected by road. 30 km from Aurangabad via MSRTC buses, taxis, and private vehicles.",
+                mapQuery: "https://www.google.com/maps/search/ellora+caves/@20.2339753,75.1048253,10z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 3,
+                name: "Trimbakeshwar Temple",
+                image: "https://i.pinimg.com/736x/62/a3/34/62a33416cffbce2424036ebbdb90c51f.jpg",
+                history: "Trimbakeshwar Shiva Temple (श्री त्र्यंबकेश्वर ज्योतिर्लिंग मंदिर) is an ancient Hindu temple in the town of Trimbak, in the Trimbakeshwar tehsil, in the Nashik District of Maharashtra, India, 28 km from the city of Nashik and 40 km from Nashik road.[1][2] It is dedicated to the Hindu god Shiva and is one of the twelve jyotirlingas where the Hindu genealogy registers at Trimbakeshwar, Maharashtra are kept. The origin of the sacred Godavari River is near Trimbak.[3] Several Hindu rituals are carried out in Trimbakeshwar, for that pilgrims travel from all over India.The Kusavarta kunda (sacred pond) in the temple premises, built by Shrimant Sardar Raosaheb Parnerkar, who was the Fadnavis of Indore State, is the source of the Godavari River, the second longest river in India. A bust of Sardar Fadnavis and his wife can be seen on the edge of the kunda.",
+
+                gallery: [
+                    "https://www.pilgrimagetour.in/blog/wp-content/uploads/2023/10/History-of-Trimbakeshwar-Temple.jpg",
+                    "https://i.pinimg.com/736x/62/a3/34/62a33416cffbce2424036ebbdb90c51f.jpg",
+                    "https://vedicfeed.com/wp-content/uploads/2019/01/Kusa-varta-kunda-1024x658.jpg",
+                    "https://www.shivkhori.in/wp-content/uploads/2025/08/Trimbakeshwar-1024x1024.webp"
+                ],
+                location: "Trimbak, Nashik District, Maharashtra,",
+                bestTime: " October to March, Mahashivratri & Shravan month",
+                fee: "Free",
+                air: "Nashik Airport (50 km), Mumbai Airport (180 km). Taxi & bus available.",
+                train: "Nashik Road Railway Station (30 km)",
+                road: "28 km from Nashik, buses and taxis available",
+                mapQuery: "https://www.google.com/maps/place/Trimbakeshwar+Jyotirling+Mandir/@19.9321592,73.5307823,17z/data=!3m1!4b1!4m6!3m5!1s0x3bddeb013af2e74b:0x716282a3a46b04cc!8m2!3d19.9321592!4d73.5307823!16s%2Fm%2F09gkmxs?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 4,
+                name: "Panhala Fort",
+                image: "https://i.pinimg.com/736x/78/a9/ab/78a9ab54ccd617c2fe09cdb3f00826b3.jpg",
+                history: "Panhala fort (also known as Panhalgad and Panhalla (literally the home of serpents)), is located in Panhala, 20 kilometres northwest of Kolhapur in Maharashtra, India. It is strategically located, looking over a pass in the Sahyadri mountain range which was a major trade route from Bijapur in the interior of Maharashtra to the coastal areas.Panahala fort was built between 1178 and 1209 CE, one of 15 forts (others including Bavda, Bhudargad, Satara, and Vishalgad) built by the Shilahara ruler Bhoja II. It is said that aphorism Kahaan Raja Bhoj, kahan Gangu Teli is associated with this fort. A copper plate found in Satara shows that Raja Bhoja held court at Panhala from 1191–1192 CE.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/f8/33/95/f83395800e78672e20fd08060a59e86e.jpg",
+                    "https://i.pinimg.com/736x/9f/2f/1e/9f2f1e59c069a7a8a163b529fa2fc32f.jpg",
+                    "https://i.pinimg.com/1200x/97/e9/b4/97e9b476920d056710a6685fd5363f9b.jpg",
+                    "https://s7ap1.scene7.com/is/image/incredibleindia/panhala-fort-kolhapur-maharashtra-3-attr-hero?qlt=82&ts=1726668836758"
+                ],
+                location: "Panhala, Kolhapur District, Maharashtra",
+                bestTime: "October to March (Winter & Monsoon season is also beautiful)",
+                fee: "Free",
+                air: "Nearest Airport: Kolhapur Airport (15 km). International Airport: Pune Airport (230 km).",
+                train: "Nearest Railway Station: Kolhapur Railway Station (20 km).",
+                road: "20 km from Kolhapur city. Buses and taxis available from Kolhapur.",
+                mapQuery: "https://www.google.com/maps/place/Panhala+Fort,+Panhala,+Maharashtra+416201/@16.810015,74.1017357,16z/data=!3m1!4b1!4m6!3m5!1s0x3bc1af2403b02a2d:0x261688a64b188fc1!8m2!3d16.8113091!4d74.1078459!16s%2Fg%2F11_v4p72j?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 5,
+                name: "Ajanta Caves",
+                image: "https://i.pinimg.com/736x/55/6d/3a/556d3ab6c2037a81fae64cb8a7f9050c.jpg",
+                history: "",
+                gallery: [
+                    "https://i.pinimg.com/736x/ef/39/d1/ef39d1aa20a563202fce0ec6006e85a2.jpg",
+                    "https://i.pinimg.com/1200x/21/b5/8f/21b58f1311a5a2f005acafefc2518455.jpg",
+                    "https://i.pinimg.com/736x/2b/d3/c9/2bd3c9aa0536a5ceb45d3097df814dc9.jpg",
+                    "https://i.pinimg.com/736x/94/6e/39/946e398a4e720cfda3316190d3f5dd22.jpg"
+                ],
+                location: "Ajanta,Aurangabad District, Maharashtra",
+                bestTime: "October to March (Best weather for sightseeing)",
+                fee: "₹40 for Indians, ₹600 for Foreigners (Free for children under 15)",
+                road: "100 km from Aurangabad and 60 km from Jalgaon. MSRTC buses and taxis available.",
+                train: "Nearest Railway Station: Jalgaon Junction (60 km) and Aurangabad Station (100 km).",
+                air: "Nearest Airport: Aurangabad Airport (100 km). International Airport: Mumbai (400 km).",
+                mapQuery: "https://www.google.com/maps/search/Ajanta+Caves/@20.5594289,75.7052828,15z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 6,
+                name: "Mahalaxmi Temple",
+                image: "https://i.pinimg.com/1200x/6c/e1/b1/6ce1b1bb873c2dba7ed6bd20730bd352.jpg",
+                history: "Mahalakshmi Temple (also known as Ambabai Mandir) is an important Hindu temple dedicated to Goddess Mahalakshmi, who is worshipped by locals as Ambabai. Goddess Mahalakshmi Ambabai is the consort of Lord Vishnu and it is customary among Hindus to visit Tirumala Venkateswara Temple, Kolhapur Mahalakshmi Temple and Padmavathi Temple as a yatra (pilgrimage).     It is believed that visiting these temples as a pilgrimage helps achieve moksha (salvation)",
+                gallery: [
+                    "https://i.pinimg.com/736x/f8/a0/89/f8a0896ed1ab7207f9f7dce2695286ef.jpg",
+                    "https://i.pinimg.com/736x/ff/7f/93/ff7f933b9cb747a546fcf00a1e740b03.jpg",
+                    "https://hindupost.in/wp-content/uploads/2021/06/kolhapur-temple.png",
+                    "https://i.pinimg.com/1200x/ea/f1/29/eaf12969e48841d2c59632e9a38b5b25.jpg"
+                ],
+                location: "Kolhapur District, Maharashtra",
+                bestTime: "October to March (pleasant weather) | Navratri Festival is the BEST time (September/October) | Deepavali & Rath Yatra are also very famous",
+                fee: "Free",
+                air: "Kolhapur Airport (Ujalaiwadi Airport) – 10 km | Other nearby airports: - Belgaum Airport – 110 km | Pune Airport – 230 km",
+                train: "Kolhapur Railway Station (KOP) | Distance from temple: 2–3 km only",
+                road: "From Pune → 230 km | From Mumbai → 380 km | From Nashik → 300 km | MSRTC buses, private buses, taxis available",
+                mapQuery: "https://www.google.com/maps/place/Shree+(Mahalaxmi)+Temple,+Kolhapur/@16.6949604,74.2203203,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc0555a31825e95:0x48d3dac4a165bedf!8m2!3d16.6948109!4d74.2228275!16zL20vMDZqczNz?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 7,
+                name: "Kopeshwar Temple",
+                image: "https://i.pinimg.com/736x/66/3c/be/663cbe18634c98d34111e502eecbb19a.jpg",
+                history: "Kopeshwar Temple is at Khidrapur, Kolhapur district, Maharashtra. It is a Hindu temple dedicated to Shiva. This temple is in Maharashtra It is also accessible from Sangli as well. It was built in the 12th century by Shilahara king Gandaraditya between 1109 and 1178 CE. It is to the east of Kolhapur, ancient & artistic on the bank of the Krishna river. Even though Silaharas were Jain kings, they built and renovated various Hindu temples, thus depicting their respect and love for all religions. Kopeshwar means angry Shiva .",
+                gallery: [
+                    "https://i.pinimg.com/1200x/90/56/14/905614c33bed238b9b8a86248cdf96e3.jpg",
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2016/04/Khidrapur-2.jpg",
+                    "https://i.pinimg.com/736x/2a/2f/36/2a2f36bdfe9d0c38d9e5b6accb7874b7.jpg",
+                    "https://s7ap1.scene7.com/is/image/incredibleindia/kopeshwar-temple-kolhapur-maharashtra-4-attr-hero?qlt=82&ts=1726668767911"
+                ],
+                location: "Kopeshwar Temple, Khidrapur, Kolhapur District, Maharashtra, India.",
+                bestTime: "October to March, Shravan month and Mahashivratri festival time.",
+                fee: "Free",
+                air: "Nearest Airport: Kolhapur Airport (50 km). International Airport: Pune Airport (250 km). Taxi and buses available.",
+                train: "Nearest Railway Station: Jaysingpur Railway Station (20 km). Kolhapur Railway Station (60 km).",
+                road: "60 km from Kolhapur city. State buses and private taxis available.",
+                mapQuery: "https://www.google.com/maps/place/Kopeshwar+Shiva+Temple/@16.6160252,74.6860931,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc0dd00460f6c23:0xcf03cf90a45f1432!8m2!3d16.6160252!4d74.6860931!16s%2Fg%2F11xnvbvsy8?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 8,
+                name: "New Palace Museum (Chhatrapati Shahu Museum)",
+                image: "https://i.pinimg.com/1200x/b8/7f/0a/b87f0af3fc9e948309eaeacea6a7711d.jpg",
+                history: "New Palace, Kolhapur is a palace situated in Kolhapur, in the Indian state of Maharashtra. The Palace took 7 years to complete, from 1877 to 1884,[1] costing about seven lakhs of rupees.[2] Being an excellent specimen of Indian architecture built in black polished stone, it has been an attraction for tourists. It has extensive premises with a garden, fountain and wrestling ground. The whole building is eight-angled and has a tower in the middle. The clock on it was fixed in 1877. At separate distances there are small towers. On every glass are painted the events of Chhatrapati Shivaji Maharaj's life, the founder of Maratha Confederacy. There is a zoo and a ground lake. Even today, it is the residence of Shahu, the direct descendant of Chhatrapati Shivaji Maharaj.Mants masterpiece at Kolhapur, however, is the New Palace, 1.5 km further north on Bhausingji Road. Completed in the same year as the Hospital, this complex presents a novel blend of disparate features in contrasting basalt and sandstone. The principal south facade presents a double-storeyed range, with Neo-Mughal lobed arches beneath and temple-like columns and brackets above. This scheme is interrupted by trefoil arches capped with curving cornices and small domes. The same elements cap the octagonal corner towers.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/7d/81/2b/7d812b7f8814eca6dddcda55c14871a8.jpg",
+                    "https://i.pinimg.com/736x/20/1d/31/201d3132ccea488a310b0d563e9c984e.jpg",
+                    "https://i.pinimg.com/1200x/d4/57/61/d45761fa5d0f1f6301c36ffb5f499b13.jpg",
+                    "https://i.pinimg.com/736x/b0/91/ca/b091cad723ea5dd4d7e65b2b7a4e1e7d.jpg"
+                ],
+                location: "New Palace, Kolhapur City, Kolhapur District, Maharashtra, India.",
+                bestTime: "October to March (morning 9:00 AM to 6:00 PM).",
+                fee: "₹20 for Indians, ₹100 for Foreigners (Camera extra).",
+                air: "Nearest Airport: Kolhapur Airport (10 km). International Airport: Pune Airport (230 km). Taxi and buses available.",
+                train: "Nearest Railway Station: Kolhapur Railway Station (3 km). Easily reachable by auto or taxi.",
+                road: "Located in Kolhapur city. Well connected by buses, taxis, and private vehicles.",
+                mapQuery: "https://www.google.com/maps/place/New+Palace/@16.7193627,74.231735,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc101f1ced17705:0x230df67765e5e912!8m2!3d16.7193627!4d74.231735!16s%2Fm%2F06zq209?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D",
+            },
+            {
+                id: 9,
+                name: "Town Hall Museum",
+                image: "https://i.pinimg.com/1200x/9f/2e/ab/9f2eab5fc5d4eec38b5e1f7f85311cfc.jpg",
+                history: "Town Hall Museum is one of the oldest museums in Kolhapur, showcasing archaeological artifacts, sculptures, coins, and historical documents from ancient and medieval Maharashtra.The Town Hall Museum has been recently renovated.  There are seven corridors or dedicated galleries for various archeological relics- metallic artifacts, sculpture, ivory filigree and sandalwood work, weapons, paintings, old coins and individual images photos. Information and photos of historic monuments, places, customs and traditions of Kolhapur city are also on display in this museum.The Museum is encompassed by lush gardens covering 7-8 acres of land. The Town Hall Gardens are home to some very exotic species of plants, shrubs and trees. The gardens are well-planned and are the lungs of the area.The garden boasts of a glasshouse which was built in 1904. There is a striking marble statue of Shivaji Maharaj installed in the garden premises in 1927.A visit to this museum, which beautifully showcases a slice of or history, is a must-do on every tourist list. A stroll around the garden campus is an added attraction for nature-lovers",
+                gallery: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0XWbUmPWRX5tArDQElcMFnO9hjnSE8y_y8A&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkuAva9RvZMGfFSi5VGZXCL52nxFUxNybHqA&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2du-bCBGGYxEMmGQgOSzqk2GNETT2XZ7UoQ&s",
+                    "https://c8.alamy.com/comp/2JKNPKB/stock-photo-of-beautiful-old-water-fountain-in-the-middle-of-the-pond-lotus-buds-and-lotus-leaves-floating-on-water-picture-captured-at-town-hall-mus-2JKNPKB.jpg"
+                ],
+                location: "Shivaji Chowk, Kolhapur City, Maharashtra, India.",
+                bestTime: "October to March (10:00 AM – 5:00 PM).",
+                fee: "₹10 entry fee.",
+                air: "Nearest Airport: Kolhapur Airport (10 km). Pune Airport (230 km).",
+                train: "Kolhapur Railway Station (2 km).",
+                road: "Located in Kolhapur city. Auto, bus and taxi available.",
+                mapQuery: "https://www.google.com/maps/place/Town+Hall+museum/@16.7015198,74.224119,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc10187f0f05f2b:0xdcde5410f45f040!8m2!3d16.7015198!4d74.224119!16s%2Fg%2F11j8j96mj0?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 10,
+                name: "Siddhagiri Museum",
+                image: "https://siddhagirimatham.org/public/images/frontend/Matham-Entrance-2.png",
+                history: "Siddhagiri Museum is an open-air museum showcasing rural Indian village life, traditional occupations, and ancient culture. It is also known as Kaneri Math Museum.This museum showcases different aspects of Gramjivan (village life). Gram means village and jeevan means life in the Marathi language. This initiative was the dream of Mahatma Gandhi, and was created through the vision and efforts of Siddhagiri Gurukul Foundation co. The history of self-sufficient village life in Maharashtra, before the invasion of the Mughals, is depicted in the form of cement sculptures. Each sculpture is lifelike and represents activities performed in daily village life. There were 12 Balutedars (essentially artisan castes), and 18 Alutedars who provided equipment to carry out domestic and professional tasks.The museum is spread over 7 acres (28,000 m2), and the surrounding countryside is beautiful, with lush greenery. Every aspect of village life has been depicted in almost 80 scenes that showcase more than 300 statues.",
+                gallery: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSji-1gugCagaF5tiUKWqI35V28nZKMU0TqIw&s",
+                    "https://static2.tripoto.com/media/filter/tst/img/1/SpotDocument/1505049620_siddhagiri.jpg",
+                    "https://dynamic.tourtravelworld.com/hotspot-images/siddhagiri-museum-small-6253.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzPXUU1BdXKkwz61vejLxoHshFPzh-bhrlyA&s"
+                ],
+                location: "Kaneri Village, Kolhapur District, Maharashtra.",
+                bestTime: "October to March (9:00 AM – 6:00 PM).",
+                fee: "₹100 per person.",
+                air: "Kolhapur Airport (15 km).",
+                train: "Kolhapur Railway Station (12 km).",
+                road: "12 km from Kolhapur city. Buses and taxis available.",
+
+                mapQuery: "https://www.google.com/maps/place/Kaneri+Museum/@16.6115355,74.2639316,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc0ff6d04555555:0x41ab637c6dbfbce9!8m2!3d16.6115355!4d74.2639316!16s%2Fm%2F05b_d2r?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 11,
+                name: "Narasoba Wadi",
+                image: "https://utsav.gov.in/public/uploads/event_picture_image/event_1124/16635736851192259427.jpg",
+                history: "Nrusinhawadi commonly known as Narsobawadi or Narsobachi Wadi is a small town in Shirol Tahasil in Kolhapur district, Maharashtra. Narsobawadi gets its name from the presence of 'Shri Nrusinha Saraswati', the Purna Avatar of Lord Dattatreya.With much archaeological value, this became a major pilgrim spot for many Shri Dattatreya devotees. Also, there is a confluence of the two rivers Panchganga and Krishna.Nrusinhawadi is famous for the Hindu temple of Shri Nrusinha Saraswati (Marathi: नृसिंह सरस्वती) (1378–1458) located on the banks of the river Krushna.Shri Dattatreya in his Nrusinha Saraswati incarnation is believed to have lived here for as long as 12 years. (Ref. Shri Gurucharitra). The life story of Shri Nrusinha Saraswati, his philosophy and related stories are described in Shri Guru Charitra. There are no images or idols here which show his presence. But there are two padukas or slippers which immortalize his great avatar.",
+                gallery: [
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2016/04/narsinhwadi.jpeg",
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2016/04/narsobawadi4.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSErh9wB9f4C2Eemzef4K50O8W41uoLaO-8UQ&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9AGQwM996SU3fd3uabN6i2JbaEHqq_wUsLA&s"
+                ],
+                location: "Narsobawadi, Kolhapur District, Maharashtra, India.",
+                bestTime: "October to March, Guru Purnima Festival.",
+                fee: "Free",
+                air: "Kolhapur Airport (60 km).",
+                train: "Narsobawadi Railway Station (1 km).",
+                road: "Well connected by road from Kolhapur and Sangli.",
+                mapQuery: "https://www.google.com/maps/place/Narasoba+Wadi,+Maharashtra+416104/@16.6945512,74.6009123,16z/data=!3m1!4b1!4m6!3m5!1s0x3bc0dffb3dd085ff:0x15cdbdda4e43d1b1!8m2!3d16.6960704!4d74.6019806!16s%2Fm%2F0b6grr7?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 12,
+                name: "Pohale Buddhist Cave",
+                image: "https://content.jdmagicbox.com/comp/kolhapur/u7/0231px231.x231.190825233323.a9u7/catalogue/pohale-buddhist-caves-wadi-ratnagiri-kolhapur-tourist-attraction-gvEoh4Mb3y.jpg",
+                history: "Pohale Caves, also Pohala Caves or Pawala Caves, are a group of Buddhist caves located in Kolhapur District, Maharashtra, India, about 15 km northeast of Kolhapur.The caves are rather plain and were excavated in a rocky area near Jyotiba's hill.There is one large vihara, about square of about 34', with 14 columns on three sides and 22 cells around the central hall (7 long, 5 broad and 7 high). There is also a Chaitya, and one more cave with a raised rock-cut seat for a teacher, with a watern cistern.",
+                gallery: [
+                    "https://thumbs.dreamstime.com/b/pohale-caves-buddhist-caves-located-kolhapur-district-maharashtra-india-pohale-caves-pohala-caves-pawala-caves-285334636.jpg",
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2021/09/Pohale-Cave.jpg",
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2021/09/Pohale-Caves-3.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy5r3qJIoxiz_GzcsWpx2oocAOJLojgTCT3Q&s"
+                ],
+                location: "Pohale Village, Kolhapur District, Maharashtra.",
+                bestTime: "October to March.",
+                fee: "Free",
+                air: "Kolhapur Airport (45 km).",
+                train: "Kolhapur Railway Station (35 km).",
+                road: "Accessible by road from Kolhapur city.",
+                mapQuery: "https://www.google.com/maps/place/Pohale+Buddhist+Caves/@16.7908828,74.1912927,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc1a9bf1cc47f4f:0x9090e77b08d55005!8m2!3d16.7908828!4d74.1912927!16s%2Fg%2F11gmzlrb7v?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 13,
+                name: "Vishalgad Fort",
+                image: "https://i.pinimg.com/736x/15/6f/99/156f9983d14e30c59553441042e51072.jpg",
+                history: "Vishalgad (also known as Khelna) is a hill fort located in Bhudargad of Kolhapur district, Maharashtra, India. The fort was built by the last Shilahara ruler Bhoja II between 1178 and 1209 CE. In 1216, it was captured by the Yadava ruler Simhana II after the defeat of the Shilahara forces, leading to the annexation of the Shilahara kingdom into the Yadava state.After the decline of the Yadava dynasty, control of the fort passed to the Surves, a Suryavanshi dynasty that had migrated from Saurashtra to the Konkan region and established its kingdom there. In 1471, the Bahamani general Mahmud Gawan laid siege to Vishalgad, compelling the Surves to surrender the fort. Owing to its strategic location, Vishalgad subsequently became a focal point of several military conflicts in the Deccan, involving the Bahamani Sultanate, the Vijayanagara Empire, the Surves, and later the Adil Shahi dynasty, Mughals and the Marathas.         ",
+                gallery: [
+                    "https://i.pinimg.com/736x/15/6f/99/156f9983d14e30c59553441042e51072.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/9e/70/6b/vishalgad-fort.jpg?w=900&h=500&s=1",
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2016/10/vishalgad-1.jpg",
+                    "https://indiacinehub.gov.in/sites/default/files/styles/flexslider_full/public/2024-02/vishalgad_fort3.jpg?itok=WEKl7-4m"
+                ],
+                location: "Kolhapur District, Maharashtra.",
+                bestTime: "June to March (Monsoon best for greenery).",
+                fee: "Free",
+                air: "Kolhapur Airport (75 km).",
+                train: "Kolhapur Railway Station (60 km).",
+                road: "Accessible by road via Gaganbawda.",
+                mapQuery: "https://www.google.com/maps/place/Vishalgad+Fort/@16.9058477,73.7432559,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc1c550ca513b81:0x2cc96e74fa8b52a3!8m2!3d16.9058477!4d73.7458308!16s%2Fg%2F11fkqh7z17?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 14,
+                name: "Shree Jyotiba Temple",
+                image: "https://i.pinimg.com/736x/80/34/08/80340818ff8732b3b00544b6b34660cb.jpg",
+                history: "Jyotiba Temple (Marathi: ज्योतिबा) is a holy site of Hinduism near Wadi Ratnagiri[1] in Kolhapur district of Maharashtra state in western India. The deity of the temple is known by the same name. An annual fair takes place on the full moon night of the Hindu months of Chaitra and Vaishakha.There was a small temple in the place of today's Jyotiba big temple. Jyotiba temple is situated at 3124 feet above sea level and is dedicated to Jyotiba. The temple is 18 km north-west of Kolhapur.According to the tradition, the original Kedareshwar temple was built by Navaji Sayaji, also known as Kedar baba from village kival near Karad. In 1730, Ranoji Shinde built the present Jyotiba temple in its place. This temple was constructed by craftsmen known as Kedar who were well-known for their sculptures ( Hemadpanti ). Jyotiba Temple is dedicated to Lord Jyotiba, an incarnation of Lord Shiva. It is one of the most important temples in Kolhapur.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/6b/fc/79/6bfc790c3f6b8a09f2e785d4605672a4.jpg",
+                    "https://i.pinimg.com/1200x/2b/89/32/2b8932737d0c5f5dcf091c5094d4b74d.jpg",
+                    "https://c8.alamy.com/comp/2AE2386/jyotiba-temple-kolhapur-maharashtra-india-asia-2AE2386.jpg",
+                    "https://www.omastrology.com/indian-temples/images/jyotiba-temple-kolhapur.jpg"
+                ],
+                location: "Wadi Ratnagiri, Kolhapur District, Maharashtra.",
+                bestTime: "October to March, Chaitra Yatra Festival.",
+                fee: "Free",
+                air: "Kolhapur Airport (25 km).",
+                train: "Kolhapur Railway Station (20 km).",
+                road: "20 km from Kolhapur city by road.",
+                mapQuery: ""
+            },
+            {
+                id: 15,
+                name: "Balumama Temple",
+                image: "https://i.pinimg.com/736x/dd/20/01/dd2001532fc70ffbdbdd675dbfd9b5f5.jpg",
+                history: "Balumama was born on 4 October 1892 in a village called Akkol in Chikkodi taluk of Belgaum district in Karnataka[1] in a Hindu dhangar (Shepherd) family. His father was a shepherd named Mayappa and his mother's name was Sundara. He spent his childhood with his parents but was always lost in meditation. He later went on to live some time after do marriage The marriage did not last long. He was given about 15 sheep by his in-laws which he started to tend.lumama attained samadhi at the age of 73 in 1966 in a village called Adamapur, Tal : Bhudargad in Kolhapur district of Maharashtra. A temple was built in his memory in Adamapur which lies between Nipani in Karnataka and Radhanagari in Maharashtra. The Temple is managed by Shri Balumama Sansthana. The small flock have now grown to 40,000 sheep, which are looked after by his devotees and still considered sacred",
+                gallery: [
+                    "https://www.balumamamandir.org/wp-content/uploads/2024/08/balumama-temple-fron.jpg",
+                    "https://miro.medium.com/v2/resize:fit:1200/1*uY8CuuZariYti7Ta6xxTfg.jpeg",
+                    "https://static.langimg.com/mt/thumb/123832802/kolhapur-balumama-temple-closed-for-four-days.jpg?imgsize=114422&width=1600&height=900&resizemode=75",
+                    "https://i.pinimg.com/736x/9b/a8/77/9ba8770a9e5c80bd1b6f95f582c5a9c8.jpg"
+                ],
+                location: "Adamapur Village, Kolhapur District, Maharashtra.",
+                bestTime: "October to March, Thursday special days.",
+                fee: "Free",
+                air: "Kolhapur Airport (50 km).",
+                train: "Kolhapur Railway Station (40 km).",
+                road: "40 km from Kolhapur city.",
+                mapQuery: "https://www.google.com/maps/place/Balumama+Temple,+Rukadi/@16.7278194,74.3765583,17z/data=!4m6!3m5!1s0x3bc102e6d522da0f:0xfd3c60afa6a04d04!8m2!3d16.7278194!4d74.3791332!16s%2Fg%2F11d_7vbtzt?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 16,
+                name: "Gagangiri Math",
+                image: "https://i.pinimg.com/736x/cd/7d/2c/cd7d2c9f0a0a7d68a86507985ef4fe9f.jpg",
+                history: "",
+                gallery: [
+                    "https://media-cdn.tripadvisor.com/media/photo-s/02/85/d1/94/filename-1-jpg-thumbnail0.jpg",
+                    "https://c8.alamy.com/comp/ET22D9/mahabharata-war-depicting-on-rock-gagangad-maharaj-temple-maharashtra-ET22D9.jpg",
+                    "https://avathioutdoors.gumlet.io/travelGuide/dev/kolhapur_P1484.jpg",
+                    "https://static.wixstatic.com/media/cab5da_6251fc3eface471e97d1aca1ec1aeb24~mv2.jpg/v1/fill/w_1024,h_576,al_c/cab5da_6251fc3eface471e97d1aca1ec1aeb24~mv2.jpg"
+                ],
+                location: "Kolhapur District, Maharashtra.",
+                bestTime: "October to March.",
+                fee: "Free",
+                air: "Kolhapur Airport (60 km).",
+                train: "Kolhapur Railway Station (50 km).",
+                road: "Accessible by road from Kolhapur.",
+                mapQuery: "https://www.google.com/maps/place/Gagangad+Gagangiri+Maharaj+Aasharam/@16.5430415,73.8164195,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc0360d30d87737:0x6a62faee57e4f93a!8m2!3d16.5430415!4d73.8189944!16s%2Fg%2F11cjkgspxy?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 17,
+                name: "Shalini Palace",
+                image: "https://i.pinimg.com/1200x/f1/c2/63/f1c2637eaf09e6c9d8c69269a470e975.jpg",
+                history: "Shalini Palace was built in 1934 and is located on the banks of Rankala Lake. It is now a heritage hotel showcasing royal architecture.Shalini Palace[1] ( Shaalini ) in the city of Kolhapur in the Indian state of Maharashtra was built in 1931–34 at a cost of Rs. 800,000 and was named after Princess Shalini (Shaalini) Raje of Kolhapur. The Palace stands on the west bank of the picturesque Lake Rankala (which has a circumference of 2.5 miles (4.0 km)) and is surrounded by towering palm trees, lush greenery and lovely gardens.The palace has been converted in 1987 into a 3-star hotel and has been used as a background for many films. Because of heavy losses it had to be shut down in 2014 and given over to the Municipality. It is closed by now (March 2018).Shalini Palace seen from the Rankala Lake.The Palace is built of intricately carved black stone and Italian marble. Rich decorative wooden doorways fitted with etched Belgian glass bearing the crest of the Maharaja of Kolhapur, add to the regal grandeur. Majestic black stone arches form the verandah and the porch. The stained glass windows and the huge tower clock are restored to their original beauty.",
+                gallery: [
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2015/01/shalini-palace03.jpg",
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2015/01/shalini-palace02.jpg",
+                    "https://c8.alamy.com/comp/FAN94K/shalini-vilas-palace-kolhapur-maharashtra-india-FAN94K.jpg",
+                    "https://media-cdn.tripadvisor.com/media/photo-s/02/74/7d/76/filename-p1080879-jpg.jpg"
+                ],
+                location: "Rankala Lake, Kolhapur City, Maharashtra.",
+                bestTime: "October to March.",
+                fee: "Free (Hotel charges apply).",
+                air: "Kolhapur Airport (12 km).",
+                train: "Kolhapur Railway Station (4 km).",
+                road: "Located in Kolhapur city.",
+                mapQuery: "https://www.google.com/maps/place/Shalini+Palace/@16.6924496,74.2045141,17z/data=!3m1!4b1!4m6!3m5!1s0x3bb58cb14940a8dd:0x698aa3a5a7a5f9fc!8m2!3d16.6924496!4d74.207089!16s%2Fg%2F11fm73r2_j?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 18,
+                name: "Sateri Mahadev Temple",
+                image: "https://i.ytimg.com/vi/QUhWCuqEgZs/oardefault.jpg",
+                history: "Sateri Mahadev Temple is a sacred Shiva temple surrounded by nature and hills. It is a peaceful pilgrimage spot.",
+                gallery: [
+                    "https://content3.jdmagicbox.com/v2/comp/kolhapur/x7/0231px231.x231.230324103409.s5x7/catalogue/sateri-mahadev-mandir-kolhapur-temples-PtwDCksaty.jpg",
+                    "https://content.jdmagicbox.com/v2/comp/kolhapur/x7/0231px231.x231.230324103409.s5x7/catalogue/sateri-mahadev-mandir-kolhapur-temples-htRgIElObY.jpg",
+                    "https://d2kihw5e8drjh5.cloudfront.net/eyJidWNrZXQiOiJ1dGEtaW1hZ2VzIiwia2V5IjoicGxhY2VfaW1nLzg2YzVmYTI5YTY3YjQ2MWI5ZGEwNzE4NjU0YjczZjg0IiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo2NDAsImhlaWdodCI6NjQwLCJmaXQiOiJpbnNpZGUifSwicm90YXRlIjpudWxsLCJ0b0Zvcm1hdCI6ICJ3ZWJwIn19",
+                    "https://media.assettype.com/esakal%2F2023-08%2F6cef2201-417b-4fb0-b165-102cfdc30ff9%2F4.jpg"
+                ],
+                location: "Kolhapur District, Maharashtra.",
+                bestTime: "October to March, Mahashivratri.",
+                fee: "Free",
+                air: "Kolhapur Airport (70 km).",
+                train: "Kolhapur Railway Station (60 km).",
+                road: "Accessible by road from Kolhapur.",
+                mapQuery: "https://www.google.com/maps/place/Sateri+Mahadev+Temple+Amashi/@16.6337783,74.0737916,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc05357c7dcbf57:0xf7b18d2704295a9b!8m2!3d16.6337783!4d74.0763665!16s%2Fg%2F11s5zbylw7?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 19,
+                name: "Ramling Temple",
+                image: "https://i0.wp.com/www.discovermh.com/wp-content/uploads/2022/01/ramling-kolhapur.jpg",
+                history: "Ramling Temple is an ancient Shiva temple famous for its holy water pond and spiritual significance.",
+                gallery: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXv8folsIBvsBhS1YABOqkyWJ6y88PsPEDWQ&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8gTvQw5kUHYFkbiBLukic6rhCQlejecFdzg&s",
+                    "https://content.jdmagicbox.com/v2/comp/kolhapur/y5/0231px231.x231.220318233306.a2y5/catalogue/ramling-alate-kolhapur-temples-JmUv1fbcW1.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ95SrT6oMkI_e6bBZpFO3yp6XT9LtSOd8uA&s"
+                ],
+                location: "Kolhapur District, Maharashtra.",
+                bestTime: "October to March.",
+                fee: "Free",
+                air: "Kolhapur Airport (30 km).",
+                train: "Kolhapur Railway Station (25 km).",
+                road: "25 km from Kolhapur city.",
+                mapQuery: "https://www.google.com/maps/place/Sri+Ramling+Temple-Ancient+Shiva+Temple/@16.7077789,74.2988503,12z/data=!4m10!1m2!2m1!1sramling+temple+kolhapur!3m6!1s0x3bc10367d5e5edd5:0xfd35321483ad9cad!8m2!3d16.7681843!4d74.3795413!15sChdyYW1saW5nIHRlbXBsZSBrb2xoYXB1cpIBDGhpbmR1X3RlbXBsZeABAA!16s%2Fg%2F11g8_1g0d4?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 20,
+                name: "Rangana Fort",
+                image: "https://vl-prod-static.b-cdn.net/system/images/000/287/593/2f193818c68d7395861be71becf36062/original/12687841_1031468200230387_981561306256533107_n.jpg",
+                history: "Rangana Fort/ Prasiddhagad (Marathi: रांगणा किल्ला) is located in the Bhudargad taluka of Kolhapur district. This fort is one of the important forts in the district. It is located on the Sahyadri mountain ridge, on the boundary of the Sindhudurg and Kolhapur districts.This fort was built by the King Bhoj-II of the Shilahar dynasty in the 12th century. In 1470 this fort was captured by Md. Gavan of Bahamani dynasty. Later it was under the control of Sawant rulers of Adilshahi dynasty. In 1658, the Rustum Jaman, commander-in chief of Adilshah captured it from the Sawants. In December 1664 through a series of surprise attacks, Shivaji defeated the combined forces of Bijapur and the Desais and captured the Rangna Fort. Lakham Sawant and the Desais fled to Portuguese territory.[3] Jijabai undertook a special drive and captured the fort on 15 August 1666. This fort was under the control of Karvir kings until the British took control in 1818",
+                gallery: [
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2017/01/rangana-04.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsRmnFgXbTt4hG3RqmjT1bnpxLnQ3EzkIeBw&s",
+                    "https://i0.wp.com/kolhapurexplorer.com/wp-content/uploads/2021/10/rangana1.jpg?fit=1280%2C800&ssl=1",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJKTfziBKcqyHXOhQbCLg9lJhGk5ree_HcGg&s"
+                ],
+                location: "Kolhapur District, Maharashtra.",
+                bestTime: "June to March (Monsoon best).",
+                fee: "Free",
+                air: "Kolhapur Airport (85 km).",
+                train: "Kolhapur Railway Station (75 km).",
+                road: "Accessible by road via Gaganbawda.",
+                mapQuery: "https://www.google.com/maps/place/Fort+Rangana/@16.0793679,73.8417902,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc072b4f6b14087:0x295515bea9d0081f!8m2!3d16.0793679!4d73.8443651!16s%2Fg%2F11h9mpnl7d?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 21,
+                name: "Bhudargad Fort",
+                image: "https://image.shutterstock.com/image-photo/rangana-fort-located-bhudargad-taluka-260nw-1767128411.jpg",
+                history: "Bhudargad Fort is a historic hill fort in Kolhapur district. It was strategically important during the Maratha period and offers scenic views of the Sahyadri ranges.Bhudargad is a tehsil in Kolhapur district in the Indian state of Maharashtra.Bhudargad is a fort built by Shivaji.[citation needed] Gargoti, the administrative place of Bhudargad tehsil is also known as an educational and economic hub of tehsil that has various institutions such as Mouni Vidyapeeth, D.Ed and B.Ed. College and ICRE - Institute of Civil and Rural Engineering.",
+                gallery: [
+                    "https://blog-img-dev.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2025/03/Bhudargad-Fort-cp-840x425.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQnnviKT9SkfHW-EwjtKzjYa18onM89yUm0w&s",
+                    "https://bhudargad.wordpress.com/wp-content/uploads/2013/12/index3.jpg?w=266",
+                    "https://d2kihw5e8drjh5.cloudfront.net/eyJidWNrZXQiOiJ1dGEtaW1hZ2VzIiwia2V5IjoicGxhY2VfaW1nLzNmNmVjNjVkMDVmNDQwYWRiMGMzNmVkMDVmZGQ2YjkyIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo2NDAsImhlaWdodCI6NjQwLCJmaXQiOiJpbnNpZGUifSwicm90YXRlIjpudWxsLCJ0b0Zvcm1hdCI6ICJ3ZWJwIn19"
+                ],
+                location: "Bhudargad Taluka, Kolhapur District, Maharashtra.",
+                bestTime: "June to February (Monsoon best for greenery).",
+                fee: "Free",
+                air: "Kolhapur Airport (70 km).",
+                train: "Kolhapur Railway Station (65 km).",
+                road: "Well connected by road from Kolhapur.",
+                mapQuery: "https://www.google.com/maps/place/Bhudargad+Fort/@16.2527321,74.1383052,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc06126af9cf6dd:0x167710747c136466!8m2!3d16.2527321!4d74.1408801!16s%2Fg%2F11b6gdbkyh?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 22,
+                name: "Sangli Fort",
+                image: "https://media-cdn.tripadvisor.com/media/photo-s/05/be/26/96/sangli-fort.jpg",
+                history: "Sangli Fort was built during the Maratha rule and is located near the Krishna River. It reflects the architectural style of the Patwardhan rulers.Sangli Fort, also known as the Devi Gad or the Fort of Goddess, is a historic fort located in the city of Sangli in Maharashtra, India. The fort is believed to have been built by the Maratha ruler, Shivaji Maharaj, in the 17th century, and it played a significant role in the Maratha empire's history. The fort stands on a hill overlooking the city of Sangli and the surrounding landscape, offering a breathtaking view of the region. The fort is surrounded by a deep moat, which was used as a defense mechanism in ancient times. The fort has several gates, including the main gate called the Mahadarwaja, which is adorned with intricate carvings and sculptures. The fort has many buildings and structures within its complex, including a palace, a temple, a granary, a reservoir, and a few other buildings. The palace, which was once the residence of the Maratha rulers, is now in ruins but still attracts visitors with its impressive architecture. The temple within the fort complex is dedicated to the goddess Bhavani, who is believed to have been the deity worshipped by Shivaji Maharaj. The temple is a popular pilgrimage site and attracts many devotees throughout the year.",
+                gallery: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/be/26/35/sangli-fort.jpg?w=1200&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/fc/35/fc/canon-in-front-of-hall.jpg?w=1400&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/fc/34/90/big-bastion.jpg?w=1400&h=-1&s=1",
+                    "https://hblimg.mmtcdn.com/content/hubble/img/ttd_images/mmt/activities/m_Sangli_Sangli_fort_2_l_363_640.jpg?im=Resize=(412,347.56)"
+                ],
+                location: "Sangli City, Maharashtra.",
+                bestTime: "October to March.",
+                fee: "Free",
+                air: "Kolhapur Airport (50 km).",
+                train: "Sangli Railway Station (2 km).",
+                road: "Located in Sangli city.",
+                mapQuery: "https://www.google.com/maps/place/Ganeshdurg/@16.858339,74.5633038,17z/data=!3m2!4b1!5s0x3bc1184221c51837:0xd872f6e6c7760936!4m6!3m5!1s0x3bc118416c253669:0xf6e46d01ac4a9ff2!8m2!3d16.858339!4d74.5658787!16s%2Fg%2F12mjbh70y?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 23,
+                name: "Bahubali Hill Temple",
+                image: "https://i.pinimg.com/736x/9c/48/1f/9c481f9b7a5dd9a1a93e5a3150167e25.jpg",
+                history: "Bahubali Hill Temple is a Jain pilgrimage site featuring a tall statue of Lord Bahubali. It offers panoramic views of the surrounding region.The Bahubali Hill Temple in Sangli is a popular destination for visitors. In Hindi, the name for the Bahubali mountains is Kumbhojgiri. The building is home to a statue of the saint Bahubali that stands at an impressive 28 feet in height. Four hundred years ago, the sage Bahubali may have pondered here. All around the country, people travel to this spot to pray.",
+                gallery: [
+                    "https://hblimg.mmtcdn.com/content/hubble/img/ttd_images/mmt/activities/m_Sangli_Bahubali_hill_temple_1_l_428_640.jpg",
+                    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSp4Ociagy6oEixmnm2S8CKk4rXhXbzO3i7LPlDucVKE6yWmqMR",
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2016/04/n-web-bahubali.jpg",
+                    "https://content.jdmagicbox.com/comp/kolhapur/t1/0231px231.x231.141226160149.b7t1/catalogue/bahubali-hill-temple-kumbhoj-kolhapur-tourist-attraction-40n6mcx-250.png"
+                ],
+                location: "Kumbhoj, Kolhapur District, Maharashtra.",
+                bestTime: "October to March.",
+                fee: "Free",
+                air: "Kolhapur Airport (30 km).",
+                train: "Hatkanangale Railway Station (10 km).",
+                road: "Well connected by road from Kolhapur.",
+                mapQuery: "https://www.google.com/maps/search/bahubali+temple+kolhapur/@16.8068091,74.4158979,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 24,
+                name: "Sangmeshwar Temple",
+                image: "https://hblimg.mmtcdn.com/content/hubble/img/ttd_images/mmt/activities/m_Sangli_Sangmeshwar_temple_1_l_633_640.jpg",
+                history: "Sangmeshwar Temple is an ancient Shiva temple located at the confluence of rivers. It is known for its peaceful surroundings and religious importance.The Sangmeshwar Temple is one of the most sacred sites in Sangli. Lord Shiva is worshipped at this Sangmeshwar temple. A significant number of worshippers congregate here since this deity is highly regarded in Hindu mythology. Given its historical and mythical significance, this has been a holy site for quite some time.",
+                gallery: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/73/1c/a0/sangmeshwar-temple.jpg?w=1400&h=800&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/73/1b/d3/sangmeshwar-temple.jpg?w=2000&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/73/1c/e9/sangmeshwar-temple.jpg?w=2000&h=-1&s=1",
+                    "https://c8.alamy.com/comp/KH4DYC/sangameshwar-shiva-temple-haripur-sangli-maharashtra-india-asia-KH4DYC.jpg"
+                ],
+                location: "Sangli District, Maharashtra.",
+                bestTime: "October to March, Mahashivratri.",
+                fee: "Free",
+                air: "Kolhapur Airport (60 km).",
+                train: "Sangli Railway Station (15 km).",
+                road: "Accessible by road from Sangli.",
+                mapQuery: "https://www.google.com/maps/place/Chalukya+era+Shri+Sangameshwar+Temple,+Haripur/@16.8470402,74.5362201,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc119afbda4d4c9:0xa9a05a80bcf50c5c!8m2!3d16.8470402!4d74.5362201!16s%2Fg%2F1pyqvf141?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 25,
+                name: "Ganpati Temple (Sangli)",
+                image: "https://temple.yatradham.org/public/Product/temple/temple_eENM1cee_202409031455000.jpg",
+                history: "Sangli Ganpati Temple is dedicated to Lord Ganesha and is one of the most famous temples in Sangli built by the Patwardhan rulers.The construction of Ganesh Temple was started in 1814 by Chintamanrao Patwardhan, the first head of the Sangli, to honor the guarding deity of the Sangli city. The construction of this temple took a period of 30 years and was completed in 1845. Chintamanrao Patwardhan from Royal family of Sangli installed the idol of Lord Ganpati in this temple. In 1952, a red stone arch was erected in front of the Ganesh temple. The rest of the temple was completed during the reign of Chintamani Rao II. Vijay Singh Patwardhan has recently renovated and transformed this temple.",
+                gallery: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJvVtvIyFxaI23nAnydXDyl_VBGlylUJHDzQ&s",
+                    "https://temple.yatradham.org/public/Product/temple/temple_eENM1cee_202409031455000.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/07/c2/79/ganapati-temple.jpg?w=800&h=800&s=1",
+                    "https://content3.jdmagicbox.com/comp/sangli/g3/9999px233.x233.180227023436.l7g3/catalogue/ganpati-mandir-vishrambag-sangli-temples-avymeik8b7.jpg"
+                ],
+                location: "Sangli City, Maharashtra.",
+                bestTime: "Ganesh Chaturthi & October to March.",
+                fee: "Free",
+                air: "Kolhapur Airport (50 km).",
+                train: "Sangli Railway Station (3 km).",
+                road: "Located in Sangli city.",
+                mapQuery: "https://www.google.com/maps/place/Sangli+Shri+Ganapati+Temple/@16.8619153,74.2548346,11z/data=!4m10!1m2!2m1!1sGanpati+Temple+Sangli!3m6!1s0x3bc118478b41fc39:0x9ac36273a522944f!8m2!3d16.8619153!4d74.5597052!15sChVHYW5wYXRpIFRlbXBsZSBTYW5nbGlaFyIVZ2FucGF0aSB0ZW1wbGUgc2FuZ2xpkgEMaGluZHVfdGVtcGxlmgEkQ2hkRFNVaE5NRzluUzBWT2VsazNjVGRYTm1WWE16Qm5SUkFC4AEA-gEECAAQRQ!16s%2Fg%2F11g9w7cz_y?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 26,
+                name: "Chandoli Museum",
+                image: "https://www.voicesofruralindia.org/wp-content/uploads/2024/11/04-1024x485.jpg",
+                history: "Chandoli Museum is located near Chandoli National Park in Sangli district. It showcases rural culture, local history, and biodiversity of the Sahyadri region. The museum represents traditional village life and wildlife heritage.",
+                gallery: [
+                    "https://www.joonsquare.com/usermanage/image/business/chandoli-national-park-sangli-34235/chandoli-national-park-sangli-chandoli-national-park1.jpg",
+                    "https://hblimg.mmtcdn.com/content/hubble/img/ttd_images/mmt/activities/m_Sangli_Sagareshwar_animals_sanctuary_1_l_427_640.jpg",
+                    "https://hblimg.mmtcdn.com/content/hubble/img/ttd_images/mmt/activities/t_trp/m_Sangli_Chandoli_national_park_2_l_427_640.jpg?im=Resize=(1095,570)",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Oriental_Garden_Lizard_or_Bloodsucker.jpg/500px-Oriental_Garden_Lizard_or_Bloodsucker.jpg",
+                ],
+                location: "Chandoli, Sangli district, Maharashtra",
+                bestTime: "October to March",
+                fee: "₹20 approx",
+                air: "Nearest Airport: Kolhapur Airport (80 km), Pune Airport (250 km)",
+                train: "Nearest Railway Station: Sangli Railway Station (60 km)",
+
+                road: "Well connected by road via Sangli and Islampur",
+                mapQuery: "https://www.google.com/maps/search/chandoli+museum+sangli/@16.9961194,74.3181152,11z?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 27,
+                name: "Sajjangad Fort",
+                image: "https://i.pinimg.com/736x/da/4e/a7/da4ea775fbaaf3db01060719f140de61.jpg",
+                history: "Sajjangad Fort is a prominent tourist location and one of the many known hill forts of Maharashtra or broadly “western India”. Sajjangad which literally means ‘fort of good people’ is a fort that is located in a region that is near Satara. It is one of the prime tourism spots that attract a large gamut of people who come to the fort for either weekend holiday purpose or for sightseeing. The Maharashtra tour can never be considered complete without visiting Sajjangad. This is a fort that is not merely a place of historical eminence and relics. It is more of a devotional and a religious abode that happens to be the final resting place of the great 17th century Indian religious icon Sant Ramdas. Sant Ramdas’s teachings have been compiled into books like Dasbodh. Sajjangad hence is a very popular place for pilgrimage purposes and also reflects the ancient heritage of the place. Historical remnants say that the fort has a history that can be traced back a long time in the past. The fort has seen a number of authorities ruling over it and has been captured and recaptured by different political powers of the nation.",
+                gallery: [
+                    "https://media-cdn.tripadvisor.com/media/photo-s/11/f0/d4/a7/1280px-sajjangad-entrance.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/04/09/aa/03/sajjangad.jpg?w=900&h=500&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/a3/7c/ca/sajjangad-on-top.jpg?w=900&h=500&s=1",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_sgHuVrMkb7M74kKTIeVOlmRAIjSl48Y0Tg&s"
+                ],
+                location: "Near Satara city, Maharashtra",
+                bestTime: "June to February",
+                fee: "Free",
+                air: "Nearest Airport: Pune Airport (130 km)",
+                train: "Nearest Railway Station: Satara Railway Station (15 km)",
+                road: "Easily accessible by road from Satara",
+                mapQuery: "https://www.google.com/maps/place/Sajjangad+Fort/@17.6485126,73.9157886,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc23c22937f73d1:0xaa0577a365ea3af6!8m2!3d17.6485126!4d73.9157886!16s%2Fm%2F027wn8s?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 28,
+                name: "Vasota Fort",
+                image: "https://i.pinimg.com/736x/03/65/25/036525ebec5e96bc43f4230206c5c01f.jpg",
+                history: "Vasota Fort is an ancient hill fort located inside Koyna Wildlife Sanctuary. It offers breathtaking views and is a popular trekking destination surrounded by dense forest.It was famously defended by Tai Telin a mistress of Pant Pratinidhi a killedar of the fort when he was captured.Vasota fort is attributed to the Kolhapur Shilahara Chief Bhoja II (1178–1193) of Panhala.Vasota always remained with Marathas, Shirkes & Mores in 16th century.It was mostly used as a prison.Chatrapati Shivaji incorporated the fort into the Maratha Empire in 1655 during the conquest of Javli. Chatrapati Shivaji renamed the fort Vyaghragad (Vyaghra – means tiger), owing to its difficult natural defense.[citation needed]In 1818 the British bombarded the fort with heavy artillery, destroying many buildings on Vasota (Chandika mandir, Daru-kothar, etc.) and looted property worth 5 lakhs.",
+                gallery: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/50/54/b8/nageshwar-caves-from.jpg?w=2000&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/50/54/70/boat-parking-area-from.jpg?w=2000&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/0a/d6/08/vasota-glimpse.jpg?w=2000&h=-1&s=1",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-iMbHwDG1LDXsxWbAXWc5ZzPuRoCZDEtnvg&s"
+                ],
+                location: "Koyna Wildlife Sanctuary, Satara district",
+                bestTime: "October to February",
+                fee: "₹50 Forest Entry approx",
+                air: "Pune Airport (150 km)",
+                train: "Satara Railway Station (60 km)",
+                road: "Accessible via Bamnoli village by boat and trek",
+                mapQuery: ""
+            },
+
+            {
+                id: 29,
+                name: "Ajinkyatara Fort",
+                image: "https://i.pinimg.com/736x/1b/3b/72/1b3b7204b2ef7fffc05f2ea9cccc2c6c.jpg",
+                history: "The Fort of Ajinkyatara is one of the most important pillars in the history of Maharashtra. This hill fort was under the control of Shivaji Maharaj during the 16th century and has seen some of the most important events of the Maratha and the contemporary history. The word ‘Ajinkyatara’ literally means ‘the impregnable fort’. It is one of the most stunning specimens of Maratha architecture in Satara. The fort provides a spectacular view of the entire Satara city and is a popular place of sightseeing in the current times. It is based at a height of 33000 feet or 1010 meters above the sea level. Tourists can see the TV tower for Sighhagad in Satara near the fort presently. It also has the TV Tower for Pune. The fort is a great tourist attraction as well. The place around the Ajinkyatara Fort is one of the perfect trekking grounds of Maharashtra. Hence this place is suitable for the trekkers who are mere beginners. The place receives less amount of water in terms of rainfall.",
+                gallery: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpRHuO4etsoAPtCfNE4s0BbMzFVzi8jr5NpA&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7cFCXIvSMkpFKfGTmXmmE2zH4r33DOOVuXg&s",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/c3/91/b0/ajinkyatara.jpg?w=2000&h=-1&s=1",
+                    "https://i.pinimg.com/736x/1b/3b/72/1b3b7204b2ef7fffc05f2ea9cccc2c6c.jpg"
+                ],
+                location: "Satara city, Maharashtra",
+                bestTime: "June to February",
+                fee: "Free",
+                air: "Pune Airport (120 km)",
+                train: "Satara Railway Station (5 km)",
+                road: "",
+                mapQuery: "https://www.google.com/maps/place/Ajinkyatara+Fort/@17.6724675,73.9900764,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc239841ffaf9fb:0xb28ae23e5c9a855f!8m2!3d17.6724675!4d73.9900764!16s%2Fm%2F04m_gtf?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 30,
+                name: "Pratapgad Fort",
+                image: "https://i.pinimg.com/736x/5f/0d/f8/5f0df89ab8b180b063ff3cdf65e6ba91.jpg",
+                history: "Pratapgad meaning Valour Fort is a huge fort situated in the Satara district of Maharashtra. It is one of the best places to visit for a day trip and will be liked people who are interested in adventure, history and nature.This mountain fort was a built by Chatrapati Shivaji Maharaj on a spur to look over the road between the vilagesof Kinesvar and Par. The fort is 15 kilometers away from Poladpur and 23 kilometers away from the west of Mahabaleshwar which is also a popular hill station. It stands 1080 meters above the sea level. It is also known for the Battle of Pratapgarh which was fought between Shivaji and Afzal khan beneath the rampants of the fort.The fort is divided into two parts- the lower fort and the upper fort. The upper fort which is a rough square shaped fort is built on the crest of the hill. There are a few permanent buildings that include a temple of god Mahadev. The fort is surrounded by sheer cliffs that drop up to 250m. this part is located in the northwest part of the fort.",
+                gallery: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/6e/ef/d4/pratapgad.jpg?w=1200&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/6e/ef/c3/pratapgad.jpg?w=800&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/6e/ef/b7/pratapgad.jpg?w=600&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/5b/58/51/a-few-canons-and-arms.jpg?w=1400&h=-1&s=1"
+                ],
+                location: "Near Mahabaleshwar, Satara district",
+                bestTime: "October to March",
+                fee: "Free",
+                air: "Pune Airport (140 km)",
+                train: "Satara Railway Station (60 km)",
+                road: "Well connected by road from Mahabaleshwar",
+                mapQuery: "https://www.google.com/maps/place/Pratapgad+Fort/@17.9371187,73.5782008,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2bb8fc57af9f1:0xcd7f0daa3666eb!8m2!3d17.9371187!4d73.5782008!16zL20vMDZ2c210?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 31,
+                name: "Shrimant Dagdusheth Halwai Ganpati Mandir",
+                image: "https://i.pinimg.com/736x/b2/38/91/b23891ddd35d739efdb15ab1cabb5529.jpg",
+                history: "Shrimant Dagdusheth Halwai Ganpati Mandir is one of the most famous Ganesh temples in Pune. Established in 1893, it is known for its grand Ganesh idol and is a major center during Ganesh Chaturthi celebrations.The Dagadusheth Halwai Ganapati Temple is a Hindu temple dedicated to the Hindu god Ganesha (Ganapati) in the city of Pune, India. The temple is visited by over one hundred thousand devotees every year. A large number of devotees visit the temple during the annual ten-day public Ganeshotsav festival.The main Ganesha idol is insured for a sum of ₹10 million (US$120,000).It celebrated 132 years of its Ganeshotsav festival in 2024.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/48/b9/33/48b93324a50249ff0460bbe67c1adf3c.jpg",
+                    "https://i.pinimg.com/736x/1f/13/8a/1f138a5c020667b129bdcbd1c8356a97.jpg",
+                    "https://i.pinimg.com/736x/b9/b3/34/b9b3342cfa97489a10ab4354b35b91d7.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr-N3pcn2KP9LQvHJFWlpAjEkFPzUx6tv_mg&s"
+                ],
+                location: "Budhwar Peth, Pune, Maharashtra",
+                bestTime: "August to February",
+                fee: "Free",
+                air: "Nearest Airport: Pune International Airport (12 km)",
+                train: "Nearest Railway Station: Pune Junction (4 km)",
+                road: "Well connected by PMPML buses, auto and taxi",
+                mapQuery: "https://www.google.com/maps/place/Shrimant+Dagdusheth+Halwai+Ganpati+Mandir/@18.5164208,73.8561165,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2c06fa5b442ff:0x9df365f5b648bce1!8m2!3d18.5164208!4d73.8561165!16s%2Fm%2F04zxxlg?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 32,
+                name: "Shivneri Fort",
+                image: "https://i.pinimg.com/736x/67/a4/b0/67a4b0a2598a0ed56c2af194d469a65f.jpg",
+                history: "Birthplace of Chhatrapati Shivaji Maharaj and an important historical fort near Junnar.Shivneri Fort is one of the prime historical and tourist attractions of Maharashtra. This fort near Junnar located in the Pune district of Maharashtra is a military fortification that dates back as old as 17th century and lately considered as a crowd puller spot that boosts Maharashtra tourism. Shivneri fort is the birth place of the legendary Maratha leader Chhatrapati Shivaji Maharaj who was the founder of the Maratha Empire. The place has Buddhist domination around the time of the 1st century AD. The fort received its name from Yavadas of Devagiri. This fortified settlement was used to guard the business route that existed between Desh and the city port of Kalyan. Soon after the Delhi Sultanate lost its power, the fort passed to the Bahami rulers during the 15th century. It was from the Bahmani ruler Bahadur Nizam Shah II that Maloji Bhosale, the Maratha chief got the inter alia of Chakan and Shivner. The fort has a very strong architecture that proved to invincible in several attempts of infiltration by armies.",
+                gallery: [
+                    "https://i.pinimg.com/736x/5f/4e/53/5f4e5328f66aa8183ad42c4677cd7bd3.jpg",
+                    "https://i.pinimg.com/1200x/f3/c5/77/f3c577695e24dc8372bd2c762af64fec.jpg",
+                    "https://media3.thrillophilia.com/filestore/98db764lq4vu2lmok61iyvmmza37_shivneri%206.jpg?w=400&dpr=2",
+                    "https://i.ytimg.com/vi/_VQTBhRR0zE/maxresdefault.jpg"
+                ],
+                location: "Junnar, Pune district, Maharashtra",
+                bestTime: "June to February",
+                fee: "₹20 approx",
+                air: "Pune Airport (95 km)",
+                train: "Pune Railway Station (90 km)",
+                road: "Accessible via Junnar by road",
+                mapQuery: "Shivneri Fort Junnar"
+            },
+
+            {
+                id: 33,
+                name: "Sinhagad Fort",
+                image: "https://i.pinimg.com/736x/7f/b7/5e/7fb75eecbc43c60493587b999e573250.jpg",
+                history: "Sitting atop the Deccan plateau, Maharashtra, attract over a million of visitors to its heritage sites all through the year. Pune, the cultural capital of the state is famous for a number of forts which were in itself small towns with highly advanced architecture. Amongst many, one such mega structure is the Sinhagad Fort that was named after the Battle of Sinhagad of 1671. Carved out of the Bhuleshwar range of the Sahyadri Mountains, it was erected 760 meters from the base town of Sinhagad. It has been inhabited by different dynasties, predominantly, the Deccan rulers, Siddi dynasty headed by Siddi Amber, the Marathas under ruler ship of Chatrapati Shivaji and the Mughals during the reign of Aurangzeb. Even British rulers have taken shelter within the walls of the mighty Sinhagad Fort. All those visiting Pune over the weekend can definitely take a ride on road to Sinhagad to visit this ancient military base.Famous for the Battle of Sinhagad (1670) led by Tanaji Malusare. Popular trekking spot near Pune.",
+                gallery: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/40/01/58/caption.jpg?w=1200&h=-1&s=1",
+                    "https://cdn1.tripoto.com/media/filter/nl/img/2380291/Image/1697471735_singhgad_4_4_11zon.jpg.webp",
+                    "https://i.pinimg.com/736x/da/b5/17/dab517c80a2c7b2329515ad2a4638916.jpg",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepWK9JZNVzpHU1czUwnP1BqVm5QyLOole0OiX0v9fdBM4NLXQ0UkIEE2K8TU4-aWkwNnTCLTdNPY3CvbgZZVm6Rr5MyCb3chz0cF_MhvwbM8p3f4XJ95wyZRn1HXyiaKoITTdD_=s1360-w1360-h1020-rw"
+                ],
+                location: "Near Pune, Maharashtra",
+                bestTime: "June–September , October–February ",
+                fee: "₹20 approx",
+                air: "Pune Airport (40 km)",
+                train: "Pune Railway Station (35 km)",
+                road: "Easily accessible from Pune via the Sinhagad Ghat Road. You can drive a private vehicle or hire a cab directly to the summit parking area.",
+                mapQuery: "Sinhagad Fort Pune"
+            },
+
+            {
+                id: 34,
+                name: "Sitabuldi Fort",
+                image: "https://i.pinimg.com/736x/25/1c/16/251c161c2f83ac21ad2ceef557b1c1ba.jpg",
+                history: "Sitabuldi Fort, site of the Battle of Sitabuldi in 1817, is located atop a hillock in central Nagpur, in the Indian state of Maharashtra. The fort was built by the British after they won this area. Mudhoji II Senasaheb Subha was allowed to continue ruling Nagpur after the British had won the battles of Sitaburdi, Sakkardara, and Nagpur. Richard Jenkins entered into a treaty with Mudhoji on 6 January 1818, which was later ratified by the Governor General. Article 7 of the treaty stated:The two hills of Seetabuldee with the bazaars and land adjoining, to a distance to be hereafter specified, shall be henceforth included in the British boundary, and such Military works erected as may be deemed necessary. By this treaty, the British occupied the Sitaburdi hills and large areas on all four sides. However no major construction work was erected on it for next two years.The area surrounding the hillock, now known as Sitabuldi, is an important commercial hub for Nagpur.To the south is Nagpur Railway Station and behind it is Tekdi Ganapati, a temple of Ganesha.[3] The fort was a home to the Indian Army's 118th infantry battalion (Territorial Army) Grenadiers till 2019.",
+                gallery: [
+                    "https://s7ap1.scene7.com/is/image/incredibleindia/sitabuldi-fort-nagpur-maharashtra-2-attr-hero?qlt=82&ts=1726669779799",
+                    "https://nagpurtourism.co.in/images/places-to-visit/header/sitabuldi-fort-nagpur-tourism-entry-fee-timings-holidays-reviews-header.jpg",
+                    "https://d3sftlgbtusmnv.cloudfront.net/blog/wp-content/uploads/2024/10/Sitabuldi-Fort-Cover-Photo-840x425.jpg",
+                    "https://amzcabs.in/wp-content/uploads/2024/11/Sitabuldi-Fort-1024x818.webp"
+                ],
+                location: "Nagpur district Maharashtra",
+                bestTime: "October to March",
+                fee: "Free",
+                air: "Nagpur (NAG) Airport is the nearest airport, roughly a 10-15 minute, 8-10 km drive to the fort.",
+                train: "Located in central Nagpur, it is easily accessible by taxi, auto-rickshaw, or city bus from the Nagpur Railway Station.",
+                road: "",
+                mapQuery: "https://www.google.com/maps/place/Sitabuldi+fort/@21.1488265,79.0843655,17z/data=!3m1!4b1!4m6!3m5!1s0x3bd4c10046194917:0x84b68e14319a9339!8m2!3d21.1488265!4d79.0843655!16s%2Fm%2F051x3nq?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 35,
+                name: "Torna Fort",
+                image: "https://i.pinimg.com/1200x/92/4d/a3/924da3789dacdfe2dc5f091ae3634eef.jpg",
+                history: "This fort is of considerable historical importance as it was the first fort to be won by the Maratha ruler Shivaji at the age of just 16 years. This Torna fort was captured by the Mughals in the 18th century after assassinating the great Naratha warrior,Shivaji’s son Shambhaji. The Mughal Emperor Aurangzeb renamed the fort as Futulgaib. By the “Treaty of Purandar” this fort was given to the Maratha confederacy. This Torna fort is an architectural marvel with a host of towers and monuments built inside the fort. It is a popular attraction of a Maharashtra tour.",
+                gallery: [
+                    "https://www.trawell.in/admin/images/upload/368986334Torna-Fort.jpg",
+                    "https://i.pinimg.com/1200x/7d/68/8b/7d688b85753f85883bc1e7f684f5e16f.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/1a/a8/a1/img-20180701-145905735.jpg?w=1000&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/1a/a8/9e/img-20180701-120228073.jpg?w=700&h=-1&s=1"
+                ],
+                location: "Velhe, Pune district",
+                bestTime: " September to February",
+                fee: "Free",
+                air: "The nearest major hub is Pune Junction railway station or Pune International Airport, from where you can take a taxi or bus to Velhe.",
+                train: "The nearest major hub is Pune Junction railway station or Pune International Airport, from where you can take a taxi or bus to Velhe.",
+                road: "The most convenient way is driving (approx. 1.5–2 hours). Take the Pune-Satara road (NH48), turn toward Katraj, and proceed to Velhe.",
+                mapQuery: "https://www.google.com/maps/search/Torna+Fort/@18.2766486,73.6211121,17z?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 36,
+                name: "Rajgad Fort",
+                image: "https://i.pinimg.com/1200x/52/85/9b/52859b4f3dc06bbfeb6183951cd8bfab.jpg",
+                history: "The fort has stood witness to many significant historic events including the birth of Shivaji's son Rajaram I, the death of Shivaji's wife Saibai, the return of Shivaji from Agra, the burial of Afzal Khan's head in the Mahadarwaja walls of Balle Killa, the strict words of Sonopant Dabir to Shivaji.[citation needed]The Rajgad Fort was also one of the 12 forts that chatrapati Shivaji Maharaj kept when he signed the Treaty of Purandar in 1665, with the Mughal general Jai Singh I, leader of the Mughal forces. Under this treaty, 23 forts were handed over to the Mughals.",
+                gallery: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/08/9b/10/rajgad-buruj.jpg?w=900&h=500&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/08/9a/ef/pali-gate.jpg?w=2000&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/95/39/7f/rajgad-fort.jpg?w=800&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/69/3f/4d/buruz.jpg?w=1400&h=-1&s=1"
+                ],
+                location: "Gunjavane, Pune district",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Pune Airport (60 km)",
+                train: "Pune Railway Station (50 km)",
+                road: "Reachable via Gunjavane village",
+                mapQuery: "https://www.google.com/maps/place/Rajgad+Fort/data=!4m2!3m1!1s0x3bc28fa3eb07c019:0xe2f323ba03aacd31?sa=X&ved=1t:155783&ictx=111"
+            },
+
+            {
+                id: 37,
+                name: "Mini Tirupati Balaji Temple",
+                image: "https://punetourism.co.in/images/places-to-visit/headers/balaji-mandir-pune-tourism-entry-fee-timings-holidays-reviews-header.jpg",
+                history: "Temple inspired by Tirupati Balaji, dedicated to Lord Venkateswara.The Prati Balaji Temple in Ketkawale, located about 45 km from Pune, is a popular Mini Tirupati in Maharashtra. It is a precise, tranquil, and clean replica of the famous Tirumala Venkateswara Temple, featuring similar architecture and rituals. It is open daily, usually from 5:00 AM to 8:00 PM, and is maintained by the Venkateshwara Hatcheries Group. ",
+                gallery: [
+                    "https://punetourism.co.in/images/places-to-visit/headers/balaji-mandir-pune-tourism-entry-fee-timings-holidays-reviews-header.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaD0U1hwtsohmAHCB59MYm5W2Q2RXBCjN1ig&s",
+                    "https://xploreall.com/wp-content/uploads/2025/06/c6ff6c84-1e58-4179-ba16-3b3c5f63adc7-scaled.jpg",
+                    "https://timesofindia.indiatimes.com/photo/msid-68400471/68400471.jpg?resizemode=4"
+                ],
+                location: "Ketkawale, Pune district",
+                bestTime: "September to March",
+                fee: "Free",
+                air: "Pune Airport (30 km)",
+                train: "Pune Railway Station (25 km)",
+                road: "The temple is around 45 km from Pune city and can be reached in about 1 to 1.5 hours via NH4 (Pune–Bangalore Highway).",
+                mapQuery: "https://www.google.com/maps/search/Mini+Tirupati+Balaji+Temple/@18.7711151,76.1352539,7z?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 38,
+                name: "Daulatabad (Devagiri) Fort",
+                image: "https://aurangabadtourism.in/images/places-to-visit/header/devagiri-daulatabad-fort-aurangabad-tourism-entry-fee-timings-holidays-reviews-header.jpg",
+                history: "Deogiri, later known as Daulatabad, stands as a testament to the grandeur and turbulence of medieval Indian history. Originally constructed in the 12th century by Bhillama V of the Yadava dynasty, the fort quickly became the capital of the Yadava kingdom, owing to its formidable defenses and strategic location along vital trade routes. Its commanding position made it a sought-after stronghold, attracting the ambitions of successive rulers and empires. However, the most dramatic episode in its history unfolded in 1327 when Sultan Muhammad bin Tughluq of the Delhi Sultanate embarked on a radical experiment—shifting his entire capital from Delhi to Daulatabad. Renaming it the “City of Fortune,” he forcibly relocated the entire population of Delhi to this new capital in an attempt to centralize power. However, logistical challenges, lack of resources, and local resistance led to the failure of this ambitious plan, and within a few years, the capital was reverted to Delhi, leaving Daulatabad a symbol of an abandoned dream. Following this period, the fort changed hands multiple times, first falling to the Bahmani Sultanate and later becoming a prized possession of the Nizam Shahis of Ahmadnagar. By the 17th century, it was conquered by the Mughals, who reinforced its defenses before it eventually came under the control of the Marathas. Each of these rulers left their mark on Daulatabad, enhancing its military architecture and making it one of the most formidable fortresses in India. Today, the fort remains an enduring symbol of power, ambition, and the rise and fall of dynasties.",
+                gallery: [
+                    "https://upload.wikimedia.org/wikipedia/commons/3/33/Daulatabad_Fort_a_view.JPG",
+                    "https://www.trawell.in/admin/images/upload/549511652Aurangabad_Daulatabad_Fort_Main.jpg",
+                    "https://s7ap1.scene7.com/is/image/incredibleindia/deogiri-fort-daulatabad-maharashtra-2-attr-hero?qlt=82&ts=1727010542089",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlM8kYDH7fVzlfK9_cV5k2XSZuth0dhVxilg&s"
+                ],
+                location: "Daulatabad, Aurangabad district",
+                bestTime: "October to March",
+                fee: "₹25 approx",
+                air: "Aurangabad Airport (15 km)",
+                train: "Aurangabad Railway Station (15 km)",
+                road: "Well connected by road",
+                mapQuery: "https://www.google.com/maps/place/Daulatabad+Fort/@19.9436929,75.2205449,17z/data=!3m1!4b1!4m6!3m5!1s0x3bdb9102a9586c27:0xa58c3f86bac73173!8m2!3d19.9436929!4d75.2205449!16zL20vMDNwYm5m?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 39,
+                name: "Solapur Bhuikot Fort",
+                image: "https://i.pinimg.com/1200x/cc/d1/aa/ccd1aae82642a16afd68ff7b64964560.jpg",
+                history: "Solapur Bhuikot Fort is a historic land fort located in Solapur city. It was built during the Bahmani Sultanate period and later controlled by the Adil Shahi dynasty. The fort is known for its strong stone walls, ancient temples, and strategic military importance.",
+                gallery: [
+                    "https://hblimg.mmtcdn.com/content/hubble/img/solapurdestimages/mmt/activities/m_Bhuikot_Fort_1_l_467_640.jpg",
+                    "https://hblimg.mmtcdn.com/content/hubble/img/solapurdestimages/mmt/activities/m_Bhuikot_Fort_2_l_480_640.jpg?im=Resize=(412,347.56)",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/a4/e9/bb/bhuikot-fort.jpg?w=1100&h=-1&s=1",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweq7gkXJg_SfEJDUTIetFExu8Y4Hy5s1jUyRmaRt6oppUw3oBd20S6FEzY_-_odTOltdQitnkmdtE59zOtvnKRGfd7MSw3O0AuPVfCpnKoMu2Oi0PW4hSDuOFZ8PcofUw47U1AA42A=s1360-w1360-h1020-rw"
+                ],
+                location: "Solapur city, Maharashtra",
+                bestTime: "October to March",
+                fee: "₹20 approx",
+                air: "Nearest Airport: Solapur Airport (10 km), Pune Airport (250 km)",
+                train: "Nearest Railway Station: Solapur Railway Station (3 km)",
+                road: "Located within Solapur city, easily accessible by bus, auto and taxi",
+                mapQuery: "https://www.google.com/maps/place/Solapur+Bhuikot+Fort/@17.6740295,75.9021228,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc5da7faa29aadb:0xde47f785fec4cfb9!8m2!3d17.6740295!4d75.9021228!16s%2Fm%2F0fphn0z?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 40,
+                name: "Bahadurgad Fort",
+                image: "https://i.pinimg.com/736x/bd/80/bd/bd80bdc0c103da97fe67e88619f8e794.jpg",
+                history: "Bahadurgad Fort, also known as Pedgaon Fort, is located in Ahmednagar district. It was built during the Mughal period and is associated with the imprisonment of Chhatrapati Sambhaji Maharaj by Aurangzeb.",
+                gallery: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOZ8UB2wLKKIPwJ5u4KRaJouBFuUR9KMTpuA&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtqFs7HVXPwdTv-ZLNLHWDbPj9MkCHV93bOg&s",
+                    "https://content3.jdmagicbox.com/comp/ahmednagar/p8/9999px241.x241.180528230039.i1p8/catalogue/bahadurgad-pedgaon-ahmednagar-tlnee4jwt5.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBgmNjjex84NtHWpbo9ep_AjSHABTDM6ug3g&s"
+                ],
+                location: "Pedgaon village, Ahmednagar district, Maharashtra",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Nearest Airport: Pune International Airport (120 km)",
+                train: "Nearest Railway Station: Ahmednagar Railway Station (35 km)",
+                road: "Accessible by road via Ahmednagar and Daund",
+                mapQuery: "https://www.google.com/maps/place/Dharmaveergad/@18.5078452,72.2653282,8z/data=!4m10!1m2!2m1!1sbahadurgad+fort+Ahmednagar+district!3m6!1s0x3bc3699e18e70e05:0x1faa4b4a5706f659!8m2!3d18.5078452!4d74.704293!15sCiNiYWhhZHVyZ2FkIGZvcnQgQWhtZWRuYWdhciBkaXN0cmljdFolIiNiYWhhZHVyZ2FkIGZvcnQgYWhtZWRuYWdhciBkaXN0cmljdJIBE2hpc3RvcmljYWxfbGFuZG1hcmuaASNDaFpEU1VoTk1HOW5TMFZKUTBGblNVTllielo1Y0dKbkVBReABAPoBBQjpAhBC!16s%2Fg%2F1q5bp27rw?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 41,
+                name: "Elephanta Caves",
+                image: "https://i.pinimg.com/1200x/b4/97/c7/b497c74dd09a97a545d1c98c5c8cc263.jpg",
+                history: "The Elephanta Caves form a collection of cave temples predominantly dedicated to the Hindu god Shiva; UNESCO has designated them as a World Heritage Site.They are located on Elephanta Island, or Gharapuri (literally meaning the city of the caves),in Mumbai Harbour, 10 kilometres (6.2 mi) east of Mumbai in the Indian state of Maharashtra. The island, about 2 kilometres (1.2 mi) west of the Jawaharlal Nehru Port, features five Hindu caves, a few Buddhist stupa mounds that date back to the 2nd century BCE,and two Buddhist caves with water tanks.The Elephanta Caves contain rock-cut stone sculptures, mostly in high relief, that show a syncretism of Hindu—Buddhist ideas and iconography. The caves are hewn from solid basalt rock. Apart from a few exceptions, much of the artwork has been defaced and damaged.The main temples orientation as well as the relative location of other temples form a mandala pattern.[6] The carvings narrate Hindu legends, with the large monolithic 5.45 metres (17.9 ft) Trimurti Sadashiva (three-faced Shiva), Nataraja (Lord of the dance) and Yogishvara (Lord of Yogis) being the most celebrated.These date to the between the 5th and 9th centuries CE, and scholars attribute them to various Hindu dynasties. They are most commonly placed between the 5th and 7th centuries. Many scholars consider them to have been completed by about 550 CE.",
+                gallery: [
+                    "https://whc.unesco.org/uploads/thumbs/site_0244_0004-1200-630-20100705114254.jpg",
+                    "https://www.trawell.in/admin/images/upload/955980144Mumbai_Elephanta_Caves_Main.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/6d/5e/83/caption.jpg?w=1100&h=-1&s=1",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/6d/5e/7f/caption.jpg?w=1100&h=-1&s=1"
+                ],
+                location: "Elephanta Island, Mumbai, Maharashtra",
+                bestTime: "November to February",
+                fee: "₹40 (Indian), ₹600 (Foreigners approx)",
+                air: "Mumbai International Airport (20 km + ferry ride)",
+                train: "CSMT Mumbai Railway Station (10 km + ferry)",
+                road: "Reach Gateway of India, then ferry to Elephanta Island",
+                mapQuery: "https://www.google.com/maps/place/Elephanta+Caves/@18.9633474,72.9314864,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7c5307da3602f:0xf4ab181b1aaef53f!8m2!3d18.9633474!4d72.9314864!16zL20vMDIwcmI1?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 42,
+                name: "Karla Caves",
+                image: "https://i.pinimg.com/736x/03/cf/c4/03cfc4a03a52a34be01b0c9a9094d075.jpg",
+                history: "The Karla Caves, Karli Caves, Karle Caves or Karla Cells, are a complex of ancient Buddhist Indian rock-cut caves at Karli near Lonavala, Maharashtra. It is just 10.9 Kilometers away from Lonavala. Other caves in the area are Bhaja Caves, Patan Buddhist Cave, Bedse Caves and Nasik Caves. The shrines were developed over the period from the 2nd century BCE to the 5th century CE. The oldest of the cave shrines is believed to date back to 160 BCE, having arisen near a major ancient trade route, running eastward from the Arabian Sea into the Deccan.The group at Karla is one of the older and smaller of the many rock-cut Buddhist sites in Maharashtra. It is one of the best-known because of the famous Grand Chaitya (Cave 8), the largest and most completely preserved chaitya hall of the period, containing unusual quantities of fine sculpture on a large scale.Many traders, Western Satraps of Saka origin and Satavahana rulers made grants for construction and support of these caves. Karla's location in Maharashtra places it in a region that marks the division between North India and South India.",
+                gallery: [
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwep7E3P5iOIgEgzs59lg-giR6Yapwy4E8yUMpV5dE8ZpwrR4zmW9Oc76dB-4BompbUNCd_7_lGU3ntA0ozhDxMnoEzYSnr2jFEcvsRuzvkdue72qmTiZOTt2SAcRzKe8a7Rjngej=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweox1J90PU-fL8Gb-KCN6ani3Y5tglUoW-W4I9B_Ao2o216fWGOBHk6Ml-wU8XRj--AKTdS-RNIsfzGfFkEn5fIHlSGq7svz6S18txyd_YJ69ckwzc5PZDDaHgNIqhIvO9_8Jyg=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweocuaUlvryQ-Bz8A-NGiuxgO-4THo6j0snDCVG6mut0w-tb1AhrjlwPnf8URRrRjMtQDDYWfR1rJSrNkhFMJGZJG8FQY9ROcMQm7T8N7TR2EMjaYJRXfjJvV7hHqCKH7oeAA8Mk=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerMF-2SK6EbqSaen_5Mp83gGn4emn1Svq0821WfUKnsY-BVY2DgIAstNtME0_n2nA6uxohZUElIQBZcbqx8s1eM1adrKzEnpVrA98PrGaWnd-sAiay2Guybq-yuvfd7sc4HWzw=s1360-w1360-h1020-rw"
+                ],
+                location: "Lonavala, Pune district, Maharashtra",
+                bestTime: "October to March",
+                fee: "₹25 approx",
+                air: "Pune Airport (70 km)",
+                train: "Malavli Railway Station (3 km)",
+                road: "Well connected via Mumbai-Pune Highway",
+                mapQuery: "https://www.google.com/maps/place/Karla+Caves/@18.7832875,73.4704531,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2aa834e2141d3:0x7a7b9cf6961b6d76!8m2!3d18.7832875!4d73.4704531!16zL20vMDZ2ZDhk?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 43,
+                name: "Bhaja Caves",
+                image: "https://i.pinimg.com/736x/e2/7c/4b/e27c4be1094d90e07183bafe2e0730b1.jpg",
+                history: "Bhaja Caves are a group of 22 rock-cut caves dating back to the 2nd century BC located off the Mumbai - Pune expressway near the city of Pune, India. The caves are 400 feet above the village of Bhaja,on an important ancient trade route running from the Arabian Sea eastward into the Deccan Plateau (the division between North India and South India).The inscriptions and the cave temple are protected as a Monument of National Importance, by the Archaeological Survey of India per Notification No. 2407-A.[5][6] It belongs to the Early Buddhist schools in Maharashtra.The caves have a number of stupas, one of their significant features. The most prominent excavation is its chaitya (or chaityagrha – Cave XII), a good example of the early development of this form from wooden architecture, with a vaulted horseshoe ceiling. Its vihara (Cave XVIII) has a pillared verandah in front and is adorned with unique reliefs.[7] These caves are notable for their indications of the awareness of wooden architecture.[2] The carvings prove that tabla – a percussion instrument – was used in India for at least 2300 years,[8][9] disproving the centuries-held belief that the tabla was introduced to India by outsiders or from Turko-Arab.The carving shows a woman playing tabla and another woman dancing.",
+                gallery: [
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqxhkvUAYjmMZaNtaqVDPQpdu6BNbI2SoKKCZhwZqMVYQHJz-LrIWS_q9pe_i1_2DuouepdNlwjNbZjGg6or-frszGWZFjAqjTE3dpSe96_v7B23T9cRJHCCagUxVA7ZYLifdxUGA=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwer62SoYjs3-Rib0RLYDqyojaeWjoabQ1-o5ySK04P-YmgXPRXQSjNaZD-Yq4tcgjanOP-lXXs2YwFmagf9Aqps8p54CvStwH6uJGo207b21Q5yzdRQrCaIkxX41l3GnNgC-_6IxbGNmcJwP=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweojZItxRXUmMFDATUMxrP87XweZfdlpHBhT_Xfx0Gc4XAtmgB4AzTKO1IHl088L1WxKjjxMyUo2k8UtVBLv7sSAxD3FeJ-ljSipnfaHtRVBM17E0Dce7IeCo-3rmajUlLvGLADx=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqpATkf69KcVOSowMRyNLNOdaiBLRD0wImrOPJ9g60B_WlQL25nwPLwQCir3SawcaIso701u_HfFN4PqIpf3eiCVbdV-jO0UJLwPmzcehdKJ6ge7_ac4iiMcr--9M0SDhncj_AXAD4RlCN_=s1360-w1360-h1020-rw"
+                ],
+                location: "Near Lonavala, Pune district",
+                bestTime: "October to February",
+                fee: "₹25 approx",
+                air: "Pune Airport (70 km)",
+                train: "Malavli Railway Station (2 km)",
+                road: "Accessible by road from Lonavala",
+                mapQuery: "https://www.google.com/maps/place/Bhaja+Budhhist+Caves+Ancient+Buddhist+Heritage/@18.7293775,73.4813013,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2aa279a4d7095:0xa3933c466fadd9b7!8m2!3d18.7293775!4d73.4813013!16s%2Fm%2F02q0gz7?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 44,
+                name: "Bedse Caves",
+                image: "https://i.pinimg.com/1200x/e0/a2/18/e0a218b5df9bf2f1a826c1938d6ba4ba.jpg",
+                history: "Bedse Caves are lesser-known Buddhist caves built in 1st century BCE. They are famous for peaceful surroundings and beautifully carved pillars.",
+                gallery: [
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweo6Fv1smOUnq2tJDNuH-kw--mXgXAFEndMUVQs3iWnBlcTXtMFPykfE4CguLV1DmuR8n6Mo0CRbsrtCXZmqJQTZbsgVw6dDMRLbLkdzaxS0EaErg2EB1Ku_R5rlaeCkJ6u3hcs=s1360-w1360-h1020-rw",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfh6Jg-SI5kZAs4PfhyrkpsKxwfkvTa_dzTA&s",
+                    "https://upload.wikimedia.org/wikipedia/commons/5/5e/Bedsa_Caves_main_vihara.jpg",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepPI4Hk-KDLJDrQFm7xRQzkM8s498ySt7-hvJ80auIczhGtAj8eh94NERlh7eGbk4wcDNvSCHyiIxV50nR_hrhxk_sonkpxGxIuyH8_AmVzHDZ24IisVyl-sskdU6KkCF7z-CEzjA=s1360-w1360-h1020-rw"
+                ],
+                location: "Maval, Pune district, Maharashtra",
+                bestTime: "October to March",
+                fee: "₹25 approx",
+                air: "Pune Airport (65 km)",
+                train: "Kamshet Railway Station (5 km)",
+                road: "Accessible by road from Kamshet",
+                mapQuery: "https://www.google.com/maps/place/Bedse+Caves/data=!4m2!3m1!1s0x3bc2a967f2786849:0xb44fb5cbf3c365fb?sa=X&ved=1t:155783&ictx=111"
+            },
+
+            {
+                id: 45,
+                name: "Kanheri Caves",
+                image: "https://i.pinimg.com/736x/90/22/c0/9022c0e9125b1cac725a7b73fe2de9d7.jpg",
+                history: "The Kanheri Caves (Kānherī-guhā [kaːnʱeɾiː ɡuɦaː]) are a group of caves and rock-cut monuments, cut into a massive basalt outcrop in the forests of the Sanjay Gandhi National Park, on the island of Salsette in the western outskirts of Mumbai, India. They contain Buddhist sculptures and relief carvings, paintings and inscriptions, dating from the 1st century CE[1] to the 10th century CE. Kanheri comes from the Sanskrit Krishnagiri, which means black mountain.The site is on a hillside, and is accessible via rock-cut steps. The cave complex comprises one hundred and nine caves. The oldest are relatively plain and unadorned, in contrast to later caves on the site or the highly embellished Elephanta Caves of Mumbai. Each cave has a stone plinth that functioned as a bed. A congregation hall with huge stone pillars contains a stupa (a Buddhist pagoda). Rock-cut channels above the caves fed rainwater into cisterns, which provided the complex with water. Once the caves were converted to permanent monasteries, their walls were carved with intricate reliefs of the Buddha and bodhisattvas. The Kanheri caves were built in the 1st century and had become an important Buddhist settlement on the Konkan coast by the 3rd century CE.",
+                gallery: [
+                    "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/5f/ef/66.jpg",
+                    "https://kevinstandagephotography.wordpress.com/wp-content/uploads/2018/05/untitled-6.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Kanheri_Caves_prayer_hall.JPG/330px-Kanheri_Caves_prayer_hall.JPG",
+                    "https://www.fabhotels.com/blog/wp-content/uploads/2022/02/Kanheri-Caves_603505061-600X400.jpg"
+                ],
+                location: "Sanjay Gandhi National Park, Mumbai",
+                bestTime: "November to February",
+                fee: "₹45 approx (Park entry extra)",
+                air: "Mumbai International Airport (15 km)",
+                train: "Borivali Railway Station (5 km)",
+                road: "Accessible via SGNP entrance, Borivali",
+                mapQuery: "https://www.google.com/maps/search/Kanheri+Caves/@19.2069929,72.9046297,17z?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 46,
+                name: "Mahur Fort",
+                image: "https://lh3.googleusercontent.com/gps-cs-s/AHVAwep2_X0SSoThpWtU4BWXHZkrhw-HVEb6LkqRlVJvEKWa_kscy8EOXYv8ndc_dMvvqjb8QiQCnxmRSSCPA2q_bfkHaayt-gj_0O3uKuEMvIczGZqh2rGI5i6HF8wa5qlErz8gNfaPYA=s1360-w1360-h1020-rw",
+                history: "It existed before the Yadav period. This fort was ruled by the Gond king. This fort is also known as Giridurg Gond Fort by of Devgiri. 1n 1358, the fort was under the rule of Muhamad Shah Bahamani. In 1398, a Gond King from Berar captured Mahur. In 1428, Ahmed Shah Bahamani won the Mahurgad. Burhan Nizam Shah of Ahmadnagar defeated Alauddin Imad Shah of Berar in 1527 and occupied Mahur. In 1617, the Mughal Emperor Shah Jahan defeated the Ahmednagar rulers and gained control of the Fort. Pandita Savitribai Deshmukh was the ruler of Varhad, who was holding the Jagir of Mahur during the Mughal Empire rule. She was given honorary name of Rai Bagan ( Royal tigress) (Marathi: रायबागन) by Mughal Emperor Aurangzeb after defeating Harchandrai. In 1670, Chatrapati Shivaji gained the control of Aurangabad and Berar. After the death of Shivaji, the Moghuls again gained the control of Berar in 1689. The six-month revenue during Moghul period was Rs 8,47,113. In 1724, Nizam-ul-mulk of Hyderabad defeated Alam Ali Khan and Dilavar Khan of Mughal Army in the Battle of Balapur. The Mahurgad remained under the control of Nizam of Hyderabad until the princely State of Hyderabad was annexed to Union of India in 1948.",
+                gallery: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzEMvNglGiNbxHACeFFnvMWdpJ8iSOMshoiA&s",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoziwgGWRkMfOPlOTfC2flw0ZU9hvB6iKnoRqsGoNf-MWdK0WLNpgFLF_FvI2e1Zg8kepnIdyPJ7XeOVkK0KveXaaI__CtP6ClTwqECjzTru3H7YhNtI-7RRX33mO5CGIFG9kBaQQ=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqCEPBasL3H9Oe_TxY1sWPykfvX9jpjYBy1x79F0JwwidlYnj0qSb5JLXlQi4ndjwbr1Wh6BP0UEIos9pgrQHliIm8vrLwFn-9hudNwzMKxsDeOOur9Vjsuby5XaR9mmrWRx9rTcg=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwep7j20Rrh-O3DsQTyNkFGWqggCaUDRCpUQSm_4AHK1OShSpDp6kkpvt-8wOGnyOZ_sO5weupPVaxNfwpaSSXa2x_hXOAwJI9zko_Jab0Dmx5ox9CrE6lzjdS0kny8eOQOjgvvM=s1360-w1360-h1020-rw"
+                ],
+                location: "Mahur fort, Nanded district, Maharashtra",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "",
+                train: "",
+                road: "MSRTC buses and private taxis are available regularly.",
+                mapQuery: "https://www.google.com/maps/place/Mahurgad+Fort/@19.837585,77.9302834,17z/data=!3m1!4b1!4m6!3m5!1s0x3bd22b08ff59998b:0x7ca1791d10afd48e!8m2!3d19.837585!4d77.9302834!16s%2Fg%2F11fv40gy9z?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 47,
+                name: "Shirdi Sai Baba Temple",
+                image: "https://bhatkantiholidays.com/wp-content/uploads/2020/10/shirdi-sai-baba.jpg",
+                history: "Shirdi Sai Baba Temple is dedicated to Sai Baba, a revered spiritual saint. The temple complex includes Samadhi Mandir where Sai Baba's tomb is located.Shri Sai Baba, a revered spiritual leader regarded by his followers believed to be incarnation of god dattatrey, lived in Shirdi for most of his life until his death in 1918. After his Mahasamadhi (passing), his mortal remains were interred in a shrine built on 15 October 1918, which later became the core of the present temple. The construction of the temple was initiated by Shreemant Gopalrao Buti, a wealthy devotee from Nagpur, who envisioned it as a Wada (residential mansion) for Baba. Today, this shrine is popularly known as the Shri Samadhi Mandir.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/87/2f/1e/872f1e91987a17193e42dd0ec06c0432.jpg",
+                    "https://www.daiwikhotels.com/wp-content/uploads/2024/08/Sai-Baba-Of-Shirdi-Header.jpg",
+                    "https://api.blessingsonthenet.com/uploads/8ed99ef7c445947e753503a2e7e51536-1683705608789-shirdi%20sai%20baba%20temple.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn0ezXMvGxRHslaqxZEYJ0_WItIeDcOVb9_g&s"
+                ],
+                location: "Shirdi, Ahmednagar district, Maharashtra",
+                bestTime: "July to March",
+                fee: "Free (VIP darshan available)",
+                air: "Shirdi Airport (15 km)",
+                train: "Sainagar Shirdi Railway Station (3 km)",
+                road: "Well connected by buses from Mumbai, Pune, Nashik",
+                mapQuery: "https://www.google.com/maps/search/Shirdi+Sai+Baba+Temple/@19.5609712,75.2414681,11z?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 48,
+                name: "Siddhivinayak Temple",
+                image: "https://www.rajasthantourplanner.com/blog/wp-content/uploads/2022/11/Siddhivinayak-Temple-Mumbai.jpg",
+                history: "Siddhivinayak Temple is one of Mumbai’s most famous Ganesh temples, established in 1801. It attracts millions of devotees every year.",
+                gallery: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmVxi3xrEoBnCPFRGTq1VgnDYW6g7Ql_kdyA&s",
+                    "https://images.hindustantimes.com/rf/image_size_960x540/HT/p2/2020/01/21/Pictures/plating-devotee-around-delhi-weighing-donated-gold_2f6fc288-3c2a-11ea-bfbd-f812f33ac46f.jpg",
+                    "https://s7ap1.scene7.com/is/image/incredibleindia/siddhivinayak-temple-mumbai-maharashtra-1-musthead-hero?qlt=82&ts=1742188729576",
+                    "https://content.jdmagicbox.com/v2/comp/mumbai/q2/022pxx22.xx22.180316125539.p7q2/catalogue/shree-siddhivinayak-mandir-wadala-east-mumbai-temples-kuhsxvia3n.jpg"
+                ],
+                location: "Prabhadevi, Mumbai, Maharashtra",
+                bestTime: "November to February",
+                fee: "Free",
+                air: "Mumbai International Airport (15 km)",
+                train: "Dadar Railway Station (2 km)",
+                road: "Accessible via Mumbai city roads and buses",
+                mapQuery: "https://www.google.com/maps/place/Shree+Siddhivinayak+Temple/@19.0169538,72.8303939,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7cec0d851ebc3:0xcc61876914526329!8m2!3d19.0169538!4d72.8303939!16zL20vMDlxeGc1?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 49,
+                name: "Rankala Lake",
+                image: "https://i.pinimg.com/1200x/82/58/fd/8258fd08a5305c2ed88da527aaaba1f5.jpg",
+                history: "Rankala Lake is a scenic lake in Kolhapur, believed to have been constructed by Chhatrapati Shahu Maharaj. It is a popular evening and sunset spot.Before the eighth century, Rankala was a stone quarry. In the 9th century, an earthquake caused immense structural damage to the quarry, causing water to accumulate from an underground source forming the Rankala Lake. This historic lake features a Hindu temple with a Nandi.[1] According to local Hindu beliefs, Lord Shiva uses the Nandi, moves a single wheat grain towards the lake, and backs about a distance of single rice grain daily. Hindu beliefs state that if Lord Shiva reaches Rankala, the apocalypse will begin.",
+                gallery: [
+                    "https://www.trawell.in/admin/images/upload/796114759Rankala_Lake.jpg",
+                    "https://www.kolhapurtourism.org/wp-content/uploads/2015/02/rankala2.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/a1/92/fa/rankala-lake.jpg?w=1200&h=-1&s=1",
+                    "https://hblimg.mmtcdn.com/content/hubble/img/kolhapur/mmt/activities/m_activities_kolhapur_rankala_lake_l_591_1129.jpg"
+                ],
+                location: "Kolhapur city, Maharashtra",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Kolhapur Airport (10 km)",
+                train: "Kolhapur Railway Station (4 km)",
+                road: "Well connected within Kolhapur city",
+                mapQuery: "https://www.google.com/maps/place/Rankala+Lake/@16.6887229,74.2108064,16z/data=!3m1!4b1!4m6!3m5!1s0x3bc1aaa5d3909f97:0x12874bdca6a9d134!8m2!3d16.6905032!4d74.2105955!16zL20vMDRrdGRj?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 50,
+                name: "Bhimashankar Temple",
+                image: "https://i.pinimg.com/1200x/30/58/93/3058937e74c59fa13214c0ddcf648b66.jpg",
+                history: "Bhimashankar Temple is one of the 12 Jyotirlingas of Lord Shiva. It is located in the Sahyadri hills and surrounded by wildlife sanctuary.According to Namdev, a saint in the medieval era, Saint Jnaneshwar went to Tryambakeshwar and then Bhimashankar. Namdev himself has also visited this place.Bhimashankaram shrine and the Bhimarathi river have been talked about in writings as far back as the 13th century;however, the current construction of the temple seems to be fairly new.The temple is built in the Nagara style, which combines traditional and modern designs. The temple hall was constructed during the 18th century by Nāna Phadnavis of Peshwa.[7] The village of Kharosi was granted to the temple by King Shivaji. The daily religious observance was funded through the financial resources derived from the people of the area.He offered one here at Bhimashankar and the others in Menavali, near Wai, in front of a Shiva temple on the banks of the Krishna River, the Banshanker Temple in Pune, the Omkareshwar Temple in Pune, and the Ramlinga Temple in Pune (Shirur).",
+                gallery: [
+                    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQtFBKA-taRfXRskJvW3a7YAGkIWdT7B6Ao0J4-tLSRGB2v5V7A",
+                    "https://i.pinimg.com/736x/09/01/23/0901234e74035d52d3ce7f459c7abd38.jpg",
+                    "https://temple.yatradham.org/public/Product/puja-rituals/puja-rituals_87nV92un_202506301243210.jpeg",
+                    "https://discoveringtemples.com/wp-content/uploads/hanuman-tal-bhimashankar-bhimashankar-mandir-pune-bhimashankar-jyotirlinga-in-maharashtra-1024x683.jpg"
+                ],
+                location: "Bhimashankar, Pune district, Maharashtra",
+                bestTime: "October to March",
+                fee: "Free",
+                air: "Pune Airport (110 km)",
+                train: "Karjat Railway Station (60 km)",
+                road: "Accessible by road from Pune and Mumbai",
+                mapQuery: "https://www.google.com/maps/place/Bhimashankar+Temple/@19.0719427,73.5356478,17z/data=!3m1!4b1!4m6!3m5!1s0x3bdd442595555555:0x3923896a457fe3c8!8m2!3d19.0719427!4d73.5356478!16zL20vMDNtZ2N3?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 51,
+                name: "Grishneshwar Temple",
+                image: "https://i.pinimg.com/736x/f0/9e/e6/f09ee6e061fc7f2be2a97cb1b96281d1.jpg",
+                history: "Grishneshwar Temple is one of the 12 Jyotirlingas of Lord Shiva. Located near Ellora Caves, it was rebuilt in the 18th century by Ahilyabai Holkar.The temple structure was destroyed by the Delhi Sultanate in 13th and 14th centuries. The temple went through several rounds of rebuilding followed by re-destruction during the Mughal-Maratha conflict. Maloji Bhosale (grandfather of Shivaji) first restored it in the 16th century and rebuilt it to its current form in the year 1729, under the sponsorship of queen Gautama Bai Holkar of Indore, after the fall of the Mughal Empire.[6][8][9] It is presently an important and active pilgrimage site of the Hindus and attracts long lines of devotees daily. Anyone can enter the temple premises and its inner chambers, but to enter the sanctum sanctorum (garbha-gruha) of the temple, the local Hindu tradition demands that men must go bare-chested.",
+                gallery: [
+                    "https://famoustemplesofindia.com/wp-content/uploads/2023/10/Grishneshwar-Temple-1-832x1024.jpg",
+                    "https://s7ap1.scene7.com/is/image/incredibleindia/grishneshwar-temple-chhatrapati-sambhaji-nagar-maharashtra-grishneshwar-temple1-attr-hero?qlt=82&ts=1727010624846",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWWNzamxh-IerYIh0t1eVvLnUTM0Nd0IszYw&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8RRvqVJGa7LJtNBR67TFWHKFLbWnj42viTg&s"
+                ],
+                location: "Verul (Ellora), Aurangabad district, Maharashtra",
+                bestTime: "October to March",
+                fee: "Free",
+                air: "Aurangabad Airport (35 km)",
+                train: "Aurangabad Railway Station (30 km)",
+                road: "Well connected by road from Aurangabad",
+                mapQuery: "Grishneshwar Temple Ellora"
+            },
+
+            {
+                id: 52,
+                name: "Tulja Bhavani Temple",
+                image: "https://i.pinimg.com/736x/60/e5/bb/60e5bb84875ea3e3df48a4cceabbb94e.jpg",
+                history: "Tulja Bhavani Temple is dedicated to Goddess Bhavani and is an important Shakti Peetha. It is believed that Chhatrapati Shivaji Maharaj was blessed by Goddess Bhavani. It was built in 12th century CE by Mahamandaleshwara Māradadeva of the Kadamb dynasty. Considered as one of the 51 Shakti Pithas, it is located on the banks of Mandakini River and Bori Dam in Yamunachala Hill of Balaghat Range of Tuljapur, which is 45 km northeast of Solapur, in Dharashiv district of Maharashtra in India.This Tuljapur Bhavani temple, along with Renuka temple at Mahur (330 km northeast of Tuljapur), Mahalaxmi temple at Kolhapur (275 southwest of Tuljapur), and Saptashringi temple at Vani (375 northwest of Tuljapur), make up the four great Shaktipithas of Maharashtra.There are other temples of Tulja Bhavani in India, such as the Chittorgarh Fort Tulja Bhavani Temple at Chittorgarh built in 1537–1540. This is 960 km north of Tuljapur. As well as this, there is the Patnakuva Tulja Bhavani Temple in the Gandhinagar district of Gujarat, which is 1,000 km northwest of Tuljapur",
+                gallery: [
+                    "https://www.tirthayatra.org/wp-content/uploads/2022/05/Tuljapur_Bhavani-Devi.jpg",
+                    "https://i.pinimg.com/736x/60/e5/bb/60e5bb84875ea3e3df48a4cceabbb94e.jpg",
+                    "https://i.pinimg.com/736x/36/70/b1/3670b160148f2d039aa857299090c899.jpg",
+                    "https://i.pinimg.com/736x/74/05/ff/7405ffa8c492c5fc0d87beb16740494f.jpg"
+                ],
+                location: "Tuljapur, Osmanabad district, Maharashtra",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Solapur Airport (45 km)",
+                train: "Solapur Railway Station (45 km)",
+                road: "Well connected by buses from Solapur and nearby cities",
+                mapQuery: "https://www.google.com/maps/search/Tulja+Bhavani+Temple/@17.4187874,74.5147705,8z?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 53,
+                name: "Pandharpur Vitthal Temple",
+                image: "https://i.pinimg.com/736x/80/f0/98/80f09864d5b84684b6e03b19b33cb319.jpg",
+                history: "Pandharpur Vitthal Temple is dedicated to Lord Vitthal (a form of Vishnu). It is one of the most important pilgrimage sites in Maharashtra, especially during Ashadhi Ekadashi.The Vithoba Temple, officially known as Shri Vitthal-Rukmini Mandir (Marathi: श्री विठ्ठल-रूक्मिणि देऊळ) is a Hindu temple in Pandharpur, in the Indian state of Maharashtra.[1] It is the main centre of worship for Vithoba, a form of the god Vishnu or Krishna, and his consort Rakhumai. It is one of the 108 Abhimana Kshethram of Vaishnavate tradition.[citation needed] The temple was built by King Vishnuvardhana (Bittideva) of Hoysala Empire between 1108 and 1152 CE upon being convinced by the historical figure Pundalik.[citation needed][dubious – discuss] Also, there is an inscription in the temple, of a Hoysala King Vira Someshwara dating back to 1237 CE, which grants the temple a village for its upkeep.[2] It is the most visited temple in Maharashtra. The Warkaris start marching from their homes to the temple of Pandharpur in groups called Dindi (procession) to reach on Aashadhi Ekadashi and Kartiki Ekadashi. A dip in the holy river Chandrabhaga, on whose banks Pandharpur resides, is believed to have power to wash all sins. All the devotees are allowed to touch the feet of the idol of Vithoba.",
+                gallery: [
+                    "https://dorituals.com/wp-content/uploads/2025/04/Vithoba-Temple.jpeg",
+                    "https://i.pinimg.com/736x/ef/68/b3/ef68b37a40531f685cef70ea3c20efb8.jpg",
+                    "https://i.pinimg.com/736x/b1/5c/43/b15c43147bafb61ede59ed74424be25f.jpg",
+                    "https://i.pinimg.com/1200x/c3/6e/dd/c36edd00fd702960d141e66dc5751979.jpg"
+                ],
+                location: "Pandharpur, Solapur district, Maharashtra",
+                bestTime: "July to February",
+                fee: "Free",
+                air: "Solapur Airport (75 km)",
+                train: "Pandharpur Railway Station (2 km)",
+                road: "Well connected by road from Solapur and Pune",
+                mapQuery: "https://www.google.com/maps/place/Shree+Vitthal+Rukmini+temple+,+Pandharpur/@17.6775646,75.3350913,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2c124826ed009:0xec10c34488793d23!8m2!3d17.6775646!4d75.3350913!16s%2Fm%2F0421kp8?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 54,
+                name: "Lohagad Fort",
+                image: "https://i.pinimg.com/736x/d0/4e/cc/d04ecce44038b3f41e6024184bc7cb3b.jpg",
+                history: "Lohagad Fort is a historic hill fort used by Chhatrapati Shivaji Maharaj. It is famous for its Vinchu Kata (Scorpion’s Tail) structure.The initial construction of Lohagad Fort is attributed to the Lohtamia dynasty, who ruled the region during the 10th century CE, the fort was under them for the longest period. Lohagad has a long history with several dynasties occupying it at different periods of time: Satavahanas, Chalukyas, Rashtrakutas, Yadavas, Bahamanis, Nizams, Mughals and Marathas. Chatrapati Shivaji Maharaj captured it in 1648 AD, but he was forced to surrender it to the Mughals in 1665 AD by the Treaty of Purandar. Chatrapati Shivaji Maharaj recaptured the fort in 1670 AD and used it for keeping his treasury. This fort was used to keep the winnings from Surat. Later in Peshwa time Nana Phadnavis used this fort for living for some time and built several structures in the fort such as a big tank and a step-well.",
+                gallery: [
+                    "https://i.pinimg.com/736x/d0/4e/cc/d04ecce44038b3f41e6024184bc7cb3b.jpg",
+                    "https://i.pinimg.com/736x/c1/a7/d9/c1a7d99e5fbb89e469df079b87b902b4.jpg",
+                    "https://i.pinimg.com/736x/d3/38/7f/d3387f1463a7d2e4fb7b89609a3e2839.jpg",
+                    "https://i.pinimg.com/736x/d9/02/46/d90246f37cf80f8eb1447f4772b1799f.jpg"
+                ],
+                location: "Lonavala, Pune district, Maharashtra",
+                bestTime: "June to February",
+                fee: "Free",
+                air: "Pune Airport (65 km)",
+                train: "Malavli Railway Station (5 km)",
+                road: "Accessible via road from Lonavala",
+                mapQuery: "https://www.google.com/maps/place/Lohagad+Fort,+Lohagad+Trek+Rd,+Maharashtra+410401/@18.7101945,73.4732869,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2a9e5ec73dc55:0x40175d3a5814b5d!8m2!3d18.7101945!4d73.4758618!16zL20vMGY2eTlf?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 55,
+                name: "Visapur Fort",
+                image: "https://i.pinimg.com/1200x/0a/34/51/0a3451f56a5be386b187123c0cbdf5af.jpg",
+                history: "Visapur Fort is located near Lohagad Fort and was built during the Maratha Empire. It was built during 1713-1720 CE by Balaji Vishwanath, the first Peshwa of Maratha Empire.[1][2] Visapur fort was built much later than Lohagad but the histories of the two forts are closely linked.Sunlit view of Visapur Fort .In 1818, when reducing the Peshwa's forts, the strength of Lohagad and its fame as the treasury of the Maratha kingdom, caused the English to make special preparations for its attack. A detachment of 380 European and 800 native soldiers, with a battering train, summoned from Konkan, were joined by artillery from Chakan, and two other British battalions. On 4 March 1818, Visapur was attacked and occupied.Making use of its higher elevation and proximity to Lohagad, the British troops set up their cannons on Visapur and bombarded Lohagad, forcing the Marathas to flee. Thus, in 1818, Lohagad-Visapur was taken over by the British in 1818 AD and placed under the command of a Colonel Prother.Considering, the strategic importance of Visapur, both the north (Konkan) and the south (Deccan) gateways were blown up, and except a few huts, nothing was left standing.In contrast, most of Lohagad fort is still intact",
+                gallery: [
+                    "https://www.hindujagruti.org/wp-content/uploads/2015/02/Lohagarh_Visapur_Fort_640.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/d4/79/72/dilapidated-structures.jpg?w=900&h=500&s=1",
+                    "https://i.pinimg.com/736x/0a/34/51/0a3451f56a5be386b187123c0cbdf5af.jpg",
+                    "https://static2.tripoto.com/media/filter/tst/img/2009878/TripDocument/1597663891_640px_fortified_wall_visapur_fort_pune_maharashtra.jpg"
+                ],
+                location: "Lonavala, Pune district, Maharashtra",
+                bestTime: "June to February",
+                fee: "Free",
+                air: "Pune Airport (65 km)",
+                train: "Malavli Railway Station (5 km)",
+                road: "Accessible via road from Lonavala",
+                mapQuery: "https://www.google.com/maps/place/Visapur+Fort/@18.7252128,73.4882435,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2a9f33a03e021:0x55e8ec720b03556f!8m2!3d18.7252129!4d73.4931144!16s%2Fm%2F05b_0yy?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 56,
+                name: "Harishchandragad",
+                image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/33/f7/cb/img-20171024-141916091.jpg?w=1200&h=1200&s=1",
+                history: "The fort is quite ancient. Remnants of Microlithic man have been discovered here. The various Puranas (ancient scriptures) like Matsyapurana, Agnipurana and Skandapurana include many references about Harishchandragad. Its origin is said to have been in the 6th century, during the rule of Kalachuri dynasty. The citadel was built during this era. The various caves probably have been carved out in the 11th century. In these caves are idols of Lord Vishnu. Though the cliffs are named Taramati and Rohidas, they are not related to Ayodhya. Great sage Changdev (one who created the epic Tatvasaar), used to meditate here in the 14th century. The caves are from the same period. The various constructions on the fort and those existing the surrounding region point to the existence of diverse cultures here. The carvings on the temples of Nageshwar (in Khireshwar village), in the Harishchandreshwar temple and in the cave of Kedareshwar indicate that the fort belongs to the medieval period, since it is related to mahadeva as a totem of tribes Mahadev Koli. They were controlling the fort before Moguls. Later the fort was under the control of Moguls. The Marathas captured it in 1747.",
+                gallery: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/33/f7/cb/img-20171024-141916091.jpg?w=1200&h=1200&s=1",
+                    "https://i.pinimg.com/736x/9e/5e/4d/9e5e4d8acd8b718c1304e1d9fb1b06ee.jpg",
+                    "https://i.pinimg.com/736x/5e/bb/ad/5ebbad329abf2e7e22b3cee68902508d.jpg",
+                    "https://i.pinimg.com/736x/d0/ad/36/d0ad36f43afdd1ad285d6f8726a7c943.jpg"
+                ],
+                location: "Ahmednagar district, Maharashtra",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Pune Airport (120 km)",
+                train: "Kalyan Railway Station (140 km)",
+                road: "Accessible via road from Ahmednagar and Pune",
+                mapQuery: "https://www.google.com/maps/place/Harishchandragad/@19.3863874,73.757456,14z/data=!3m1!4b1!4m6!3m5!1s0x3bdd720a3ef72a5b:0x4641dacc75262661!8m2!3d19.3863889!4d73.7780556!16zL20vMDRzbm5j?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 57,
+                name: "Salher Fort",
+                image: "https://i.pinimg.com/1200x/51/08/9a/51089a7a513078e1957d8c162b36e776.jpg",
+                history: "Salher Fort is the highest fort in Maharashtra and site of the famous Battle of Salher in 1672 between Marathas and Mughals.Salher Fort was under Shrimant Sardar Suryajirao Kakade in 1671. The Mughals attacked the fort in 1672. Almost one lakh soldiers fought in this war.[1] Many soldiers died in this battle but finally Chhatrapati Shivaji Maharaj sent Suryajirao Kakade who won the Battle of Salher. Of all the face to face battles between the Mughals and Suryajirao Kakade's troops, the battle of Salher takes first place. After winning Salher, the Marathas also captured Mulher and established their reign over the Baglan region. In the 18th century, the Peshwas occupied this fort and later by the British.The Marathas defeated the Mughals at the Battle of Salher in 1672.",
+                gallery: [
+                    "https://nomadsofindia.com/wp-content/uploads/2022/06/Salher-Salota-Fort.jpeg",
+                    "https://upload.wikimedia.org/wikipedia/commons/8/8d/Salher_Fort.jpg",
+                    "https://i.pinimg.com/1200x/dc/d7/90/dcd79048d096e670ff5768f8f613d2e0.jpg",
+                    "https://i.pinimg.com/736x/bd/3f/dd/bd3fdd8eaa582876827c0dd5d7bc8ac2.jpg"
+                ],
+                location: "Nashik district, Maharashtra",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Nashik Airport (110 km)",
+                train: "Nashik Road Railway Station (120 km)",
+                road: "Accessible via road from Satana",
+                mapQuery: "https://www.google.com/maps/place/Salher/@20.7247204,73.9221784,14z/data=!3m1!4b1!4m6!3m5!1s0x3bde421b9b0a7767:0xb0191a550b8f17d6!8m2!3d20.724722!4d73.942778!16zL20vMGQ1dnJs?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 58,
+                name: "Mulher Fort",
+                image: "https://static2.tripoto.com/media/filter/tst/img/1987847/TripDocument/1588852693_mulher_fort.jpg",
+                history: "The Rashtrauda dynasty of Bagul clan reigned Baglan between 1310 and 1638. Mulher fort was their capital. The Mughals then gained control of Baglan. For the Surat ransack of January 1664 & October 1670, Shivaji had followed the route passing through Baglan to reach Surat. On the first occasion, the entire region from Pune to Surat was under the command of the Mughals while on the second occasion, Baglan was mainly under their control. The Mughals chased Shivaji Raje on his return journey but they were defeated in the Kanchana Pass. Soon after this, Shivaji began a campaign in this region. In January 1671 the first assault brought the Salher fort under the Maratha rule. They then attacked Mulher fort but the Mughal Killedar repulsed the attack",
+                gallery: [
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqUsCJiZE7CCK_J6kubvzU4qYozYKvHt6_A-Zt8wKvsbNRkkkRvVjXywZGKwRCXAE4u4835pNNAQloLxtXI2Og98JfWoiVntoPTRepkap4-5HdzlYQSw0GHkUmRb7ELNV8Sz1160Zunb1c=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoclnjXyyCcDI7q4QiQ0E5F_N3vLnhfcM6gZurdoQvR-OlRBrXCfp1jNlk03YQeYVCXxtK3Rupzn3nOl4jM97ZTHOTctXAqUg9-JaXprHXiVUjn4BlHhkR69JuZSuqvNMmhDKi7=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwers0Jq0fC6MxPhEtsx8HttsU1yzgT6BcRH_15Bs_4sRTy5AFlSA46Dufw8n-JQAkYt2SI8vzg1pjMSij5AnDvNFfCkeDXZA_3bkYhA19jOe0_LrlYMgSfzFTIowrXOf8ia1Ch_8-Q=s1360-w1360-h1020-rw",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcEUmTaphhhEa9XMpNPjX4-vfUAWvnWkdLnw&s"
+                ],
+                location: "Nashik district, Maharashtra",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Nashik Airport (120 km)",
+                train: "Nashik Road Railway Station (125 km)",
+                road: "Accessible via road from Satana",
+                mapQuery: "https://www.google.com/maps/place/Mulher+Fort,+Baglan/@20.751118,74.063923,17z/data=!3m1!4b1!4m6!3m5!1s0x3bde5d11ed1c9105:0x9df21b6e92824274!8m2!3d20.751118!4d74.063923!16s%2Fg%2F11zq3ypwm?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 59,
+                name: "Ratangad Fort",
+                image: "https://i.pinimg.com/1200x/f2/d1/0b/f2d10b315059c6be9723f8546bed74bd.jpg",
+                history: "Ratangad Fort is a 400-year-old fort captured by Chhatrapati Shivaji Maharaj. It is known for its natural rock peak called 'Nedhe'.Ratangad is a fort in Ratanwadi, Maharashtra, India, overlooking Bhandardara in the Ahmadnagar district of Maharashtra bordering the Thane district. The fort is about 400 years old. Ratangad is also called Jewel of the Sahyadris.It has a natural rock peak with a cavity in it at the top which is called 'Nedhe' or 'Eye of the Needle'. The fort has four gates: Ganesh, Hanuman, Konkan and Trimbak. Sculptures of Ganesh and Hanuman are on the main gate",
+                gallery: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/31/80/3f/photo0jpg.jpg?w=1200&h=1200&s=1",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfkhwHOA8iunZLNgJ8Zs0SaQj-FCp7__xQQQ&s",
+                    "https://static2.tripoto.com/media/filter/tst/img/1987847/TripDocument/1588851998_img_a1be7967549848d917927dc228cb1ff3_1558600564750_processed_original.jpg",
+                    "https://static2.tripoto.com/media/filter/tst/img/406586/TripDocument/1589359663_9.jpg.webp"
+                ],
+                location: "Ahmednagar district, Maharashtra",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Pune Airport (150 km)",
+                train: "Igatpuri Railway Station (45 km)",
+                road: "Accessible via road from Bhandardara",
+                mapQuery: "https://www.google.com/maps/place/Ratangad+Fort,+Ratanwadi+Village,+Maharashtra+422604/@19.5012924,73.7027437,17z/data=!3m1!4b1!4m6!3m5!1s0x3bdd76d88cbacfdf:0x8e5c3cccb5a754ab!8m2!3d19.5003491!4d73.7025479!16s%2Fg%2F1pty8tn53?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 60,
+                name: "Alang Fort",
+                image: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Alang_Traverse_1.jpg",
+                history: "Alang Fort is one of the toughest treks in Maharashtra and part of the famous Alang-Madan-Kulang (AMK) fort range.",
+                gallery: [
+                    "https://upload.wikimedia.org/wikipedia/commons/0/0d/Alang_Traverse_1.jpg",
+                    "https://www.treksandtrails.org/system/images/000/190/652/938ac78ca6ae87c95f172a619396299e/original/IMG_1445.JPG",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPNp5FnYOFhEVrsbzdmkt9MLyYy8clncVhKA&s",
+                    "https://saahasioutdoors.in/wp-content/uploads/2024/02/Kulang-1.jpg"
+                ],
+                location: "Nashik district, Maharashtra",
+                bestTime: "November to February",
+                fee: "Free",
+                air: "Nashik Airport (130 km)",
+                train: "Igatpuri Railway Station (50 km)",
+                road: "Accessible via road from Igatpuri",
+                mapQuery: "https://www.google.com/maps/place/Alang+Fort/data=!4m2!3m1!1s0x3bdd9d5195ea9381:0x94bb3ce33eb57002?sa=X&ved=1t:155783&ictx=111"
+            },
+            {
+                id: 61,
+                name: "Ganpatipule Temple",
+                image: "https://i.pinimg.com/736x/36/46/9b/36469bbe51fcb4f095534aa4acb0690e.jpg",
+                history: "Ganpatipule (Marathi: गणपतीपुळे) is a coastal town in Ratnagiri district of Maharashtra. Due to its Ganpati mandir, the town is a popular Hindu pilgrimage and tourist destination.The town is situated near Ratnagiri city, which is the seat of its namesake district. Chiplun town is located on its north side.",
+                gallery: [
+                    "https://i.pinimg.com/736x/61/61/da/6161da721269a54f14d1ed5ac84205d0.jpg",
+                    "https://i.pinimg.com/736x/4c/3e/f9/4c3ef9178a2fe2a015a2405e95d9484e.jpg",
+                    "https://i.pinimg.com/736x/86/c4/51/86c4511f7b02b5b7ef4b66a8d68f02e0.jpg",
+                    "https://i.pinimg.com/736x/66/dc/b2/66dcb25e5898aa2eb7187e213dd6a6c4.jpg"
+                ],
+                location: "Ratnagiri district, Maharashtra",
+                bestTime: "Monsoon (June–September) ,Summer (April–May",
+                fee: "Free |  Special Darshan / VIP darshan :₹200–₹500",
+                air: "arest Airport: Ratnagiri Airport — approx 25-30 km from Ganpatipule (non-major commercial service).",
+                train: "Nearest Railway Station: Ratnagiri Railway Station — ~25–30 km from Ganpatipule.",
+                road: "Bus Services: MSRTC and private buses regularly run from Mumbai, Pune, Ratnagiri and Kolhapur.",
+                mapQuery: "https://www.google.com/maps/place/Shree+Ganpatipule+Mandir/data=!4m2!3m1!1s0x0:0x18d715417b0273e4?sa=X&ved=1t:2428&ictx=111"
+            },
+            {
+                id: 62,
+                name: "Kulanggad Fort",
+                image: "https://seawatersports.com/images/places/kulanggad-fort-in-maharashtra.jpg",
+                history: "Kulanggad Fort is part of the AMK (Alang-Madan-Kulang) fort trio. It is known for its massive plateau and difficult trekking trail through dense forest and rocky terrain.In 1760 the fort were probably ceded by the Moghuls to the Peshwa along with many other forts in the Nashik region. In 1818 Kulang along with the other nearby forts were captured by the British forces.[3] The British, however did not destroy the steps of this fort",
+                gallery: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Kulangfort.jpg/1920px-Kulangfort.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Kulang_fort1.jpg/1920px-Kulang_fort1.jpg",
+                    "https://durgbharari.in/wp-content/uploads/2020/09/20151128_174146.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHlBmOdwsy7eHlo0r1NSxWAY97Q46gnSSyPg&s"
+                ],
+                location: "Nashik district, Maharashtra",
+                bestTime: "November to February",
+                fee: "Free",
+                air: "Nashik Airport (130 km)",
+                train: "Igatpuri Railway Station (50 km)",
+                road: "Accessible via road from Ambewadi village",
+                mapQuery: "https://www.google.com/maps/place/Kulang+Fort/@19.5933202,73.6385341,17z/data=!3m1!4b1!4m6!3m5!1s0x3bdd82b88ead314b:0x1358ac0bfb1891d4!8m2!3d19.5933202!4d73.6385341!16s%2Fg%2F11c5_60p8k?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+
+            {
+                id: 63,
+                name: "Junnar Caves",
+                image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/4f/ae/6a/junnar-cave.jpg?w=900&h=500&s=1",
+                history: "Junnar has been an important trading and political centre for the last two millennia. The town is on the trade route that links the ports of western India or more specifically of Konkan with Deccan interiors. The first mention of Junnar comes the Greco-Roman travellers from the first millennium,[3][4][5] The Indo-Scythian Western Satraps ruled at Junnar during the 2nd century CE as shown by their cave inscriptions in the area of Junnar, at Manmodi Caves.Yavana Greeks also left donative inscriptions in the 2nd century CE at Lenyadri and Manmodi Caves. According to Damodar Kosambi, the real name of Junnar may have been Tagara. In his opinion, the name Junnar may be the contracted form of Jirnanagar (Old city).In the 1400s, the Russian traveler, Afanasy Nikitin spent many months in Junnar during the monsoon season. He describes vividly the life in the Bahamani-ruled area around Junnar.After the collapse of the Bahamanis, the breakaway state of Nizam Shahi had Junnar as their first capital in the 1490s.Later in early 1600s, Malik Ambar the Nizam Shahi general again moved his capital there.[11] The father of Shivaji, Shahaji Raje Bhonsale worked for Malik Ambar early in his career. Shivaji was born at the nearby Shivneri fort.",
+                gallery: [
+                    "https://www.trawell.in/admin/images/upload/860652730Pune_Junnar_Caves_Main.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/4f/ae/6a/junnar-cave.jpg?w=900&h=500&s=1",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt_XndwJVBbU1r1SCUhwI9IRVoaE3ALGlkYg&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF1P9ljOeaVAopRVQgs_g5cJxDW54eXrTvWA&s"
+                ],
+                location: " Junnar, Pune District, Maharashtra.",
+                bestTime: "Monsoon and winter seasons (July to February)",
+                fee: "Free",
+                air: "Nearest airport: Pune International Airport | About 100 km from Junnar",
+                train: "Nearest major railway station: Pune Railway Station | From Pune, take bus or taxi to Junnar",
+                road: "Well connected by road from Pune & Mumbai | MSRTC buses available to Junnar",
+                mapQuery: "https://www.google.com/maps/search/Junnar+Caves/@19.0049966,73.5301208,10z?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 64,
+                name: "Shani Shingnapur Temple",
+                image: "https://i.pinimg.com/1200x/1e/3b/79/1e3b79a0abb8768d0bea3eb238284c77.jpg",
+                history: "Shingnapur is also famous for the fact that no house in the village has doors, only door frames. Despite this, officially no theft has been reported in the village[4] although there were reports of theft in 2010 and 2011.The temple is believed to be a jagrut devasthan(lit. alive temple), meaning that a deity still resides in the temple. Villagers believe that god Shani punishes anyone attempting thievery.The deity here is Swayambhu (Sanskrit: self-evolved deity) that is self emerged from earth in form of black, imposing stone. Though no one knows the exact period, it is believed that the Swayambhu Shanaishwara statue was found by shepherds of the then local hamlet. It is believed to be in existence at least since the start of Kali Yuga.The village has a post office and a high school known as Shri Shanishwar Vidya Mandir besides the primary schools run by the Zilla Parishad. The chief source of water supply in the village is wells.",
+                gallery: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4MX7hj3caNorZmkt1LPu-IXEpPyZp7xsp1Q&s",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH0p9UkCBvfo2aFajKDpUnwcrspBZgTu4crA&s",
+                    "https://i.pinimg.com/736x/91/80/32/918032f4748afa91d67d63ca2b6d455c.jpg",
+                    "https://i.pinimg.com/736x/84/f4/89/84f48945fd55f2359bde1109b1b2600d.jpg"
+                ],
+                location: "Shingnapur, District Ahmednagar",
+                bestTime: "October to March",
+                fee: "Free",
+                air: "Nearest Airport: Shirdi International Airport ",
+                train: "Nearest Railway Station: Ahmednagar Railway Station (~35 km)",
+                road: "October to March",
+                mapQuery: "https://www.google.com/maps/search/Shani+Shingnapur+Temple/@19.3774135,74.8432639,17z?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 65,
+                name: "Renuka Devi Temple Mahur",
+                image: "https://blog.yatradham.org/wp-content/uploads/2021/10/renuka-mata-blog-imagejpg.jpg",
+                history: "Mahur or Mahurgad is a town and religious place in Nanded district of Maharashtra, India.[1] Mahur is the birthplace of Hindu God Dattatreya.Dattatreya parents Atri Rishi and Sati Anasuya Mata lived hereMahur finds mention in the ancient Devi Bhagawatam as Matripura or Matapur, where it is mention as one of the famous pilgrimages.[3] In Devi Gita the final and most important chapter of the text, it is mentioned as one of the important places of Shakti worship:Devi spoke:... I am now telling something out of My affection to My Bhaktas... Matripura or Matapur in the Sahyadri mountain; here the Devi Renuka or Matapur Niwasini Jagdamba Devi dwells.Appasaheb Deshmukh was the ruler of Mahur sarkar and the sardar of gond King in the 12th century CE. Bharat Ratn Nanaji Deshmukh was his descendant.",
+                gallery: [
+                    "https://blog.yatradham.org/wp-content/uploads/2021/10/renuka-mata-blog-imagejpg.jpg",
+                    "https://temple.yatradham.org/public/Product/temple/temple_KZt3XuGU_202408171722210.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Indien2012_1356_Mahur_Fort.jpg/1280px-Indien2012_1356_Mahur_Fort.jpg",
+                    "https://www.renukayellamma.com/img/96934009-rushi-jamadagni-instructs-his-son-parshuram-to-kill-his-mother-renuka-kaikadi-maharaj-math-pandharpu.jpg"
+                ],
+                location: "Mahur, Nanded district",
+                bestTime: "October to February , Navratri Festival",
+                fee: "Free",
+                air: "Nearest Airport:Shri Guru Gobind Singh Ji Airport",
+                train: "Nearest Railway Station:Nanded Railway Station",
+                road: "Well connected by road from Nanded, Yavatmal, and Hingoli",
+                mapQuery: "https://www.google.com/maps/place/Shri+Renuka+Mata+Mandir,+Mahurgad/@19.8325926,77.923314,17z/data=!3m1!4b1!4m6!3m5!1s0x3bd1809f2c3dab01:0x2a08eac52432a3c1!8m2!3d19.8325926!4d77.923314!16s%2Fg%2F11lgpj0v_2?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 66,
+                name: "Parli Vaijnath Temple",
+                image: "https://www.pujasthan.com/wp-content/uploads/2022/12/Parli-Vaijnath-Temple-Maharashtra.jpg",
+                history: "Situated in the Beed district of Maharashtra, the Parli Vaijnath Jyotirlinga is one of the most sacred shrines dedicated to Lord Shiva. Counted among the revered 12 Jyotirlingas, this temple is widely associated with healing, longevity, and divine blessings. Many devotees also refer to it as Dhanavantari and Amriteshwari, as ancient beliefs say that Lord Vishnu concealed Amrit and Dhanvantari inside the Shiva Linga at this very spot. Because of this divine connection, countless visitors come here seeking good health, relief from chronic ailments, and spiritual strength.The temple stands gracefully on a small hill and showcases classic Hemadpanthi-style architecture. Its brass-plated eastern doors, calm surroundings, and naturally uplifting atmosphere make it a peaceful space for darshan and meditation. The structure seen today was beautifully restored by Queen Ahilyadevi Holkar in 1706, adding to its historical and cultural value.",
+                gallery: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/b3/f3/af/img-20151203-173022-largejpg.jpg?w=1600&h=-1&s=1",
+                    "https://i.pinimg.com/736x/83/e9/8c/83e98cd768d5402913185aff438991d6.jpg",
+                    "https://www.pilgrimagetour.in/blog/wp-content/uploads/2023/10/History-of-Parli-Vaijnath-Temple.jpg",
+                    "https://blog.yatradham.org/wp-content/uploads/2024/02/Parli-Vaijnath-Temple-Darshan-Timings.jpg"
+                ],
+                location: "Parli, Beed district",
+                bestTime: "October to February  |  Shravan Month",
+                fee: "Free",
+                air: "Nearest Airport:Aurangabad Airport",
+                train: "Nearest Railway Station:Parli Vaijnath Railway Station",
+                road: "Direct buses from Pune, Aurangabad, Latur, Nanded",
+                mapQuery: ""
+            },
+            {
+                id: 67,
+                name: "Shegaon Gajanan Maharaj Temple",
+                image: "https://temple.yatradham.org/public/Product/temple/temple_ovukWNyC_202507011533550.webp",
+                history: "Gajanan Maharaj(23 February 1878 - 8 September 1910) was an Indian Hindu guru, saint and mystic. His origins remain uncertain. He first appeared at Shegaon, a village in Buldhana district, Maharashtra, as a young man aged 30, probably on 23 February 1878. He attained Sanjeevana Samadhi on 8 September 1910, which is thought to be a process of voluntary withdrawal from one's physical body. This date of his Samadhi is commemorated every year as part of the Shree Punyatithi Utsav.The date of his first appearance is considered an auspicious day and is celebrated as Prakat Din Sohla.",
+                gallery: [
+                    "https://temple.yatradham.org/public/Product/temple/temple_ovukWNyC_202507011533550.webp",
+                    "https://i.pinimg.com/736x/64/a9/4b/64a94b6690c490e9fc3cac05b447a67a.jpg",
+                    "https://d34vm3j4h7f97z.cloudfront.net/original/4X/0/3/9/03911f3a1bceafca675119751aefb2527fc3c927.jpeg",
+                    "https://kirtankar.com/wp-content/uploads/2025/02/%E0%A4%97%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A4%A8-%E0%A4%AE%E0%A4%B9%E0%A4%BE%E0%A4%B0%E0%A4%BE%E0%A4%9C-%E0%A4%AE%E0%A4%82%E0%A4%A6%E0%A4%BF%E0%A4%B0_1.webp"
+                ],
+                location: "Shegaon, Buldhana district",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Nearest Airport: Dr. Babasaheb Ambedkar International Airport",
+                train: "Nearest Railway Station: Shegaon Railway Station | On Mumbai–Nagpur railway route",
+                road: "Well connected by MSRTC buses | Direct buses from Pune, Nagpur, Akola, Amravati",
+                mapQuery: "https://www.google.com/maps/place/Shri+Gajanan+Maharaj+Sansthan,+Shegaon/@20.7914276,76.7017562,17z/data=!3m1!4b1!4m6!3m5!1s0x3bd745056626df6d:0xbbaa62f18a161193!8m2!3d20.7914276!4d76.7017562!16s%2Fg%2F11b6342j9x?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 68,
+                name: "Gateway of India",
+                image: "https://i.pinimg.com/1200x/07/bb/cb/07bbcbe57191c2d11aa210e381a0cc9e.jpg",
+                history: "The Gateway of India was built to commemorate the arrival of King George V of the United Kingdom, Emperor of India, and Mary of Teck, Empress Consort, in India at Apollo Bunder, Mumbai, on 2 December 1911 prior to the Delhi Durbar of 1921. It was the first visit of a British monarch to India.However, they only got to see a cardboard model of the monument,[B] as construction did not begin until 1915.The foundation stone for the Gateway was laid on 31 March 1913 by then Governor of Bombay, Sir George Sydenham Clarke, with the final design of George Wittet for the Gateway sanctioned in August 1914.Before the Gateway's construction, Apollo Bunder used to serve as a native fishing ground. Between 1915 and 1919, work continued at the Apollo Bunder to reclaim the land on which the Gateway was to be built, along with the construction of a sea wall.Gammon India had undertaken construction work for the gateway",
+                gallery: [
+                    "https://i.pinimg.com/1200x/07/bb/cb/07bbcbe57191c2d11aa210e381a0cc9e.jpg",
+                    "https://saibabatravels.com/wp-content/uploads/2019/07/mumbai-gateway-of-india-150051333747-orijgp.jpg",
+                    "https://static.toiimg.com/thumb/msid-44855703,width-550,height-433/44855703.jpg",
+                    "https://img.jagranjosh.com/imported/images/E/Articles/Gateway_of_India_aerial_view.webp"
+                ],
+                location: "Apollo Bunder, Colaba Mumbai, Maharashtra",
+                bestTime: "October to March – Pleasant weather | Visit early morning or evening for beautiful sea view  | Avoid afternoon in summer (very hot)",
+                fee: "Free",
+                air: "Nearest airport: Chhatrapati Shivaji Maharaj International Airport ",
+                train: "Nearest station: Chhatrapati Shivaji Maharaj Terminus",
+                road: "Easily accessible by taxi, bus, or private vehicle",
+                mapQuery: "https://www.google.com/maps/place/Gateway+Of+India+Mumbai/@18.9219841,72.8346543,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7d1c73a0d5cad:0xc70a25a7209c733c!8m2!3d18.9219841!4d72.8346543!16zL20vMDJoN3Iy?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 69,
+                name: "Chhatrapati Shivaji Maharaj Terminus",
+                image: "https://i.pinimg.com/1200x/58/bc/d6/58bcd6e9ee1c4b4da1e5328b7b84d70e.jpg",
+                history: "This famous landmark which has become a symbol of the city, was built as the headquarters of the Great Indian Peninsular Railway.The railway station was built to replace the Bori Bunder railway station, in the Bori Bunder area of Bombay, a prominent port and warehouse area known for its imports and exports. Since Bombay became a major port city at the time, a bigger station was built to meet its demands, and was named Victoria Terminus, after the then reigning Empress of India, Queen Victoria. The station was designed by Frederick William Stevens, a British engineer architect, attached to the Bombay office of the Indian colonial Public Works Department. Work began in 1878. He received ₹1,614,000 (US$19,000) as the payment for his services.[1] Stevens earned the commission to construct the station after a masterpiece watercolour sketch by draughtsman Axel Haig.[1] The design has been compared to George Gilbert Scott's 1873 St Pancras railway station in London, also in an exuberant Italian Gothic style, but it is far closer to[1][16] Scott's second prize winning entry for Berlin's parliament building, exhibited in London in 1875, which featured numerous towers and turrets, and a large central ribbed dome.[17] The style of the station is also similar to other public buildings of the 1870s in Mumbai, such as Elphinstone College but especially the buildings of Mumbai University, also designed by G Scott.",
+                gallery: [
+                    "https://i.pinimg.com/736x/a7/b0/05/a7b005cfd023902cfb5b9eb854ad27fe.jpg",
+                    "https://yatrirailways.com/bl-content/uploads/pages/251f04623fbf91bf99a1a705b5e8c53b/MicrosoftTeams-image(1).png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/IAshishTripathi_Mumbai_26Nov2008_CST-Memorial.jpg/500px-IAshishTripathi_Mumbai_26Nov2008_CST-Memorial.jpg",
+                    "https://i.pinimg.com/1200x/39/1b/1a/391b1aa0452ad8e8ad1ca688a1d62026.jpg",
+
+                ],
+                location: "Fort area, South Mumbai Maharashtra",
+                bestTime: "November to February",
+                fee: "Free",
+                air: "",
+                train: "CSMT serves as a major hub for local trains on the Central, Harbour, and18 platforms.",
+                road: "It is centrally located in South Mumbai, easily accessible by BEST buses, yellow-black taxis, and app-based cabs.",
+                mapQuery: "https://www.google.com/maps/search/Chhatrapati+Shivaji+Maharaj+Terminus/@18.9406915,72.8360724,16z?entry=s&sa=X&ved=1t%3A199789"
+            },
+            {
+                id: 70,
+                name: "Bibi Ka Maqbara",
+                image: "https://i.pinimg.com/736x/f6/a3/31/f6a331ee30ebec0fd3a9364c05907328.jpg",
+                history: "Builder: Contrary to popular belief, the monument was commissioned by Prince Azam Shah, the son of Emperor Aurangzeb, not Aurangzeb himself, in memory of his mother, Dilras Banu Begum, who passed away in 1657.Time Period: The construction occurred between 1660 and 1661 AD (some sources suggest completion around 1668-1669 or 1678-1679).Purpose: It was built as a final resting place for Dilras Banu Begum, who was posthumously known as Rabia-ul-Daurani.Architectural Inspiration: It is known as the Taj of the Deccan or Dakkhani Taj because its design is heavily inspired by the Taj Mahal in Agra, featuring a similar Char-Bagh layout with, a central dome, and four surrounding minarets.Architect: The monument was designed by Ata-ullah, the son of Ustad Ahmad Lahori, who was the main architect of the Taj Mahal. Construction Cost: While inspired by the Taj Mahal, it was built with a much lower budget (around Rs. 700,000) compared to the original, which is why it is sometimes considered a poor copy Material: It is constructed primarily of marble, with a plaster finish covering most of the structure.",
+                gallery: [
+                    "https://i.pinimg.com/736x/f6/a3/31/f6a331ee30ebec0fd3a9364c05907328.jpg",
+                    "https://i.pinimg.com/1200x/44/da/d4/44dad4d1bd2d0c2de3cb5aa69ededbc1.jpg",
+                    "https://i.pinimg.com/1200x/3e/0c/f2/3e0cf2868b5f7edeba1f2ef677d73f58.jpg",
+                    "https://i.pinimg.com/736x/f7/02/cc/f702ccd596ded92280e972bbd1a99a17.jpg"
+                ],
+                location: "Aurangabad (now Chhatrapati Sambhajinagar) Maharashtra, India",
+                bestTime: "October to March",
+                fee: "Indian citizens: ₹25 | Foreign tourists: ₹300 | Children below 15: Free",
+                air: "Nearest airport: Aurangabad Airport",
+                train: "Nearest station: Aurangabad Railway Station",
+                road: "Well connected by buses and taxis | Around: 235 km from Pune , 180 km from Nashik",
+                mapQuery: "https://www.google.com/maps/place/BIBI+KA+MAQBARA/@19.9012041,75.3202551,17z/data=!3m1!4b1!4m6!3m5!1s0x3bdb981f052f9c79:0x846308f37cdb4f9!8m2!3d19.9015612!4d75.3175308!16zL20vMGI4aHR0?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 71,
+                name: "Lal Mahal",
+                image: "https://i.pinimg.com/736x/10/94/61/10946110e04761dba70587ee5323ab0d.jpg",
+                history: "The elaborate palace was built in the Pune jagir by the then jagirdar and future mentor of Chhatrapati Shivaji Maharaj, Dadoji Kondadeo in the year 1630 AD with the idea of rejuvenating the recently razed city of Pune.He obtained proper permissions from Shahaji, who was then serving the Ahmadnagar Sultanate and hence had jurisdiction over the region.Thus another purpose served by the Mahal was raising Shahaji's son, Shivaji. Young Shivaji grew up here, and stayed in the Lal Mahal with his mother Jijabai till he captured the Torna fort in 1645. Shivaji's marriage with his first wife, Saibai took place in Lal Mahal on 16 May 1640.The Lal Mahal is also famous for an encounter between Shivaji and Shaista Khan where Shivaji cut off four fingers of the latter's when he was trying to escape from the first-floor window of the Lal Mahal.This was part of a surreptitious guerrilla attack on the massive and entrenched Mughal Army that had camped in Pune, with Shaista occupying (possibly symbolically) Shivaji's childhood home. As a punishment for the ignominy of the defeat despite superior numbers and better armed and fed soldiers, Shaista was transferred by the Mughal Emperor Aurangzeb to Bengal.",
+                gallery: [
+                    "https://i.pinimg.com/736x/10/94/61/10946110e04761dba70587ee5323ab0d.jpg",
+                    "https://i.pinimg.com/736x/09/c6/45/09c645cd51a986bafa45a83edd007675.jpg",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwer0KunzUWmJxobZsvk7UDoFxB652sUiQNnB4xtFxjKd1usmjv8qEPTePrhZ6E_34JLIWV4Sy0zDsJDyl7R_P8sBXKQEZIC1nsAJJXSqpfk22zhF0voOLbSzN0yYoSpH_U7sE7Gc9w=s1360-w1360-h1020-rw",
+                    "https://i.pinimg.com/736x/d0/e5/51/d0e551c2f3a1e496262d0816ad2a6ae6.jpg"
+                ],
+                location: "Kasba Peth, Pune Near Shaniwar Wada Maharashtra, India",
+                bestTime: "October to February",
+                fee: "Free",
+                air: "Nearest Airport: Pune International Airport",
+                train: "Nearest Station: Pune Railway Station | About 3–4 km from station",
+                road: "Easily accessible by bus, auto, taxi Located in central Pune",
+                mapQuery: "https://www.google.com/maps/place/Lal+Mahal/data=!4m2!3m1!1s0x3bc2c065793c91a1:0x4a206d80daf21f92?sa=X&ved=1t:155783&ictx=111"
+            },
+            {
+                id: 72,
+                name: "Shaniwar Wada",
+                image: "https://i.pinimg.com/1200x/00/20/f4/0020f4e245d76730d68e169947d412b4.jpg",
+                history: "The Shaniwar Wada was normally the seven-story capital building of the Peshwas of the Maratha Empire. It was supposed to be made entirely of stone. However, after the completion of the base floor or the first story, the people of Satara (the national capital) complained to the Chhatrapati Shahu saying that a stone monument can be sanctioned and built only by the Chhatrapati himself and not the Peshwas. Following this, an official letter was written to the Peshwas stating that the remaining building had to be made of brick and not stone.By 1758, at least a thousand people lived in the fort. In 1773, Narayanrao, who was the fifth and ruling Peshwa then, was murdered by guards on orders of his uncle Raghunathrao and aunt Anandibai. A popular legend has it that Narayanrao's ghost still calls for help on full moon nights. Various people, working around the area, have allegedly reported the cries of Kaka mala vachava (Uncle, save me) by Narayanrao Peshwa after his death. The book, Assassination of the Peshwa, written in English and Marathi, covers this incident in detail.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/00/20/f4/0020f4e245d76730d68e169947d412b4.jpg",
+                    "https://i.pinimg.com/736x/34/72/50/347250f3f2347292a3008f23cf58ce0b.jpg",
+                    "https://i.pinimg.com/736x/7f/44/46/7f444670d644828cf386b8cc32098a00.jpg",
+                    "https://i.pinimg.com/736x/b1/9b/23/b19b235d8f2b136addc1d141480854ef.jpg"
+                ],
+                location: "Shaniwar Peth, Pune Maharashtra, India",
+                bestTime: "October to February",
+                fee: "Indians: ₹25 | Foreign tourists: ₹30",
+                air: "Nearest Airport: Pune International Airport",
+                train: "Nearest Station: Pune Railway Station",
+                road: "Easily reachable by PMPML buses, auto, taxi",
+                mapQuery: "https://www.google.com/maps/place/Shaniwar+Wada/data=!4m2!3m1!1s0x3bc2c1e2226b7b11:0xa4bb8106175ca68b?sa=X&ved=1t:155783&ictx=111"
+            },
+            {
+                id: 73,
+                name: "New Palace Kolhapur",
+                image: "https://i.pinimg.com/1200x/e3/b0/f5/e3b0f5a5c3b1c00b558e8ebd3a8d3d74.jpg",
+                history: "New Palace, Kolhapur is a palace situated in Kolhapur, in the Indian state of Maharashtra. The Palace took 7 years to complete, from 1877 to 1884,[1] costing about seven lakhs of rupees.[2] Being an excellent specimen of Indian architecture built in black polished stone, it has been an attraction for tourists. It has extensive premises with a garden, fountain and wrestling ground. The whole building is eight-angled and has a tower in the middle. The clock on it was fixed in 1877. At separate distances there are small towers. On every glass are painted the events of Chhatrapati Shivaji Maharaj's life, the founder of Maratha Confederacy. There is a zoo and a ground lake. Even today, it is the residence of Shahu, the direct descendant of Chhatrapati Shivaji Maharaj.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/e3/b0/f5/e3b0f5a5c3b1c00b558e8ebd3a8d3d74.jpg",
+                    "https://i.pinimg.com/1200x/d4/57/61/d45761fa5d0f1f6301c36ffb5f499b13.jpg",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerHoGKodlO8KgDWX8LCaEEAFFbHQgHKE8TZlyZxB2sdiADlXdBwryMXxpldnn9KV7n3M8GD65L-DhIvolBp3FO6PdadWa5x6M6BYwH56xed8WRgSrnz6_csRrwKa6xIljcL-ONy=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerf-TrIrzON9e4M0gFZqBSyvktTKGJQdxoowkmN3fkIqp2LuhmXCPW3eQER_xI5OWMLdNraSoN8vi2_7AKkg5U6VC9JspHcn8N6j7TgNpbm2Cf7BeYImW-xVS5OoFHLJn55t-P-ZQ=s1360-w1360-h1020-rw"
+                ],
+                location: "Kolhapur, Maharashtra",
+                bestTime: "October to February",
+                fee: "Indians: ₹30–₹40 | Foreign tourists: ₹100+",
+                air: "Nearest Airport: Kolhapur Airport",
+                train: "Nearest Station: Kolhapur Railway Station",
+                road: "Well connected to Pune, Mumbai, Goa",
+                mapQuery: "https://www.google.com/maps/place/New+Palace/@16.7193627,74.231735,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc101f1ced17705:0x230df67765e5e912!8m2!3d16.7193627!4d74.231735!16s%2Fm%2F06zq209?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 74,
+                name: "Matheran Hill Station",
+                image: "https://i.pinimg.com/1200x/98/92/95/9892951b881678557c189bec3d441b9c.jpg",
+                history: "Matheran is a partially automobile free hill station and a municipal council in the Karjat taluka of the Raigad district located in the Indian state of Maharashtra. Matheran is part of the Mumbai Metropolitan Region, and one of the smallest hill stations in India. It is located in the Western Ghats, at an elevation of around 800 m (2,625 feet) above sea level.Matheran was identified by Hugh Poyntz Malet, the then district collector of Raigad district in the May of 1850. Lord Elphinstone, the then Governor of Bombay, laid the foundations for its development as a future hill station. Matheran was developed as a getaway from the regional summer heat. It was also the birthplace of the freedom fighter Veer Bhai Kotwal.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/f2/b4/f8/f2b4f80a99619fc58c92f53e876a9bc5.jpg",
+                    "https://i.pinimg.com/736x/c2/0e/be/c20ebe1f0c78cc18fb3201bc763b0f86.jpg",
+                    "https://i.pinimg.com/1200x/fb/65/7d/fb657dd9e9543fab7f792830ded9228c.jpg",
+                    "https://i.pinimg.com/736x/64/89/c2/6489c2d7846200bc1ffddcaebebba144.jpg"
+                ],
+                location: "Raigad district, Maharashtra",
+                bestTime: "Monsoon (June-September)  |  October to May for pleasant weather",
+                fee: "₹50–₹100 per person",
+                air: "Nearest airport: Chhatrapati Shivaji Maharaj International Airport",
+                train: "Nearest station: Neral",
+                road: "Drive till Dasturi Parking Point",
+                mapQuery: "https://www.google.com/maps/search/matheran+hill+station/@18.9930669,73.2676506,15z?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 75,
+                name: "Mahabaleshwar",
+                image: "https://i.pinimg.com/1200x/c8/7a/0d/c87a0df3d8b3f2d1a45627297d009ea9.jpg",
+                history: "Mahabaleshwar is a small town and a municipal council in Satara district, Maharashtra, India. It is a place of pilgrimage because the Krishna River, which considered sacred by Hindus, has its origin here along with five of its tributaries.Legend says that a Yadava ruler from 13th century built a small temple and water tank at the source of the river Krishna.The Valley of Jawali, the area around Mahabaleshwar, was ruled by the More (clan) who were vassals of the Adilshahi sultanate of Bijapur. In 1656, the founder of Maratha empire, Chhatrapati Shivaji, killed the then ruler of Valley of Jawali, Chandrarao More, and seized the area.Around that time Shivaji also built a hill fort near Mahabaleshwar called Pratapgad fort.",
+                gallery: [
+                    "https://i.pinimg.com/736x/39/6d/9b/396d9be88f860f63741489925dc544b5.jpg",
+                    "https://i.pinimg.com/736x/29/54/05/295405626562425aeff960d868297b1d.jpg",
+                    "https://i.pinimg.com/736x/f1/be/e2/f1bee22dc38e7bc4bed2ef1d5cb90ed2.jpg",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqRX3xYOlao5lhxKxOJwD3zB4zX5D2GT-KWxz32JzzgMHlKKhw0y2NtjenxyzNg7Gj9FvbbYrcU1_DNUd6dYk2pL1cSPLyKqlpNX5JgVqpdoA4JxOjySn0vNOonV_FoPOjeZ173gg=w675-h390-n-k-no"
+                ],
+                location: "Satara district, Maharashtra",
+                bestTime: "October to June | Winter (Nov–Feb) | Monsoon (July–Sept)",
+                fee: "₹50–₹100 per person",
+                air: "Nearest airport: Pune International Airport",
+                train: "Nearest station: Wathar Railway Station",
+                road: "Well connected by road from Pune & Mumbai | MSRTC buses and taxis available",
+                mapQuery: "https://www.google.com/maps/place/Mahabaleshwar,+Maharashtra+412806/@17.9258221,73.6487817,14z/data=!3m1!4b1!4m6!3m5!1s0x3bc2655313cba1bb:0xca8196c7aa20a0a8!8m2!3d17.9307285!4d73.6477342!16zL20vMDJfZGpu?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 76,
+                name: "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya",
+                image: "https://i.pinimg.com/1200x/46/05/d6/4605d6fd05b1f49f0b8a8f66c35d2ad6.jpg",
+                history: "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya, (CSMVS) formerly named the Prince of Wales Museum of Western India, is a museum in Mumbai (Bombay) which documents the history of India from prehistoric to modern times.It was founded during British rule of India in the early years of the 20th century by prominent citizens of the city then called Bombay, with the help of the government, to commemorate the visit of the Prince of Wales (later George V, king of the United Kingdom and emperor of India). It is located in the heart of South Mumbai near the Gateway of India. The museum was renamed in 1998 after Shivaji, the founder of the Maratha Kingdom.The building is built in the Indo-Saracenic style of architecture, incorporating elements of other styles of architecture like the Mughal, Maratha and Jain. The museum building is surrounded by a garden of palm trees and formal flower beds.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/46/05/d6/4605d6fd05b1f49f0b8a8f66c35d2ad6.jpg",
+                    "https://i.pinimg.com/736x/f9/27/ba/f927ba7730bab09c30b9ad1c7b559a43.jpg",
+                    "https://i.pinimg.com/736x/10/8c/61/108c61c5e506f3551f748f94f8635123.jpg",
+                    "https://i.pinimg.com/1200x/ea/ea/86/eaea867d9899214fab1d57772e867dbe.jpg"
+                ],
+                location: "Kala Ghoda, Fort area South Mumbai, Maharashtr",
+                bestTime: "October to March",
+                fee: "Indian adults: ₹150  |  Students: ₹50  |  Foreign tourists: ₹700",
+                air: "Nearest airport: Chhatrapati Shivaji Maharaj International Airport",
+                train: " Nearest stations: Churchgate Railway Station |  Chhatrapati Shivaji Maharaj Terminus",
+                road: "Easily accessible by taxi, bus, auto",
+                mapQuery: "https://www.google.com/maps/place/Chhatrapati+Shivaji+Maharaj+Vastu+Sangrahalaya/@18.9269015,72.8326916,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7d1c3eaf8b127:0x44e72610553e9253!8m2!3d18.9269015!4d72.8326916!16zL20vMDIweHFq?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 77,
+                name: "Vijaydurg Fort",
+                image: "https://www.trawell.in/admin/images/upload/04372149Ratnagiri_Vijaydurg_Fort_Main.jpg",
+                history: "In 1653, Chatrapati Shivaji Maharaj captured this fort from Adil Shah of Bijapur and renamed it as Vijay Durg. The original name of the fort was Gheria and the first fortification appears to have been constructed in 1200 during the regime of Raja Bhoj II. Chatrapati Shivaji Maharaj developed Vijaydurg as an important base for Maratha warships.Maratha Empire looked to be in a decline after the death of chatrapati Shivaji Maharaj in 1680, when his son and successor Sambhaji was captured by Mughal Emperor Aurangzeb and brutally tortured to death on 21 March 1689. Later in that year, the fort of Raigad fell in the hand of Mughals. Wife of Shambhaji Maharaj and his infant son Shahu Maharaj along with many others were captured and were treated as state prisoners.Shivaji Maharaj's second wife's son Raja Ram then took in charge of the Maratha Empire. Inspired by the valiant death of Shambhaji Maharaj, they fought back against the Mughals. It was during his reign Kanhoji Angre alias Conajee Angria became admiral of naval army of the Marathas. In 1698, Kanhoji made Vijaydurg the capital of his territory along the coast.",
+                gallery: [
+                    "https://i.pinimg.com/736x/dd/7e/68/dd7e686916a6566c2c644a7d083d6af0.jpg",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepEzv4rgNzlXmaXqbcgzc_fTwQ0zNFNdw4qdrFHFEzOUH2P8FSI3TFb3g2mKm00_02DxHc_SxTS-jd1_t9TqvjEpKOEuyCXfxzAuOghU1Qr9c8s9iQJ4r-v4WyvlefjdMfpG3DK6PQb0uC0=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerTfEdjAB6heVdZEfrvmeLAE4xBcxIRxdnjcylRWzwweW9kLR0JokQCn3kW9PpLmN5UEdcYvO5nJrBR6JkxCt_JTW4XJ5TQ9PngsXMU3t9piYzjUx8KOM1_qUGI-aKc9OY8DTyV=s1360-w1360-h1020-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepvw8CK4PCgL4kNs4Z4cxBYIkWZo_3r-VRP6RT0-WDIuxEQPLkd0bbAtX5sqElwNpdahKEXQrdkJ-L_-LHlPJXuukVzlzy5_-ic-8CiEOnYLD65XRlkiN9ZEzxiuiT-6Z1nUCdUug=s1360-w1360-h1020-rw"
+                ],
+                location: "Sindhudurg district, Maharashtra",
+                bestTime: "October to March",
+                fee: "Free",
+                air: "Nearest airport: Sindhudurg Airport | Other option: Goa International Airport",
+                train: "Nearest station: Rajapur Road Railway Station",
+                road: "Well connected by Konkan coastal highway | MSRTC buses available",
+                mapQuery: "https://www.google.com/maps/place/Vijaydurg+Fort/data=!4m2!3m1!1s0x0:0xcf70c7b1cb4f970?sa=X&ved=1t:2428&ictx=111"
+            },
+            {
+                id: 78,
+                name: "Sindhudurg Fort",
+                image: "https://i.pinimg.com/1200x/45/e2/86/45e2864497c614aa2d423fae09eaf262.jpg",
+                history: "Sindhudurg Fort (Marathi pronunciation: [sin̪d̪ʱud̪uɾɡ]) is a historical sea fort located in Arabian Sea near the Konkan region of Maharashtra in Western India.Sindhudurg island-fort was built under Shivaji I, the founder of the Maratha Empire.The fort's foundation stone was laid on 25 November 1664.Construction was supervised by Hiroji Indulkar who took assistance from Portuguese engineers of Goa.The fort's main objective was to counter the rising influence of English, Dutch, French and Portuguese merchants in the Konkan coast, and to curb the rise of Siddhis of Janjira.The fort was built on a small island known as the Khurte island.",
+                gallery: [
+                    "https://i.pinimg.com/1200x/4d/49/fe/4d49fe9bf92e44c062de92b63e0ed93d.jpg",
+                    "https://i.pinimg.com/1200x/fc/42/c2/fc42c2e57b6f5b160b71f3c852fc9e5b.jpg",
+                    "https://i.pinimg.com/736x/29/60/94/2960949d94f50f31be47dcaf1dfe26e1.jpg",
+                    "https://cdn1.tripoto.com/media/filter/nl/img/1291852/TripDocument/1547217232_malvan5_sindhu.jpg.webp"
+                ],
+                location: "Malvan, Sindhudurg district Maharashtra,",
+                bestTime: "October to March ",
+                fee: "Entry ticket: ₹5–₹20  |  Boat charges: ₹50–₹100 per person",
+                air: "Nearest airport: Sindhudurg Airport",
+                train: "Nearest station: Sindhudurg Railway Station",
+                road: "Well connected to Mumbai, Pune, Kolhapur",
+                mapQuery: "https://www.google.com/maps/search/Sindhudurg+Fort/@16.0487005,73.4573793,15z?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 79,
+                name: "Radhanagari Sanctuary",
+                image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/84/ca/1d/1609650048717-largejpg.jpg?w=600&h=400&s=1",
+                history: "Radhanagari Wildlife Sanctuary (Marathi: राधानगरी वन्यजीव अभयारण्य) is a wildlife sanctuary and natural World Heritage Site of category ix and x since 2012, located in Kolhapur district, Maharashtra State, India. It lies at the southern end of the Sahyadri hills in the Western Ghats. It is notable as the first declared wildlife sanctuary in Maharashtra, notified in 1958, as Dajipur Wildlife Sanctuary and is popularly known as the Bison Sanctuary.Indian bison or gaur (Bos gaurus) with a population around 1091 in 2014, is the flagship species of the area. It was notified as Radhanagari wildlife sanctuary vide notification No. WLP/1085/CR/588/ V/F-5, Dt.16.9.1985.The area around the Sanctuary was declared as Eco sensitive zone by Govt. of India on 15 October 2020.",
+                gallery: [
+                    "https://indiacinehub.gov.in/sites/default/files/styles/flexslider_full/public/2024-02/radhanagri_wildlife_sanctuary1.png?itok=iiruPFoN",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/84/ca/1d/1609650048717-largejpg.jpg?w=600&h=400&s=1",
+                    "https://www.trawell.in/admin/images/upload/796114840Radhanagari_Sanctuary.jpg",
+                    "https://d3sftlgbtusmnv.cloudfront.net/blog/wp-content/uploads/2024/10/Radhanagari-Wildlif%D0%B5-Sanctuary-Cover-Photo-840x425.jpg"
+                ],
+                location: "Radhanagari town Kolhapur district",
+                bestTime: "October to May | Monsoon (June–Sept) ",
+                fee: "Entry: ₹30–₹50 | Vehicle charges extra",
+                air: "Nearest airport: Kolhapur Airport",
+                train: "Nearest station: Kolhapur Railway Station",
+                road: "Well connected by road from Kolhapur",
+                mapQuery: "https://www.google.com/maps/place/Radhanagari+Wildlife+Sanctuary/@16.4105154,73.9826837,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc0416c998a6f0f:0xada03c2e26f1f069!8m2!3d16.4105154!4d73.9826837!16s%2Fm%2F02q9_gp?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+            {
+                id: 80,
+                name: "Ranjangaon Ganpati Temple",
+                image: "https://youtellme.ai/wp-content/uploads/2025/01/Maha-Ganpati-Ashtavinayak-Temple_Ranjangaon_IMG_1219-Edit-scaled.jpg",
+                history: "Ranjangaon Ganpati also known as Shri Mahaganpati Temple is a Hindu temple dedicated to Lord Ganesha, one of the most revered deities in Hinduism. Situated in the village of Ranjangaon within the Shirur taluka of Pune district, Maharashtra, India. It is one of the eight Ashtavinayak temples venerating Lord Ganesha, bearing immense religious importance in Hinduism.The shikhara above the sanctum in the Mahaganapati temple.The Ganpati idol in the temple was unveiled and gifted by the Khollam family, renowned goldsmiths from Ranjangaon. Constructed between the 9th and 10th centuries, the main temple appears to have been built during the Peshwa era. Positioned atop the entrance gate is the Nagarkhana. The temple, oriented towards the east, has a grand entrance gate.Madhavrao I made a room in the basement of the temple to keep the idol of lord Ganesha. Later on Sardar Kibe of Indore renovated it. The idol of the lord Ganesh is also named as 'Mahotkat', and it is said that the idol has 10 trunks and 20 hands.",
+                gallery: [
+                    "https://youtellme.ai/wp-content/uploads/2025/01/Maha-Ganpati-Ashtavinayak-Temple_Ranjangaon_IMG_1219-Edit-scaled.jpg",
+                    "https://i.pinimg.com/736x/7f/f0/ae/7ff0ae871a05c026f4bf93304ec49099.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Ranjangaon_Mahaganapati_Temple_Viman.jpg/960px-Ranjangaon_Mahaganapati_Temple_Viman.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/ea/a9/28/bhagwa-swarg.jpg?w=1400&h=-1&s=1"
+                ],
+                location: "Ranjangaon, Shirur Taluka Pune district, Maharashtra",
+                bestTime: "October to March | Ganesh Chaturthi",
+                fee: "Free",
+                air: "Nearest airport: Pune International Airport",
+                train: "Nearest station: Pune Railway Station",
+                road: "Well connected via Pune–Ahmednagar Highway",
+                mapQuery: "https://www.google.com/maps/search/Ranjangaon+Ganpati+Temple/@18.7543126,74.2415607,17z?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
+            },
+        ];
+        // --- GENERATOR FOR PLACES 5 to 190 ---
+        // This automatically creates placeholders so you have 190 working pages instantly.
+        const totalPlaces = 190;
+        const placeholderData = [];
+
+        for (let i = 190; i <= totalPlaces; i++) {
+            placeholderData.push({
+                id: i,
+                name: `Heritage Site ${i}`,
+
+                image: "https://images.unsplash.com/photo-1590077428593-a55bb07c4665?q=80&w=2000",
+                history: `This is the historical description for Heritage Site ${i}. Maharashtra is rich in history, and this site stands as a testament to the glorious past of the region. It has seen the rise and fall of empires and remains a significant cultural landmark.`,
+                gallery: [
+                    "https://i.pinimg.com/736x/2e/09/ab/2e09abdf30dcfc8353315c1a56c20003.jpg",
+                    "https://i.pinimg.com/1200x/21/b5/8f/21b58f1311a5a2f005acafefc2518455.jpg",
+                    "https://images.unsplash.com/photo-1590077428593-a55bb07c4665?q=80&w=600",
+                    "https://i.pinimg.com/1200x/52/85/9b/52859b4f3dc06bbfeb6183951cd8bfab.jpg"
+                ],
+                location: "Maharashtra, India",
+                bestTime: "October to March",
+                fee: "₹25",
+                air: "Nearest Airport: Mumbai/Pune",
+                train: "Nearest Railway Station available",
+                road: "Accessible by State Transport Buses",
+                mapQuery: `Heritage+Site+${i}+Maharashtra`
+            });
+        }
+
+        // COMBINE REAL AND PLACEHOLDER DATA
+        const allPlaces = [...realPlaces, ...placeholderData];
+
+        // ---------------------------------------------------------
+        // PAGE LOGIC: Load data based on ID
+        // ---------------------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const placeId = parseInt(params.get('id')); // Get ID from URL (e.g., ?id=1)
+
+            // Find the place in our array
+            const place = allPlaces.find(p => p.id === placeId);
+
+            if (place) {
+                // Update Hero
+                document.getElementById('hero-title').innerText = place.name;
+                // document.getElementById('hero-tag').innerText = place.tag;
+                document.getElementById('hero-image').src = place.image;
+                document.title = place.name + " - Maharashtra Heritage";
+
+                // Update Content
+                document.getElementById('content-history').innerText = place.history;
+
+                // Update Sidebar
+                document.getElementById('info-location').innerText = place.location;
+                document.getElementById('info-time').innerText = place.bestTime;
+                document.getElementById('info-fee').innerText = place.fee;
+                document.getElementById('reach-air').innerText = place.air;
+                document.getElementById('reach-train').innerText = place.train;
+                document.getElementById('reach-road').innerText = place.road;
+                document.getElementById('map-link').href = `https://www.google.com/maps/search/${place.mapQuery}`;
+
+                // Update Gallery
+                const galleryGrid = document.getElementById('gallery-grid');
+                galleryGrid.innerHTML = ''; // Clear loading text
+                place.gallery.forEach(imgUrl => {
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
+                    div.innerHTML = `<img src="${imgUrl}" alt="${place.name}">`;
+                    galleryGrid.appendChild(div);
+                });
+
+            } else {
+                // Error handling if ID not found
+                document.getElementById('hero-title').innerText = "Place Not Found";
+                document.getElementById('content-history').innerText = "Sorry, we couldn't find information for this ID.";
+            }
+        });
+    </script>
+</body>
+
+</html>

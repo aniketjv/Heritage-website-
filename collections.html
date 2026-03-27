@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage Collections | Maharashtra</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Prata & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Prata&display=swap" rel="stylesheet"> -->
+
+    <style>
+        :root {
+              /* --color-bg-dark: #0C0A09;   */
+             --color-bg-light: #F0EBE3;
+             --primaryColor: #ad8b3a;
+             /* background: rgba(173, 139, 58, 0.2); */
+            --color-accent: #B45309;
+            --color-accent-light: #D97706;
+            --color-text-light: #FAFAF9;
+            --color-text-dark:var(--color-accent);
+            --color-text-muted: #A8A29E;
+        } 
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-light);
+            overflow-x: hidden;
+        }
+
+       
+           /* --- Header / Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .logo {
+            font-family: 'Prata', serif;
+            font-size: 1.8rem;
+            /* color: var(--charcoalGrey); */
+            letter-spacing: 1px;
+            text-decoration: none;
+            font-weight: bold;
+              background-clip: text;
+            color: transparent;
+            background-image: url("https://i.pinimg.com/736x/6f/6e/df/6f6edf1e9ee5b47570d4b03eb71d81f1.jpg");
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: black;
+            text-decoration: none;
+            font-size:15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+            right:0;
+            
+        }
+
+        .nav-menu a:hover {
+            color: var(--primaryColor);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primaryColor);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Header --- */
+        .collections {
+            padding-top: 160px; /* Space for navbar */
+            padding-bottom: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .collections h1 {
+            font-family: 'Prata', serif;
+            font-size: 3.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color:  #3b1f14 !important;
+            -webkit-background-clip: text;
+            /* -webkit-text-fill-color: transparent; */
+            margin-bottom: 1rem;
+        }
+
+        .collections p {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- Filters Section --- */
+        .filters-section {
+            padding: 2rem 0 4rem 0;
+        }
+       #categoryFilter ,#districtFilter{
+    background-color: #B45309 !important; /* heritage brown */
+    color: white;
+    border: 1px solid #B45309;
+}
+
+        .form-control, .form-select {
+            /* background-color: rgba(255, 255, 255, 0.05); */
+            background-color:#B45309 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-text-light);
+            padding: 14px 20px;
+            border-radius: 0;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: var(--color-accent);
+            box-shadow: none;
+            color: var(--color-text-light);
+        }
+
+        .form-control::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        
+
+        /* --- Artifact Cards --- */
+        .artifact-card {
+             /* background-color: rgba(255, 255, 255, 0.02);  */
+              background: white;
+             /* background: #3b1f14ce; */
+             border: 1px solid  #B45309;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+         .artifact-card:hover {
+             /* transform: translateY(-8px);
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); */
+           
+    transform: translateY(-10px);
+    border-color: var(--color-accent);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.463),
+        0 0 20px rgba(212,175,55,0.25);
+} 
+
+        
+
+        .card-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .artifact-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s ease;
+            /* filter: grayscale(100%) contrast(1.1); */
+            opacity: 0.9;
+        }
+
+        .artifact-card:hover img {
+            transform: scale(1.08);
+            filter: grayscale(0%) contrast(1);
+            opacity: 1;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-family: 'Prata', serif;
+            font-size: 1.2rem;
+            /* color: var(--color-text-light); */
+            color: black;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .card-location {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-accent-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Button Style --- */
+        .btn-heritage {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--color-text-light);
+            background-color: var(--color-accent);
+            /* background: transparent; */
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin-top: auto; /* Push to bottom */
+        }
+
+        /* .btn-heritage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--color-accent);
+            z-index: -1;
+            transition: width 0.4s ease;
+        }
+
+        .btn-heritage:hover {
+             color: #fff; 
+             border-color: var(--color-accent); 
+        }
+
+        .btn-heritage:hover::before {
+            width: 100%;
+        } */
+
+        /* --- No Results --- */
+        .no-results {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--color-text-muted);
+        }
+
+        /* --- Footer --- */
+        .footer-simple {
+            margin-top: 6rem;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-simple p {
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+        }
+        
+        /* --- Mobile Adjustments --- */
+        @media (max-width: 768px) {
+            .collections-header h1 {
+                font-size: 2.5rem;
+            }
+            .artifact-card img {
+                filter: grayscale(0%); /* Color on mobile by default */
+                opacity: 0.9;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🔷 Navbar -->
+<header>
+   <a href="#" class="logo"> Maharashtra Heritage </a>
+    <nav>
+            <ul class="nav-menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="collections.html">Collections</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+               
+            </ul>
+        </nav>
+  </div>
+</nav>
+</header>
+
+<!-- 🔷 Header -->
+<div class="container collections">
+    <h1>Heritage Collections</h1>
+    <p>Explore the timeless monuments of the land of warriors</p>
+</div>
+
+<!-- 🔷 Filters -->
+<div class="container filters-section">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search places...">
+    </div>
+    <div class="col-md-4">
+      <select id="categoryFilter" class="form-select">
+        <option value="all">All Categories</option>
+        <option value="Heritage">Heritage</option>
+        <option value="Fort">Forts</option>
+        <option value="Temple">Temples</option>
+        <option value="Cave">Caves</option>
+        <option value="Museum">Museums</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <select id="districtFilter" class="form-select">
+        <option value="all">All Districts</option>
+        <option value="Raigad">Raigad</option>
+        <option value="Nashik">Nashik</option>
+        <option value="Kolhapur">Kolhapur</option>
+        <option value="Aurangabad">Aurangabad</option>
+        <option value="Sangli">Sangli</option>
+        <option value="Satara">Satara</option>
+        <option value="Ahmednagar">Ahmednagar</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Nanded">Nanded</option>
+        <option value="Pune">Pune</option>
+        <option value="Buldhana">Buldhana</option>
+        <option value="Osmanabad">Osmanabad</option>
+        <option value="Sindhudurg">Sindhudurg</option>
+        <option value="Solapur">Solapur</option>
+        <option value="Nagpur">Nagpur</option>
+        
+
+
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- 🔷 Grid -->
+<div class="container">
+  <div class="row g-4" id="collectionGrid"></div>
+</div>
+
+<!-- 🔷 Footer -->
+<footer class="footer-simple">
+    <p>&copy; 2026 Maharashtra Heritage. All Rights Reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ✅ Artifacts Data
+const artifacts = [
+  { id: 1, title: "Raigad Fort", category: "Fort", district: "Raigad", image: "https://i.pinimg.com/736x/c9/4b/d8/c94bd8df0f1158321756cd6b6a2deb0a.jpg" },
+  { id: 2, title: "Ellora Caves", category: "Cave", district: "Aurangabad", image: "https://i.pinimg.com/736x/20/e9/e5/20e9e5115a8ed1fed84542f4923d393e.jpg" },
+  { id: 3, title: "Trimbakeshwar Temple", category: "Temple", district: "Nashik", image: "https://i.pinimg.com/736x/62/a3/34/62a33416cffbce2424036ebbdb90c51f.jpg" },
+  { id: 4, title: "Panhala Fort", category: "Fort", district: "Kolhapur", image: "https://i.pinimg.com/736x/78/a9/ab/78a9ab54ccd617c2fe09cdb3f00826b3.jpg" },
+  { id: 5, title: "Ajanta Caves", category: "Cave", district: "Aurangabad", image: "https://i.pinimg.com/736x/55/6d/3a/556d3ab6c2037a81fae64cb8a7f9050c.jpg" },
+  { id: 6, title: "Mahalaxmi Temple", category: "Temple", district: "Kolhapur", image: "https://i.pinimg.com/736x/e7/79/ce/e779cec00bc97db41e3188f6c85f4c0e.jpg" },
+  { id: 7, title: "Kopeshwar Temple", category: "Temple", district: "Kolhapur", image: "https://i.pinimg.com/736x/d2/61/7e/d2617ee6d0c5c53758634a8ce9b6c7f5.jpg" },
+  { id: 8, title: "New Palace Museum", category: "Museum", district: "Kolhapur", image: "https://i.pinimg.com/1200x/b8/7f/0a/b87f0af3fc9e948309eaeacea6a7711d.jpg" },
+  { id: 9, title: "Town Hall Museum", category: "Museum", district: "Kolhapur", image: "https://i.pinimg.com/736x/11/e8/13/11e81339f4a54b7f16323f3e6bfeb070.jpg" },
+  { id: 10, title: "Sidhhagiri Museum", category: "Museum", district: "Kolhapur", image: "https://i.pinimg.com/736x/c2/cc/dc/c2ccdc82b697f56d53be16901dd0e48f.jpg" },
+  { id: 11, title: "Narasoba Wadi", category: "Temple", district: "Kolhapur", image: "https://i.pinimg.com/1200x/5e/18/ee/5e18eebb7b1d0c81ad52167b6193f611.jpg" },
+  { id: 12, title: "Pohale Buddhist Cave", category: "Cave", district: "Kolhapur", image: "https://i.pinimg.com/736x/e5/e5/b3/e5e5b391239bc42d99ad4047474f0711.jpg" },
+  { id: 13, title: "Vishalgad Fort", category: "Fort", district: "Kolhapur", image: "https://i.pinimg.com/736x/15/6f/99/156f9983d14e30c59553441042e51072.jpg" },
+  { id: 14, title: "Shree Jyotiba Temple", category: "Temple", district: "Kolhapur", image: "https://i.pinimg.com/1200x/d0/f4/6b/d0f46bba305bd1454accb51ea98b5598.jpg" },
+  { id: 15, title: "Balumama Temple", category: "Temple", district: "Kolhapur", image: "https://i.pinimg.com/736x/dd/20/01/dd2001532fc70ffbdbdd675dbfd9b5f5.jpg" },
+  { id: 16, title: "Gagangiri Math", category: "Temple", district: "Kolhapur", image: "https://i.pinimg.com/736x/cd/7d/2c/cd7d2c9f0a0a7d68a86507985ef4fe9f.jpg" },
+  { id: 17, title: "Shalini Palace", category: "Museum", district: "Kolhapur", image: "https://i.pinimg.com/1200x/f1/c2/63/f1c2637eaf09e6c9d8c69269a470e975.jpg" },
+  { id: 18, title: "Sateri Mahadev Temple", category: "Temple", district: "Kolhapur", image: "https://i.ytimg.com/vi/QUhWCuqEgZs/oardefault.jpg" },
+  { id: 19, title: "Ramling Temple", category: "Temple", district: "Kolhapur", image: "https://i0.wp.com/www.discovermh.com/wp-content/uploads/2022/01/ramling-kolhapur.jpg" },
+  { id: 20, title: "Rangana Fort", category: "Fort", district: "Kolhapur", image: "https://vl-prod-static.b-cdn.net/system/images/000/287/593/2f193818c68d7395861be71becf36062/original/12687841_1031468200230387_981561306256533107_n.jpg" },
+  { id: 21, title: "Bhudargad Fort", category: "Fort", district: "Kolhapur", image: "https://image.shutterstock.com/image-photo/rangana-fort-located-bhudargad-taluka-260nw-1767128411.jpg" },
+  { id: 22, title: "Sangli Fort", category: "Fort", district: "Sangli", image: "https://media-cdn.tripadvisor.com/media/photo-s/05/be/26/96/sangli-fort.jpg" },
+  { id: 23, title: "Bahubali Hill Temple", category: "Temple", district: "Kolhapur", image: "https://i.pinimg.com/736x/9c/48/1f/9c481f9b7a5dd9a1a93e5a3150167e25.jpg" },
+  { id: 24, title: "Sangmeshwar Temple", category: "Temple", district: "Sangli", image: "https://hblimg.mmtcdn.com/content/hubble/img/ttd_images/mmt/activities/m_Sangli_Sangmeshwar_temple_1_l_633_640.jpg" },
+  { id: 25, title: "Ganpati Temple", category: "Temple", district: "Sangli", image: "https://temple.yatradham.org/public/Product/temple/temple_eENM1cee_202409031455000.jpg" },
+  { id: 26, title: "Chadoli Museum", category: "Museum", district: "Sangli", image: "https://www.voicesofruralindia.org/wp-content/uploads/2024/11/04-1024x485.jpg" },
+  { id: 27, title: "Sajjangad Fort", category: "Fort", district: "Satara", image: "https://i.pinimg.com/736x/da/4e/a7/da4ea775fbaaf3db01060719f140de61.jpg" },
+  { id: 28, title: "Vasota Fort", category: "Fort", district: "Satara", image: "https://i.pinimg.com/736x/03/65/25/036525ebec5e96bc43f4230206c5c01f.jpg" },
+  { id: 29, title: "Ajinkyatara Fort", category: "Fort", district: "Satara", image: "https://i.pinimg.com/736x/1b/3b/72/1b3b7204b2ef7fffc05f2ea9cccc2c6c.jpg" },
+  { id: 30, title: "Pratapgad Fort", category: "Fort", district: "Satara", image: "https://i.pinimg.com/736x/5f/0d/f8/5f0df89ab8b180b063ff3cdf65e6ba91.jpg" },
+  { id: 31, title: "Shrimant Dagdusheth Halwai Ganpati Mandir ", category: "Temple", district: "Pune", image: "https://i.pinimg.com/736x/b2/38/91/b23891ddd35d739efdb15ab1cabb5529.jpg" },
+  { id: 32, title: "Shivneri Fort", category: "Fort", district: "Pune", image: "https://i.pinimg.com/736x/67/a4/b0/67a4b0a2598a0ed56c2af194d469a65f.jpg" },
+  { id: 33, title: "Sinhagad Fort", category: "Fort", district: "Pune", image: "https://i.pinimg.com/736x/7f/b7/5e/7fb75eecbc43c60493587b999e573250.jpg" },
+  { id: 34, title: "Sitabuldi Fort", category: "Fort", district: "Nagpur", image: "https://i.pinimg.com/736x/25/1c/16/251c161c2f83ac21ad2ceef557b1c1ba.jpg" },
+  { id: 35, title: "Torna Fort", category: "Fort", district: "Pune", image: "https://i.pinimg.com/1200x/92/4d/a3/924da3789dacdfe2dc5f091ae3634eef.jpg" },
+  { id: 36, title: "Rajgad Fort", category: "Fort", district: "Pune", image: "https://i.pinimg.com/1200x/52/85/9b/52859b4f3dc06bbfeb6183951cd8bfab.jpg" },
+  { id: 37, title: "Mini Tirupati Balaji Temple", category: "Temple", district: "Pune", image: "https://punetourism.co.in/images/places-to-visit/headers/balaji-mandir-pune-tourism-entry-fee-timings-holidays-reviews-header.jpg" },
+  { id: 38, title: "Daultabad (Devagiri) Fort", category: "Fort", district: "Aurangabad", image: "https://aurangabadtourism.in/images/places-to-visit/header/devagiri-daulatabad-fort-aurangabad-tourism-entry-fee-timings-holidays-reviews-header.jpg" },
+  { id: 39, title: "Solapur Bhuikot Fort", category: "Fort", district: "Solapur", image: "https://i.pinimg.com/1200x/cc/d1/aa/ccd1aae82642a16afd68ff7b64964560.jpg" },
+  { id: 40, title: "Bahadurgad Fort", category: "Fort", district: "Ahmednagar", image: "https://i.pinimg.com/736x/bd/80/bd/bd80bdc0c103da97fe67e88619f8e794.jpg" },
+  { id: 41, title: "Elephanta Caves", category: "Cave", district: "Mumbai", image: "https://i.pinimg.com/1200x/b4/97/c7/b497c74dd09a97a545d1c98c5c8cc263.jpg" },
+  { id: 42, title: "Karla Caves", category: "Cave", district: "Pune", image: "https://i.pinimg.com/736x/03/cf/c4/03cfc4a03a52a34be01b0c9a9094d075.jpg" },
+  { id: 43, title: "Bhaja Caves", category: "Cave", district: "Pune", image: "https://i.pinimg.com/736x/e2/7c/4b/e27c4be1094d90e07183bafe2e0730b1.jpg" },
+  { id: 44, title: "Bedse Caves", category: "Cave", district: "Pune", image: "https://i.pinimg.com/1200x/e0/a2/18/e0a218b5df9bf2f1a826c1938d6ba4ba.jpg" },
+  { id: 45, title: "Kanheri Caves", category: "Cave", district: "Mumbai", image: "https://i.pinimg.com/736x/90/22/c0/9022c0e9125b1cac725a7b73fe2de9d7.jpg" },
+  { id: 46, title: "Mahur Fort", category: "Fort", district: "Nanded", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzEMvNglGiNbxHACeFFnvMWdpJ8iSOMshoiA&s"  },
+  { id: 47, title: "Shirdi Sai Baba Temple", category: "Temple", district: "Ahmednagar", image: "https://i.pinimg.com/1200x/87/2f/1e/872f1e91987a17193e42dd0ec06c0432.jpg" },
+  { id: 48, title: "Siddhivinayak Temple", category: "Temple", district: "Mumbai", image: "https://i.pinimg.com/736x/2c/4e/03/2c4e03eb89a3525ab86fbef5b2a6cbfd.jpg" },
+  { id: 49, title: "Rankala", category: "Lake", district: "Kolhapur", image: "https://i.pinimg.com/1200x/82/58/fd/8258fd08a5305c2ed88da527aaaba1f5.jpg" },
+  { id: 50, title: "Bhimashankar Temple", category: "Temple", district: "Pune", image: "https://i.pinimg.com/1200x/30/58/93/3058937e74c59fa13214c0ddcf648b66.jpg" },
+  { id: 51, title: "Grishneshwar Temple", category: "Temple", district: "Aurangabad", image: "https://i.pinimg.com/736x/f0/9e/e6/f09ee6e061fc7f2be2a97cb1b96281d1.jpg" },
+  { id: 52, title: "Tulja Bhavani Temple", category: "Temple", district: "Osmanabad", image: "https://i.pinimg.com/736x/60/e5/bb/60e5bb84875ea3e3df48a4cceabbb94e.jpg" },
+  { id: 53, title: "Pandharpur Vitthal Temple", category: "Temple", district: "Solapur", image: "https://i.pinimg.com/736x/80/f0/98/80f09864d5b84684b6e03b19b33cb319.jpg" },
+  { id: 54, title: "Lohagad Fort", category: "Fort", district: "Pune", image: "https://i.pinimg.com/736x/d0/4e/cc/d04ecce44038b3f41e6024184bc7cb3b.jpg" },
+  { id: 55, title: "Visapur Fort", category: "Fort", district: "Pune", image: "https://i.pinimg.com/1200x/0a/34/51/0a3451f56a5be386b187123c0cbdf5af.jpg" },
+  { id: 56, title: "Harishchandragad", category: "Fort", district: "Ahmednagar", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/33/f7/cb/img-20171024-141916091.jpg?w=1200&h=1200&s=1" },
+  { id: 57, title: "Salher Fort", category: "Fort", district: "Nashik", image: "https://i.pinimg.com/1200x/51/08/9a/51089a7a513078e1957d8c162b36e776.jpg" },
+  { id: 58, title: "Mulher Fort", category: "Fort", district: "Nashik", image: "https://static2.tripoto.com/media/filter/tst/img/1987847/TripDocument/1588852693_mulher_fort.jpg" },
+  { id: 59, title: "Ratangad Fort", category: "Fort", district: "Ahmednagar", image: "https://i.pinimg.com/1200x/f2/d1/0b/f2d10b315059c6be9723f8546bed74bd.jpg" },
+  { id: 60, title: "Alang Fort", category: "Fort", district: "Nashik", image: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Alang_Traverse_1.jpg" },
+  { id: 61, title: "Ganpatipule Temple", category: "Temple", district: "Ratnagiri", image: "https://i.pinimg.com/736x/36/46/9b/36469bbe51fcb4f095534aa4acb0690e.jpg" },  
+  { id: 62, title: "Kulanggad Fort", category: "Fort", district: "Nashik", image: "https://seawatersports.com/images/places/kulanggad-fort-in-maharashtra.jpg" },
+  { id: 63, title: "Junnar Caves", category: "Cave", district: "Pune", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/4f/ae/6a/junnar-cave.jpg?w=900&h=500&s=1" },
+  { id: 64, title: "Shani Shingnapur Temple", category: "Temple", district: "Ahmednagar", image: "https://i.pinimg.com/1200x/1e/3b/79/1e3b79a0abb8768d0bea3eb238284c77.jpg" },
+  { id: 65, title: "Renuka Devi Temple Mahur", category: "Temple", district: "Nanded", image: "https://blog.yatradham.org/wp-content/uploads/2021/10/renuka-mata-blog-imagejpg.jpg" },
+  { id: 66, title: "Parli Vaijnath Temple", category: "Temple", district: "Beed", image: "https://www.pujasthan.com/wp-content/uploads/2022/12/Parli-Vaijnath-Temple-Maharashtra.jpg" },
+  { id: 67, title: "Shegaon Gajanan Maharaj Temple", category: "Temple", district: "Buldhana", image: "https://www.placestovisitmaharashtra.com/wp-content/uploads/2017/06/sant-gajanan-maharaj-shegaon-700x445.jpg" },
+  { id: 68, title: "Gateway of India", category: "Monument", district: "Mumbai", image: "https://i.pinimg.com/736x/4a/5e/89/4a5e89745862107f7026f9be6a37e20f.jpg" },
+  { id: 69, title: "Chhatrapati Shivaji Maharaj Terminus", category: "Monument", district: "Mumbai", image: "https://i.pinimg.com/1200x/d1/f1/6e/d1f16eedef8b0206c24fe9b31429cbb9.jpg" },
+  { id: 70, title: "Bibi Ka Maqbara", category: "Monument", district: "Aurangabad", image: "https://i.pinimg.com/736x/f6/a3/31/f6a331ee30ebec0fd3a9364c05907328.jpg" },
+  { id: 71, title: "Lal Mahal", category: "Palace", district: "Pune", image: "https://i.pinimg.com/736x/16/e1/2f/16e12f946132013f2703a7dd0213c90c.jpg" },
+  { id: 72, title: "Shaniwar Wada", category: "Palace", district: "Pune", image: "https://i.pinimg.com/1200x/00/20/f4/0020f4e245d76730d68e169947d412b4.jpg" },
+  { id: 73, title: "New Palace Kolhapur", category: "Palace", district: "Kolhapur", image: "https://i.pinimg.com/1200x/b8/7f/0a/b87f0af3fc9e948309eaeacea6a7711d.jpg" },
+  { id: 74, title: "Matheran Hill Station", category: "Hill", district: "Raigad", image: "https://i.pinimg.com/1200x/fb/65/7d/fb657dd9e9543fab7f792830ded9228c.jpg" },
+  { id: 75, title: "Mahabaleshwar", category: "Hill", district: "Satara", image: "https://i.pinimg.com/1200x/d3/89/bb/d389bb9b057facbfaa50bed8b1bc643c.jpg" },
+  { id: 76, title: "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya", category: "Museum", district: "Mumbai", image: "https://i.pinimg.com/1200x/46/05/d6/4605d6fd05b1f49f0b8a8f66c35d2ad6.jpg" },
+  { id: 77, title: "Vijaydurg Fort", category: "Fort", district: "Sindhudurg", image: "https://www.trawell.in/admin/images/upload/04372149Ratnagiri_Vijaydurg_Fort_Main.jpg" },
+  { id: 78, title: "Sindhudurg Fort", category: "Fort", district: "Sindhudurg", image: "https://i.pinimg.com/1200x/ca/0f/d2/ca0fd2b42b5fb2038f044d8b997cec7b.jpg" },
+  { id: 79, title: "Radhanagari Sanctuary", category: "Heritage", district: "Kolhapur", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/84/ca/1d/1609650048717-largejpg.jpg?w=600&h=400&s=1" },
+  { id: 80, title: "Ranjangaon Ganpati Temple", category: "Temple", district: "Pune", image: "https://youtellme.ai/wp-content/uploads/2025/01/Maha-Ganpati-Ashtavinayak-Temple_Ranjangaon_IMG_1219-Edit-scaled.jpg" },
+
+
+
+//   { id: 63, title: "Tikona Fort", category: "Fort", district: "Pune", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/99/df/1b/img-20180624-wa0003-largejpg.jpg?w=1200&h=-1&s=1" },
+//   { id: 64, title: "Tung Fort", category: "Fort", district: "Pune", image: "https://seawatersports.com/images/places/tung-fort-in-maharashtra.jpg" },
+//   { id: 65, title: "Korigad Fort", category: "Fort", district: "Pune", image: "https://i.pinimg.com/1200x/c2/0f/16/c20f16d66ea0a0cd96890433d213fd4a.jpg" },
+//   { id: 66, title: "Sudhagad Fort", category: "Fort", district: "Raigad", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7xQhHSc1360rm_hosAD0oW4DynQf2ZRFwpw&s" },
+//   { id: 67, title: "Murud-Janjira Fort", category: "Fort", district: "Raigad", image: "https://i.pinimg.com/736x/dc/d9/4a/dcd94ae06e93da8d7400f43d5cc1d3a9.jpg" },
+//   { id: 68, title: "Kolaba Fort", category: "Fort", district: "Raigad", image: "https://cdn1.tripoto.com/media/filter/nl/img/2380291/Image/1709191462_kulaba_fort.jpg.webp" },
+//   { id: 69, title: "Arnala Fort", category: "Fort", district: "Palghar", image: "https://i.pinimg.com/736x/4d/35/ae/4d35aeb2109222206dd9ffb3e68abcef.jpg" },
+//   { id: 70, title: "Vasai Fort", category: "Fort", district: "Palghar", image: "https://hblimg.mmtcdn.com/content/hubble/img/palghardestimages/mmt/activities/m_Vasai_Fort_1_l_480_640.jpg" },
+// //   { id: 71, title: "Junnar Caves", category: "Cave", district: "Pune", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/4f/ae/6a/junnar-cave.jpg?w=900&h=500&s=1" },
+//   { id: 72, title: "Lenyadri Caves", category: "Cave", district: "Pune", image: "https://media.assettype.com/outlooktraveller%2F2025-08-29%2F7mryj6dd%2Fshutterstock2358282123-min.jpg" },
+//   { id: 73, title: "Pandavleni Caves", category: "Cave", district: "Nashik", image: "https://s7ap1.scene7.com/is/image/incredibleindia/pandavleni-caves-nashik-maharashtra-3-attr-hero?qlt=82&ts=1726669905429" },
+//   { id: 74, title: "Aurangabad Caves", category: "Cave", district: "Aurangabad", image: "https://i.pinimg.com/1200x/e5/3b/88/e53b887d9349fc30f82c129ae6f54ed3.jpg" },
+//   { id: 75, title: "Daitya Sudan Temple", category: "Temple", district: "Buldhana", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkI_x9GNpdCJ6Faco2TNePqXvIxXgwaXy2Wg&s" },
+//  // { id: 76, title: "Shani Shingnapur Temple", category: "Temple", district: "Ahmednagar", image: "https://i.pinimg.com/1200x/1e/3b/79/1e3b79a0abb8768d0bea3eb238284c77.jpg" },
+// //   { id: 77, title: "Renuka Devi Temple Mahur", category: "Temple", district: "Nanded", image: "https://blog.yatradham.org/wp-content/uploads/2021/10/renuka-mata-blog-imagejpg.jpg" },
+// //   { id: 78, title: "Parli Vaijnath Temple", category: "Temple", district: "Beed", image: "https://www.pujasthan.com/wp-content/uploads/2022/12/Parli-Vaijnath-Temple-Maharashtra.jpg" },
+// //   { id: 79, title: "Shegaon Gajanan Maharaj Temple", category: "Temple", district: "Buldhana", image: "https://www.placestovisitmaharashtra.com/wp-content/uploads/2017/06/sant-gajanan-maharaj-shegaon-700x445.jpg" },
+// //   { id: 80, title: "Gateway of India", category: "Monument", district: "Mumbai", image: "https://i.pinimg.com/736x/4a/5e/89/4a5e89745862107f7026f9be6a37e20f.jpg" },
+// //   { id: 81, title: "Chhatrapati Shivaji Maharaj Terminus", category: "Monument", district: "Mumbai", image: "https://i.pinimg.com/1200x/d1/f1/6e/d1f16eedef8b0206c24fe9b31429cbb9.jpg" },
+// //   { id: 82, title: "Bibi Ka Maqbara", category: "Monument", district: "Aurangabad", image: "https://i.pinimg.com/736x/f6/a3/31/f6a331ee30ebec0fd3a9364c05907328.jpg" },
+// //   { id: 83, title: "Lal Mahal", category: "Palace", district: "Pune", image: "https://i.pinimg.com/736x/16/e1/2f/16e12f946132013f2703a7dd0213c90c.jpg" },
+// //   { id: 84, title: "Shaniwar Wada", category: "Palace", district: "Pune", image: "https://i.pinimg.com/1200x/00/20/f4/0020f4e245d76730d68e169947d412b4.jpg" },
+// //   { id: 85, title: "New Palace Kolhapur", category: "Palace", district: "Kolhapur", image: "https://i.pinimg.com/1200x/b8/7f/0a/b87f0af3fc9e948309eaeacea6a7711d.jpg" },
+// //   { id: 86, title: "Matheran Hill Station", category: "Hill", district: "Raigad", image: "https://i.pinimg.com/1200x/fb/65/7d/fb657dd9e9543fab7f792830ded9228c.jpg" },
+// //   { id: 87, title: "Mahabaleshwar", category: "Hill", district: "Satara", image: "https://i.pinimg.com/1200x/d3/89/bb/d389bb9b057facbfaa50bed8b1bc643c.jpg" },
+//   { id: 88, title: "Panchgani", category: "Hill", district: "Satara", image: "https://i.pinimg.com/736x/1f/6d/cd/1f6dcd259820253235a9c4347c9571a3.jpg" },
+//   { id: 89, title: "Lonar Lake", category: "Lake", district: "Buldhana", image: "https://i.pinimg.com/1200x/47/23/0d/47230da87621c2bfb573b23fe4a22af8.jpg" },
+//   { id: 90, title: "Venna Lake", category: "Lake", district: "Satara", image: "https://i.pinimg.com/736x/c8/b0/02/c8b002cb4acaba36e379abafbbc5748a.jpg" },
+//   { id: 91, title: "Unkeshwar Temple", category: "Temple", district: "Nanded", image: "https://pilgrimdata.in/wp-content/uploads/2026/01/%E0%A4%89%E0%A4%A8%E0%A4%95%E0%A5%87%E0%A4%B6%E0%A5%8D%E0%A4%B5%E0%A4%B0-%E0%A4%AE%E0%A4%82%E0%A4%A6%E0%A4%BF%E0%A4%B0-%E0%A4%95%E0%A4%BF%E0%A4%A8%E0%A4%B5%E0%A4%9F-%E0%A4%A8%E0%A4%BE%E0%A4%82%E0%A4%A6%E0%A5%87%E0%A4%A1-2.jpeg" },
+// //   { id: 92, title: "Sajjangad Fort", category: "Fort", district: "Satara", image: "https://i.pinimg.com/736x/da/4e/a7/da4ea775fbaaf3db01060719f140de61.jpg" },
+// //   { id: 93, title: "Vijaydurg Fort", category: "Fort", district: "Sindhudurg", image: "https://www.trawell.in/admin/images/upload/04372149Ratnagiri_Vijaydurg_Fort_Main.jpg" },
+// //   { id: 94, title: "Sindhudurg Fort", category: "Fort", district: "Sindhudurg", image: "https://i.pinimg.com/1200x/ca/0f/d2/ca0fd2b42b5fb2038f044d8b997cec7b.jpg" },
+//   { id: 95, title: "Suvarnadurg Fort", category: "Fort", district: "Ratnagiri", image: "https://i.pinimg.com/1200x/4f/79/8a/4f798a6d271d56ab6b5e063539b7724a.jpg" },
+//   { id: 96, title: "Bankot Fort", category: "Fort", district: "Ratnagiri", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/61/68/aa/bankot-fort.jpg?w=1200&h=-1&s=1" },
+//   { id: 97, title: "Mandangad Fort", category: "Fort", district: "Ratnagiri", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR280tCNu2nT67xZViJcwe9poYR_NkeQ2w9SA&s" },
+//   { id: 98, title: "Yashwantgad Fort", category: "Fort", district: "Sindhudurg", image: "https://content.jdmagicbox.com/comp/sindhudurg/y7/9999p2362.2362.191121205529.j4y7/catalogue/yashwant-gad-fort-redi-sindhudurg-3ki4a5t5gg.jpg" },
+//   { id: 99, title: "Pitalkhora Caves", category: "Cave", district: "Aurangabad", image: "https://i.pinimg.com/1200x/63/26/69/6326696c3a0b0db3b12faa69f718e188.jpg" },
+//   { id: 100, title: "Chandwad Caves", category: "Cave", district: "Nashik", image: "https://content.jdmagicbox.com/v2/comp/nashik/x7/0253px253.x253.181128081046.q4x7/catalogue/jain-caves-tringalwadi-nashik-caves-LUGXNL7Qh6.jpg" },
+//   { id: 101, title: "Ankai Tankai Caves", category: "Cave", district: "Nashik", image: "https://static2.tripoto.com/media/filter/tst/img/1848784/SpotDocument/1608164199_1608164196279.jpg.webp" },
+//   { id: 102, title: "Saptashrungi Temple", category: "Temple", district: "Nashik", image: "https://i.timesnowhindi.com/story/1569900515-Saptashrungi_Devi_Temple.jpg" },
+//   { id: 103, title: "Morgaon Ganpati Temple", category: "Temple", district: "Pune", image: "https://www.pujasthan.com/wp-content/uploads/2022/11/moreshwar-temple-at-morgaon.jpg.webp" },
+// //   { id: 104, title: "Ranjangaon Ganpati Temple", category: "Temple", district: "Pune", image: "https://youtellme.ai/wp-content/uploads/2025/01/Maha-Ganpati-Ashtavinayak-Temple_Ranjangaon_IMG_1219-Edit-scaled.jpg" },
+// //   { id: 105, title: "Ozar Ganpati Temple", category: "Temple", district: "Pune", image: "https://youtellme.ai/wp-content/uploads/2021/11/IMG_6814_Ozar-Temple.jpg" },
+//   { id: 106, title: "Theur Ganpati Temple", category: "Temple", district: "Pune", image: "https://youtellme.ai/wp-content/uploads/2021/11/IMG_0487_Theur.jpg" },
+//   { id: 107, title: "Aga Khan Palace", category: "Monument", district: "Pune", image: "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2017/08/14193934/14082017_AgaKhanPalace_01.jpg" },
+//   { id: 108, title: "Shivsrushti Pune", category: "Monument", district: "Pune", image: "https://img.atlasobscura.com/ukNzPSRZpUN6_oao63fNYiUvqlykc5yIJ_kJFFfW7-c/rs:fill:780:520:1/g:ce/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL3BsYWNl/X2ltYWdlcy84ZDEy/NTM1Mi1mMTVkLTRk/NTEtOTE4Zi1kZmJl/OWQxYzk2NTIxYTM3/NzJiYzE5MzBiZWZh/YzNfMS5qcGc.jpg" },
+//   { id: 109, title: "Rajwada Palace Kolhapur", category: "Palace", district: "Kolhapur", image: "https://live.staticflickr.com/4542/38580241006_bcb7c0f013_b.jpg" },
+//   { id: 110, title: "Lonavala", category: "Hill", district: "Pune", image: "https://i.pinimg.com/736x/ca/6b/db/ca6bdb455370c9868755cfac0747866e.jpg" },
+//   { id: 111, title: "Khandala", category: "Hill", district: "Pune", image: "https://i.pinimg.com/736x/10/a5/e7/10a5e7de2a05b646c18ab847401f6406.jpg" },
+//   { id: 112, title: "Powai Lake", category: "Lake", district: "Mumbai", image: "https://i.pinimg.com/736x/84/63/08/8463089aa1eb4d9c629b62a5339eda7c.jpg" },
+//   { id: 113, title: "Tulsi Lake", category: "Lake", district: "Mumbai", image: "https://i.pinimg.com/736x/a3/be/73/a3be731c9bde444a92564b3effd41569.jpg" },
+// //   { id: 114, title: "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya", category: "Museum", district: "Mumbai", image: "https://i.pinimg.com/1200x/46/05/d6/4605d6fd05b1f49f0b8a8f66c35d2ad6.jpg" },
+//   { id: 115, title: "Raja Dinkar Kelkar Museum", category: "Museum", district: "Pune", image: "https://img.atlasobscura.com/ksHz8Tf6Y0dWssta4g7XqCPUZeFTmwelwseMvrQ32Fc/rt:fit/h:400/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL3BsYWNl/X2ltYWdlcy9jMjIy/NTE4Ni0yMzNiLTQ0/ODMtODVmMC0zNTEy/YTFlNGUyZWYwYmQ0/NDdiOTU3MDJmYjU3/MTNfbC5qcGc.jpg" },
+//   { id: 116, title: "Global Vipassana Pagoda", category: "Monument", district: "Mumbai", image: "https://i.pinimg.com/736x/80/05/a1/8005a1d1d8be6072ad2223a8ba6998e4.jpg" },
+//   { id: 117, title: "Mount Mary Church", category: "Monument", district: "Mumbai", image: "https://i.pinimg.com/1200x/ce/6b/0b/ce6b0b6c15745d26d6a668e74535ee41.jpg" },
+//   { id: 118, title: "Haji Ali Dargah", category: "Monument", district: "Mumbai", image: "https://www.visittnt.com/blog/wp-content/uploads/2018/05/haji-alidargah.jpg" },
+//   { id: 119, title: "Mumbadevi Temple", category: "Temple", district: "Mumbai", image: "https://optimatravels.com/images/mumbai-images/mumba-devi-temple.jpg" },
+//   { id: 120, title: "Walkeshwar Temple", category: "Temple", district: "Mumbai", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/99/65/95/tempio.jpg?w=300&h=300&s=1" },
+//   { id: 121, title: "Ballaleshwar Pali", category: "Temple", district: "Raigad", image: "https://i.pinimg.com/1200x/26/b4/09/26b409c006497f4d600e2e5ee9d53694.jpg" },
+//   { id: 122, title: "Varadvinayak Mahad", category: "Temple", district: "Raigad", image: "https://static.india.com/wp-content/uploads/2022/09/Ashtavinayak-Ganpati-Varadvinayak-Mahad.jpg" },
+//   { id: 123, title: "Siddhatek Ganpati", category: "Temple", district: "Ahmednagar", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTangiFg8N9-e_HGXrCAlnZ1oP7EkGjXAgsqA&s" },
+//   { id: 124, title: "Girijatmaj Lenyadri", category: "Temple", district: "Pune", image: "https://i.pinimg.com/736x/16/9f/8b/169f8b3cb0b2f15437033d037c856fc8.jpg" },
+//   { id: 125, title: "Mahaganpati Ranjangaon", category: "Temple", district: "Pune", image: "https://i.pinimg.com/736x/c1/09/57/c109574b21852237362f50f053334f9e.jpg" },
+//   { id: 126, title: "Bhigwan Bird Sanctuary", category: "Heritage", district: "Pune", image: "https://i.pinimg.com/1200x/be/98/64/be986441922a996f4664d9e3fa7a3461.jpg" },
+//   { id: 127, title: "Koyna Dam", category: "Dam", district: "Satara", image: "https://i.pinimg.com/1200x/b7/83/4e/b7834ea8b053a29ec53fa7a15ca851d2.jpg" },
+//   { id: 128, title: "Jayakwadi Dam", category: "Dam", district: "Aurangabad", image: "https://i.pinimg.com/736x/7f/af/e8/7fafe83cc05d4346925593b5c1324ba4.jpg" },
+//   { id: 129, title: "Ujani Dam", category: "Dam", district: "Solapur", image: "https://hblimg.mmtcdn.com/content/hubble/img/solapurdestimages/mmt/activities/m_Ujjani_Dam_1_l_360_640.jpg" },
+//   { id: 130, title: "Bhandardara", category: "Hill", district: "Ahmednagar", image: "https://i.pinimg.com/736x/af/5c/54/af5c54f72ff6495283af34835ddd2ff2.jpg" },
+//   { id: 131, title: "Prabalgad Fort", category: "Fort", district: "Raigad", image: "https://upload.wikimedia.org/wikipedia/commons/c/cd/Prabal_machi.jpg" },
+//   { id: 132, title: "Kalavantin Durg", category: "Fort", district: "Raigad", image: "https://nomadsofindia.com/wp-content/uploads/2023/06/Kalavantin-Durg-Trek-Top-VIew-1080x1080.jpg" },
+//   { id: 133, title: "Irshalgad Fort", category: "Fort", district: "Raigad", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfGnZBzxxQoKFBOk4hiEO7x5HaZxLGGnlYBA&s" },
+//   { id: 134, title: "Karnala Fort", category: "Fort", district: "Raigad", image: "https://i.pinimg.com/1200x/ca/dc/7a/cadc7a23badde4bcf9043c1f65a9a658.jpg" },
+//   { id: 135, title: "Manikgad Fort", category: "Fort", district: "Raigad", image: "https://lh3.googleusercontent.com/gps-cs-s/AHVAweoJHFh99X_6wJmVfJzqjTRlrJKHLJ38L2mI9UTjss1A5UBRaIuwAU7fBd2rdxaxK-XQpxAKsXVMvfllO5JH6VtmyrmAN0l3mnrqvyo42hc7Rr6cHVjgHvs7bAVrjcMJkLtc40o2=s1360-w1360-h1020-rw" },
+//   { id: 136, title: "Ratnadurg Fort", category: "Fort", district: "Ratnagiri", image: "https://i.pinimg.com/736x/50/7a/0a/507a0a6e8a2b513a8dea6804120c8e85.jpg" },
+//   { id: 137, title: "Jaigad Fort", category: "Fort", district: "Ratnagiri", image: "https://www.tourmyindia.com/images/jaigad-fort1.jpg" },
+//   { id: 138, title: "Devgad Fort", category: "Fort", district: "Sindhudurg", image: "https://marathaheritage.com/wp-content/uploads/2024/03/Blog14-1024x628.jpg" },
+//   { id: 139, title: "Gavilgad Fort", category: "Fort", district: "Amravati", image: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Gawilgarh_Fort_-_C.SHELARE.jpg" },
+//   { id: 140, title: "Nivati Fort", category: "Fort", district: "Sindhudurg", image: "https://www.fortsmaharashtra.com/wp-content/uploads/2019/01/Nivati-Fort-FortsMaharashtra-1.jpg" },
+//   { id: 141, title: "Anand Sagar Shegaon", category: "Heritage", district: "Buldhana", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/2a/04/18/13352240-largejpg.jpg?w=600&h=600&s=1" },
+//   { id: 142, title: "Paithan Garden", category: "Heritage", district: "Aurangabad", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbs790xmZhj_dz2jtQBO6Zk3itFadAhQAGlg&s" },
+//   { id: 143, title: "Salim Ali Lake", category: "Heritage", district: "Aurangabad", image: "https://hblimg.mmtcdn.com/content/hubble/img/additionalttdimages/mmt/activities/m_Salim_Ali_Lake_2_l_335_640.jpg" }, 
+//   { id: 144, title: "Nilanga Temple", category: "Temple", district: "Latur", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTa5j8yRKXkMaWEvpEl5bQV-63MYVhX8f9dQ&s" }, 
+//   { id: 145, title: "Pitalkhora Caves", category: "Cave", district: "Aurangabad", image: "https://s7ap1.scene7.com/is/image/incredibleindia/pitalkhora-caves-chhatrapati-sambhaji-nagar-maharashtra-2-attr-hero?qlt=82&ts=1727010495950" },
+//   //{ id: 146, title: "Ganpatipule Temple", category: "Temple", district: "Ratnagiri", image: "https://i.pinimg.com/736x/36/46/9b/36469bbe51fcb4f095534aa4acb0690e.jpg" },
+//   { id: 147, title: "Yedshi Sanctuary", category: "Heritage", district: "Osmanabad", image: "https://www.holidaylandmark.com/india/maharashtra/images/MumbaiOrbitImages/WildlifeSanctuary/YedshiRamlingWildlifeSanctuary/Yedshi_Ramling_Wildlife_Sanctuary.jpg" },
+//   { id: 148, title: "Sagareshwar Sanctuary", category: "Heritage", district: "Sangli", image: "https://i.pinimg.com/1200x/15/e9/5d/15e95d1237b00fb2a68bc5650492e961.jpg" },
+//   { id: 149, title: "Great Indian Bustard Sanctuary", category: "Heritage", district: "Solapur", image: "https://forests.gujarat.gov.in/writereaddata/images/Kutch-Bustard-img-3-big.jpg" },
+//   { id: 150, title: "Rehekuri Blackbuck Sanctuary", category: "Heritage", district: "Ahmednagar", image: "https://i.ytimg.com/vi/uapsm6HZNVw/mqdefault.jpg"},
+//   //{ id: 151, title: "Parli Vaijnath Temple", category: "Temple", district: "Beed", image: "https://temple.yatradham.org/public/Product/temple/temple_2nuqfOHU_202403031658180.jpg" },
+//   { id: 152, title: "Kalleshwar Temple", category: "Temple", district: "Beed", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS_L5jXrQ_h6HSbSyQDjS9NqTncYH1kX6Aaw&s" },
+//   { id: 153, title: "Ramtek Temple", category: "Temple", district: "Nagpur", image: "https://nagpurtourism.co.in/images/places-to-visit/header/ramtek-fort-temple-nagpur-tourism-entry-fee-timings-holidays-reviews-header.jpg" },
+//   { id: 154, title: "Dragon Palace Temple", category: "Temple", district: "Nagpur", image: "https://nagpurtourism.co.in/images/places-to-visit/header/dragon-palace-buddhist-temple-nagpur-tourism-entry-fee-timings-holidays-reviews-header.jpg" },
+//   { id: 155, title: "Adasa Ganpati Temple", category: "Temple", district: "Nagpur", image: "https://temple.yatradham.org/public/Product/temple/temple_pNdukrIk_202507141739470.webp" },
+//   { id: 156, title: "Deekshabhoomi", category: "Monument", district: "Nagpur", image: "https://nagpurtourism.co.in/images/places-to-visit/header/deeksha-bhoomi-nagpur-tourism-entry-fee-timings-holidays-reviews-header.jpg" },
+//   { id: 157, title: "Zero Mile Stone", category: "Monument", district: "Nagpur", image: "https://i.pinimg.com/1200x/e9/74/12/e974120f8e45d0edcc1fcc343a306a24.jpg" },
+//   { id: 158, title: "Bhigwan Bird Sanctuary", category: "Heritage", district: "Pune", image: "https://i.pinimg.com/736x/75/40/c6/7540c635c5652430eebb11933bf11520.jpg" },
+//   { id: 159, title: "Mayureshwar Sanctuary", category: "Heritage", district: "Pune", image: "https://www.researchgate.net/profile/Vitthalrao-Khyade-2/publication/337280769/figure/fig1/AS:889594119725056@1589107174633/a-Geographical-Map-of-the-Study-Area-The-Mayureshwar-Wildlife-Sanctuary_Q320.jpg" },  
+//   { id: 160, title: "Rajabai Clock Tower", category: "Monument", district: "Mumbai", image:"https://i.pinimg.com/736x/9f/2b/48/9f2b48a173e8521f44538c40009782d7.jpg" },
+//   { id: 161, title: "Ambazari Lake", category: "Lake", district: "Nagpur", image: "https://i.pinimg.com/736x/a4/22/3d/a4223def0f60604b5ccb60f137a40f8f.jpg" },
+//   { id: 162, title: "Futala Lake", category: "Lake", district: "Nagpur", image: "https://i.pinimg.com/736x/6d/0f/46/6d0f4626931b4ea7904df846d569d2af.jpg" },
+//   { id: 163, title: "Gorewada Lake", category: "Lake", district: "Nagpur", image: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Gorewada_lake4.jpg" },
+//   { id: 164, title: "Thibaw Palace", category: "Palace", district: "Ratnagiri", image: "https://i.pinimg.com/736x/eb/11/6a/eb116a61b7c86640b9f5ee2abe78f888.jpg" },
+//   { id: 165, title: "Sawantwadi Palace", category: "Palace", district: "Sindhudurg", image: "https://i.pinimg.com/1200x/ea/fb/03/eafb03418d058096b2102272c5690b79.jpg" },
+//   { id: 166, title: "Kaas Pathar", category: "Hill", district: "Satara", image: "https://i.pinimg.com/736x/ae/07/7c/ae077c4c4786718b547bc203365f6521.jpg" },
+//   { id: 167, title: "Rajmachi", category: "Hill", district: "Pune", image: "https://i.pinimg.com/736x/46/93/99/4693992d02f073bf8d1f7745af5c1679.jpg" },
+//   { id: 168, title: "Central Museum Nagpur", category: "Museum", district: "Nagpur", image: "https://i.pinimg.com/736x/e7/7b/22/e77b22df3524171f693bbd4f3d837552.jpg" },
+//   { id: 169, title: "Chikhaldara Hill Station", category: "Hill", district: "Amravati", image: "https://i.pinimg.com/1200x/4d/e9/ef/4de9ef0cf531a8ddf0248988d7e5735c.jpg" },
+//   { id: 170, title: "Moti Bagh Palace", category: "Palace", district: "Nagpur", image: "https://i.pinimg.com/736x/9a/45/0b/9a450ba4e9c75ef84ec04758de679b86.jpg" },
+//   { id: 171, title: "Darshan Museum", category: "Museum", district: "Pune", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpRshNbb7c7P2KiJ5sQJ3oSR0BcG02Nta5ig&s" },
+//   { id: 172, title: "Blades of Glory Museum", category: "Museum", district: "Pune", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/3e/92/ef/blades-of-glory.jpg?w=800&h=-1&s=1" },
+//   { id: 173, title: "Kalsubai Peak", category: "Hill", district: "Ahmednagar", image: "https://i.pinimg.com/736x/11/39/3c/11393ce8bcb159aa8dd3d8feb4307d04.jpg" },
+//   { id: 174, title: "Daitya Sudan Temple", category: "Temple", district: "Buldhana", image: "https://i.pinimg.com/1200x/62/93/34/62933468e3769e2d493687396c3584f7.jpg" },
+//   { id: 175, title: "Pataleshwar Caves", category: "Cave", district: "Pune", image: "https://i.pinimg.com/1200x/f7/34/35/f73435d00e785d9e97c1c75a8948ef25.jpg" },
+//   { id: 176, title: "Farah Bagh Palace", category: "Palace", district: "Ahmednagar", image: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Faria_Bagh_Palace_of_second_Nizam.JPG" },
+//   { id: 177, title: "Ambejogai Yogeshwari Temple", category: "Temple", district: "Beed", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2OS0mdEIi34J48SHki6rSRgB5kqKNY429VQ&s" }, 
+//   { id: 178, title: "Kharosa Caves", category: "Cave", district: "Latur", image: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Indien2012_1240_Kharosa_Leni.jpg" },
+// //   { id: 179, title: "Radhanagari Sanctuary", category: "Heritage", district: "Kolhapur", image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/84/ca/1d/1609650048717-largejpg.jpg?w=600&h=400&s=1" },
+//   { id: 180, title: "Dharashiv Caves", category: "Cave", district: "Osmanabad", image: "data:image/jpeg;base64,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" },
+//   { id: 181, title: "Paranda Fort", category: "Fort", district: "Osmanabad", image: "data:image/jpeg;base64,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" },
+//   { id: 182, title: "Naldurg Fort", category: "Fort", district: "Osmanabad", image: "https://www.trawell.in/admin/images/upload/499589102Naldurg.jpg" },
+//   { id: 183, title: "Udgir Fort", category: "Fort", district: "Latur", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEn6WiFSW6FHeX6jCiUcGx1Ix7nlbLkW3Z-A&s" },
+//   { id: 184, title: "Ausa Fort", category: "Fort", district: "Latur", image: "data:image/jpeg;base64,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" },
+//   { id: 185, title: "Kandhar Fort", category: "Fort", district: "Nanded", image: "https://www.tourmyindia.com/states/maharashtra/images/kandhar-fort-nanded1.jpg" },
+//   { id: 186, title: "Mahur Fort", category: "Fort", district: "Nanded", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzEMvNglGiNbxHACeFFnvMWdpJ8iSOMshoiA&s" },
+  //{ id: 187, title: "Sitabuldi Fort", category: "Fort", district: "Nagpur", image: "https://d3sftlgbtusmnv.cloudfront.net/blog/wp-content/uploads/2024/10/Sitabuldi-Fort-Cover-Photo-840x425.jpg" },
+//   { id: 188, title: "Mount Mary Church", category: "Monument", district: "Mumbai", image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMVFhUXGBgYFhgYGBcXFhgaFxcYGBgaGBcZHSggGB4lHRcYITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0lHyUtLS0rLS8rLy0vLS0tLS0tLS0tLS8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAbAAACAgMBAAAAAAAAAAAAAAADBAUGAAECB//EAEEQAAIBAwMCBQIDBgMGBQUAAAECEQADIQQSMQVBBhMiUWFxgTKRoRQjQrHB8FLR4QcVYnKSshYkgtLxM0NTY5P/xAAZAQADAQEBAAAAAAAAAAAAAAAAAQIDBAX/xAAsEQACAgICAQAJBAMAAAAAAAAAAQIRAyESMUEEEzJRcYGRofAiYbHBFEJS/9oADAMBAAIRAxEAPwCK6hrE/D+8c21Kr6FLHcoUApHoSJJDDlTENUl07pq2LRu3AVtlht2vJBfghDAYDnIJIgjuarOhJlb6vaVt43QWS6VyXbdkgmYkji5knNWS7orVqxdCqfVtbbZkG4+WKHYdzDcYWBA35ECBKV7MyB6igLBSWRIDW96sXJYqFnduZRJliF2mCMkYvPhcP5EOI2syrhlwDA9LAQP7+Kg/95WECpqEkBjhGIZcErbcKssD39RBOTEmgazxTcRgtgApIAVizttBMsGY8QDEkfAPNXBqLsVF2au9Bf2N8HmozoWpe5bJeZDQJiSIBBwox3475zIDrCunTQkWnTkMK6uKMq3BqG6ZrtsA1K3bgYVztUzVOyuazRlGI7dq4SyfarM1kXAPcVH3xgj5q1MVCmnUd6bFsUvate9NadHPb70mNA7mlJiJmiPpbsBjmPmpKxI5FHEn6VFlUI2RPaurls0yq5o+osjFKwIkWzTFsTXbW65t80AdbKIiVgMmjLSA4Za4CUyyVsLigYoVoLk0060BxQAvtmuWWmIodxaYhZhXBWjNWitAC5FZtp5bGJrnZQIWRKJFF2Vo0ADC10BXYWsigDitgVpnAoFy7QIKzUPzRQ8mt7hVCPHtDfdLL2fLW8XJ9QC3lU7hMlZliYxGDE4o3Sg90EOFRBMEMU2wNwULBJ9cHIiVYTTen8MANvbVMtwncsqvrbabisDvKx6eQe044qw29C9tidTcVpUk2rYkMYDHdujd6gYIHtwAxMQg/PRNkH03oenuehy+7YrgYgCCqiCxA/AhO8AQSJIJhG50Z7N+35F0eY0Bt4KQZzOMAQoyAccVLLpAl03FZhZlFVjuVyYgIqNADZUBpHYSdxod7otu4yF7rsCP3bwwXMAAgLG4s04MNAwc03DWkNMY6frdUxFljtdVIiQxOwg5JaVMEe8gk4NWtVMDcMxmDIn6wJ/IVXNR4fvsQTcJCsuzJDAZ3SwIkSAQCMSRDc1YenuzW13hleBIaJnv+EAfoK2jfkRkU5pdURg0uBWFat7BEvpdZB+DRbyoWmaibODUtoQjHawrKSotMJaVBRvPj6Vy2gG4icdv8q0tgwRUFB+TTVsUhbcinkcxSYG/Lrdziu3uYqO6h1BLQBdgAWAE+54pDGtgoFxIolt5E9u1baDQIEgolsZraJTFpRj3oA6tj3rhxTAWk9ZqUtiXZVEgZIAzikM4cUHbRS1cNTA5IoTKaOFrry6AFFtTRUs+9NhAO1aVaBAX4oLimrtugRQAKK4aiuR71H6m72pgM76E7ml7WoitveHagR2aGTQ2v1z51MQaa5LUI3K4L0IR5/b6tZu2rNlbl221pfUdy+YGEelWgKe4kxmOcxZuka/T37KWbjI7lQrI53EmAxWWHrI7x7VXNH0DSOVu2bi4QDZd3nOccwo+YO0jjmJH/dI05S4liXIDKiyybuWiDz6iQJgBMcRThyILK+gtFPL2DZjGf4crB5EdvbtW9PplRFQZC8TkzMz9ZqGfV6zDeUIllKqQT6SSGAIH4uPxQJHNTgJrZUI3NZFdi3W2SKZQJkimFyIx9/6GuJMRWAVLGjQQ+1N6XTucgH+VD07wamLDbRukRiKmTKSDWASvqOexrpCcSIPelBqC5AWYnmpFM81kygD2MyPypnTtI4roRQrmoCKzHhQSfeBk0hmwdxqD8R3INlNzKXuoPT8Gc+k945qwqaovWtaX1atHotMAp+VYFz+kT8ColKkNKy3W1mukt0MXAH2GdxUt9gQP60YirJGC0jtREigCzPxRUSO9IYU1X/Fbkad2BgrDcA8MMDd3qdBJqC8TXVOmcjjcE+4uQePoaUuhoZtXQVBGQQCD7yOaxrlQ/hXV+ZZ2EQ1uBB52n8P9R9hUjfuqsSY3HaPkmSB+lEXasGqC270V3+0Um1at81QiVR64u6gdqULmKEWNAB7moml7t/2rh6C1MRpnzQ3UGsYGhFqBHJFa20W3FMW7BPAoAUVK3sp/9nj2rl7WKLAQZYriKZezPvWv2b4/nTEUzoPhYBg1xSoMko623b1IJU3APTBY+pckjkARVyIom1ex/wA6yBWqSXRmAZa4Ipl7PccUErVWFG7JIMgTFDcmad01jEg5mCDTC6UTlfvUuSTKoV0+iLZwKNc6awEgg/Hem0YISCPvQNTqpbBgVFtsqkIRUlatvtj+H9Ypfywad6eG7kEUSYIPYUgSAT8UVb2R8mD70O7cIGOZxXAEw5781BQ7Oar/AIv6g9u0AiklyZIIBAWCeeZ4qeFyapvjS+wuoqugAUHa23lmIMz8AdxWc3SKirZPdS60iWiVcb2TcneJwCY+/wBdtefdH1pvDaZQwQob1Bh7hgMgjIzPOMVttTcaJ8qZBHpj8R+H+JI7D2BoSXWAhRayFHB4OB/Hjj8snmsZNyNFoueg6qburIAJt+V6WBBUn0knGRzH2qfU1SPCdy75wLFArAAQB3ZcYOAfn4q+In3raDtGcls7VmphFNaVgBPHbOOTAH51jXT7VQgm6KoWu6ybqPbjaReLLuwChDn3zBz9xVv1uo2KGwo3ICWwILqD+hNebam65d3hIJZuSCBM8q08H2zWWSRcUd9A6gLeoB3LDelhuztBImC5wDHbtVh8V67y7IdIZvMTbHqkqdx4PsP1+ap19SGnYuN38TwNp9X/AH/yrLt14Ci2mJAlrhgjaGaD3woP2+DURlSopqy+6XUC5bW4AQGUMAeRInNFUio7wwzHTLvABBZfTMQDjuakoroTtGTNlviuDXRFdKppgBeh3AaYawTW105oERz2ia3b09PtZobJTA5S0BXRcDigu1CL0CGCT71tFJFLebRBeoAOqxXU0AXK7B+KBA7e2MUXyZ4iotSay71AWxLsqj5MVs4maY6bZBxRNPYzMxGaSta4PG1lbAIgzg5FObiTMwfpUstDl5e5E/I5rHvwvEmuVu4rm/moKFrrls5oti0G95pvTkAQPyNcNbQZp2FHVnRxyaNbSKAjk+/zR7ZqWMIwHsSfYf611GP5UMXRXYakM6Ikj9a80/2lalRf8sIHY2YPuNzMAfyn9K9KmvMutqLur1Nxj6Ve1ZTnlWt7xIGM/wBazn0VEgdF4fncuNwH7xiJI3AiFByPqQMp3BpfrvSdktAJVocKIBDEcgcHIEYxHNeh+HdAgX08Ej25HM/QiPtRPEHR7bbXgTuE/O3I+uYqWqGtinRXtuyEekF7cEe27/MD86viJFeZeANOE8v1yo3XCeQVQziYjMRVz6p4jSzZW4R62XcE5j5Mdp/OiLqxtWE8T6xEtoLiq83EgMYwGBJGD2Efepqy6mGGQeD2j4ryLV3/ANp23ru5y+QAWAUb9ogLzwcz6fTgzU10PxAdO62nko67lHJXJBg4nIPsCP1XPYcS/dbsB7LAtAwfy4/v4rxvxEUWVUNuDeggxxg8GvSfEOvL2tqEHdae4DyPQyN+e1bleY6RfPushMnyXKn5DKBn6051dij0E0nRHI9LAkRLM7ETGAoRu0+/ccGajdXpTZdWYuU3AOheSBkYk5EHmIBMT7N9T0reZe2sxk2rgkkmVXBmckBh+Q9hRum6YuLwLHaLyvtnB3XFaTJj+Fj9z75GqVgnboungPadICnd2LTzOAJ/9IWrCEqt/wCzqzsGqsdkuh1/5biiP+2rrbsirh0TLsQ2xRbVwe1NPtHahm6s8VQjQE/Sh3mApncBS97NACb3aE1wUS4lBZKYgLtQWoziuNtMQGa6TNdFaNYsE9qAN21owYV2bUDNLG580gIvxP1RrKBlS2eZLuVj5CqpZ/oKq/iC9pNTpg95lS4PwG0WYk4JUb0UhTjHx8Vnj3pBby2tjzLqj1K7EqFgy7ncI+pwY+x891l6FNu6x9MqPQEO0t6mIic45JxgcmlNta8CSst3h7ptyybN+1D3bxKIH3LbXBO7BLEQMGFGeTwfULAZkXcsNAnPBjMV554N0rX71u7DqltD61GwMQ3BI5kEEiAPTEGvSUPuKWPSHRylqP8A5owSg2tWh/CytGMEc+314/OmEcGrsKOCh+KwoOy/zofVtf5Nprmxn2jCqCSSSAIA+tI3usalTH7L6dpO7eSJAwNqIzST8djRY6Guo9LS8EMvbe2dyOmCD89mB7g0/ptRulYIdY3DtmSCD3GKW6Z1LzAN4VH/AMG4FvuCAZz7UBdW91br2yFZHdLZAneEgEMDzLhx8R9aQyYCT8VrYRS2g6mt1FdCYcSNw2kj6GjtcmkBxcuhQWY4Ak98DJwK820BtvbBa5sd7z3jzySRzEExH3q5eK9b5OlvOOdjAREgsNoP5mvOrvU/M8qzZm2EXJLLnCjLSBOAIJ5YVll9xcC09J1aWJHnKwLFsnuSSYx88Uxrur22Bm6uFbjMSOTA/nVE0vWi93YPM8o+kXCfUZIhthEjEr+ICSDEYqx2P3Vu8HYu5UgZEZVo75/EOPapal5GmvADwnrraWilzapW2bagtBJd0aPsAT9qX8Q6RroLC6rjcu1VZPSF3GfxTMx+QrfRddbD27O1CYn2YkJLGCIOQ2Z9qhL9295l5QzkeY64P/Gdqj5gYAyY+alPdja8Fo03R2SQNQhUsWAYWmAJbdiWx2P2pDqnRLg9fmG4xZMLs9IUPEBTgCR+lR/T/PvbtrNE5MwJHMSwGA0mOwmDFB/ar4YqS24NuIzyY+eDjHGacdOwe1RcumaYW2/fXVIi5BJAgFHAnPYsMx9ag+hKiapJIUKLq7i0CIU8zGSzR/yfWs8N3pt3jdG4W4Pq7SHkEnI/B88HFct1mwt+zchYJZSE9eNh25gCdxepTrQyXbpisd4vrO0JIZeFKx359IzQ16PtFwC8h8xQrZU8AqCPVgwSai73UZa7cBiyhn/6aydxMJO0we2e5GczSmi6m18MEEOoJKG2ssBuO4bQYAXbJJ5Me00uVC1ZePDepVdcQHVhdsxgg+q03GDyQ5MfBq3XdQ3avN/DfVrPnaVuHBNtoX0+tNuCPkL+Zr0y+VVSzEKByTgD71pjeiZIVDMfgUxbse9VDxf4itrbKOSqnG0Ydvlp/CPj6T7VX18VKF9UKFH8VticTyQ8HEVMs0YuhrG2rPVinxQrqe35V5gPFVsiZEmI/cP/AO6tJ122zFwYO3bBtELyTMEjP+dJ50vDD1bPRblo0C4sZOKoFvrgYgSh94syY+gf6UtqeqG5utom4/4baLvGf4nnbb+5mms8Q9VI9Ee2fatJZPtVDs2NSwPoQEYP765P/ZXY0eqH8Cf/ANrk/wDZTWaLJeNovllAeCOYxnI5pm420V5z079tsNKou2QSvn3IMe48vNXDT9WtXF37tk8C4VUn52kyPvFVGakKUWh5880uy+1DfX2v/wA1v/rX/Oiaa8lwbrbK4mJUgifaRWiIIDxhrhatQq3C5BcKgUzsj1PPIBIgdzGCYqmWvDjai4Yi7eDTqWZpAOSbe5QskDYs52njvFk02r/a3K3xtVQLlwKZxnyLIIn1T+8MZ3BB7CpfpWo09n90oVMbmzCgAEwGP4yBJJnJLGqdSIWhTw9pXS41s37gWyCDaZbe3bAKuGVRiPv/AFDqvGqqrFbbbRPqeYAXlio7fEjkcVOXuo2lZgy4KyXO3awjg5k/615x4j0N83BddYZhuC/wqkhLaKTiTPAH8Q/xNUvSpDRvpPWRqNSLsXFEeUqW9tuCAVI9cgsRiZn716V0Fm8kbi8gkfvFCvAOA23BjiRg1Xeh+HVfSXVubnN5zJPYoxUOPuGbHvFWiwi7Qu7dtxJO4yPc+9KMfJQ6Ly+/5Uve6laX8TAQdpnEHbv/AJfzFV7rra0MxtNZtWVEm45kgASzEEHA9hmqho01FwLq3cunnbA6Bd2QgW4F43TAOJ9KgGhuh2ena/UIbD3G2PbCMx4dSAJPOO1R2mtNp9EIHrW1+bsJP5u360A6W5bsLp3YN5t8KpClWa2T5jb1P8W1WBrjxB4iTbG1lKPuIIEsLX7zIOVyogH3J7UWBNW7ItWltjhVVQPhQAP5UtbvmcH7HP680p0Trg1Q2xJ/xLwMSJHPv6iAD2qQTRQ3emmFEB/tC1MaVVIy91BHYgHdn4wKqHR/3lvVMirbIXadpaGDErEMWgHb2+Ktfi+1Z1F+1Ze4QtsOzlMkOdoVSADGJPHtUD0nSomn1CI34rwCb2RSyKQd0mJ/i5/rWUmnItJ8RP8A3YVWyw/j3CPfawA7Yp/rPWba3LqEAsp2bpMyPTgKdvbgg0wtkFtL67UIF3nzLYgl9zjDewqE6302y9o6jzT5ly6SF9ITabjEH/pG6J7mnOS/kUEzXha09zXrc2sLRUwSSD+Ed1jvu9qc6mTbto9rjeS4k7jMkgwFMkzklo7GCaS8IaIp1C6hM+WreocESm1gc889+O9SvjPQq2lVgsPv0xJGN3KxkyTDnBzx3qdckV4Y3qRtuLbtsiM3m5IUSdhVRtCLy7yBn8ByQTSvWrhFtWtCHY28cEDbvgkBT8QWbInBFV7q+luLqGQ/j3egAiSCZTbJG3EYMR+tSniKwLun0h9JbzkS6yxzw89jkzPecc1EXtIuUaVk8+iGzUbT6mswQMzCnbOMn1RJmYz7V5zZUoLQupcUi6TtYFJTYcgkTyY47V6rqrC7WVBG5b7HBkmVyfuR+leUdJ6a9y012fSl22pgGfWcmB2Ayfg1UeiX2WK8RcsXTaQHZcQkEqTL4kPtkD0ce5H2PoNCy3bB2gM6q0N6l9c9sTBHfuBUloujrZF63buC/vto4KgEgpcAK+knsZzn8qZuae7/AOUYW3lcONpkbLuJ+xJrTG04/X+DOdplcu3ksX2AW5vS4GksAoh4wgXtED1e1XDxR4vBfyUKs7x5dvkLiZePxN8cD+dd6n0EXtXqAby2QCIJX8RuBWwWImD7fpXPSPDLsbV0nZ5d13BPqLoxtuAD2g7kz7HnFc8pKuzeKK2bV3Vhbr7mc3CNok8qGtlu2Cr5wM16FdV3xsVAApd3A2Kdon5ufmF+e1MafQ2dMjEBbajLMTHvyx7Z+1VHx9ptSwci8diqjbVwuW2tjnGDM+/0rJyU2ktI0UeKbY+13Qywa8zkHJDWl4AnBiTM8DiOaOuq0S8X7v2K/wCVI+Fei2rlm0WWS1vOP4rZhvzn9KrXifw9btalxEKYYf8AK+Cfsdx+1EY8pcWwcqVpFqv3dCMi5cbI3LvjcPb0kflMe9RnUvG9u0PL06BQuNqKJH5iF+RH3qP8EdPRmu2WXMBhPuMMP79q34i6N5eqAVTF1RAA5YQPvkKfvTUEp8ZCc242g+m0mo1Ntb4ed3IMMR2IlpJgg8mobrV3Vad9p2kEBgdg+hz9jV28B6a7bRke0wQtKt6YAbkcyeBwO9M+K+hXNQq7UUMjGDuLSp5wEnkA/nSi0p/sDtrR5507V6h7wtMVEyFIRRnkZzz/AFFWvplt7AY377WgxA9CoN2JHqMAHnsajj4Yvhlh7W9CoEF908r/AA8wIirfqtC+oAtuir+FnlmiBMQpUZLcEe0H2qsjSdxIqSX6iPfqOkPOovGP/wBq/wDuradQ04/DqboEzi8Oe5w9RHizwugtStt/QcsAAgwdy5YEnA4nIqq6dDaG0GAfUPoQM5FVC5K09kuSXgmuidQvBwEaWIZ2JKgAbYaS5gwo2iaNofEV9CUS4QzQOxGIA5Bngifmq2/XrJn93dzz6wJHMEBc1wniK2hlLOfctJj2/DxXT/jS7tfU41N30y1N1F5XzWkjIDhlnP8AEywWyAZkR9qkumeJFa6r3l3i3+EwAZxy0wQPVjiWNee3fERYyUnnlmPPOaY6Z19F9DDYPkG4h5/EJBH2nPtWUsc49OzRHqPU/GOxWtWgQDlbhG1UQ8BFiSewPH5U34K1vkowvvAZy24oxZiVBBLKSOBEf8PyBVAe1+0XrIDbkYKWPI2rJInthfflh3NXi+Rge2T9T/Y/OrxuUlchpE913U2NRbFsagIky3oc7iI2r+HCzk/QUja66mn03l27bFpdsLAVnuFgSccA5io0Wv7/AL+9La14ZQSQDJkNtOIAHzMz9qtlDes8Qagva3Wnby1YnY/qbcCpIIyphduMyTVT13WWa410NudpRRcXeV9xuIloBK+qefmrIeoJYZN6tcN1tgHpZpzGWI4En7mq/wCK76eepAG7c5nvtB8sCfqjH7is3Yy9+DOgEWy9xsGNnlOyhYO4jaCAIP8AXsatmq1CWkLO0BRJkgYH1ryOz44uWEa2XcgAFdoZioyILAcxBMHmoTV+MVvAW3vP5RK7pDsdoJkCZzn4FNcq6FaRYOv65bt69dAENhZIOBCCI5wk/eg6BxasG83q2mEWQZbBAZdwO0n07hMZ9qiL/X+n+UwXzdwPondwrenAWMLE/JNL6nxPp7li3ZPmQpaQLYkSWODE8Ed4+KFBuWynJJaLLote17Ts5DI9s5BYmQzYy7bifV2EAIfeorXPOwid25zPf8LDmkdN4ksJbvBWcFwOUGcjgkYgD39pBqTt6zS3vJaw1xQTtubzlAXUDsFHJPJHvSyQpuuhwla2J6HqDWrl022IZhtYk7jH3FTmk8Tk21S9a80BwwJIAGz8MhlzBzM1VdX0+6t6+bNxGRGjdzKyoEQDOWA9J9/Y1cOi6fTXNKga2jXSouOXEHjgMY9xABj3zIMTVbZpBp6rZB39fuvi/ElWViCZkjJ/P+VO3PEUI4FsKDsMk7oZSsOBH4pn4yPbKuv0gXUMgUL6l9LKqxux6lWFHPaBTvR+m2/IuG+qoTchLkbYCqxkNnkREyCZ5jGakqv4fc0kv2Ox4ousyycw4khRIbac4iRtA471DdLCm20SshjhiYLKRAMYGeP86Z8XWLdvyhpiHIB3kkbmLMoUsQRAkwOOfrUX0YXFeLuy2ptqyZUghiu38LGAV3Gf+H8tlB1oxclyLAjs72xuaWAXknJIH2o9/X2Rqf2cqQIClyCIYmZKFN+6PRAMEkdqrXXer27PkjT3dzKCbhKmASZAUEcc8jiKgH69fMnegzOFjJ/lWkcLXtaM5ZP+S96wvau7GLKQQO6mGiJ795g1J9K1zW9LqXQAunrEyZ5UzmT+A/nXnet8VvcgbLKwAvpDwQGLA88yee9SHQ/Fl3eVK2trAhpDGYkxB57j/wBVZzwyaNI5Io9K61b8/Tuq5LpK8ZI9S5PzFKXgWsrbugA+VsumRGQNxH0yQapg/wBohgEWROcb2AAnAxbIwPY0p1Hxf5wnY6tBkqbhGBg9o+361lDBNaki5ZY+GX5Luj0qoguYBJALCGDAhoLsqGZnHtXD9Z6exk27ZIxn9lJ/W5XnljqtoMCLTM0yd+4D39QUSZ9zNI6/XLduehLiAmDsErxkqpG44z2NOPozftMHnS6PR9V1XSwP2a1p985BWwx2xkgW3JHbPFGueIbFolrdsJ2jcgJmI3AEkGfb2+1eb27LT+5vuWwShXa55IZV/jEzjn44ph7N8WzdvXbioMAFF3uQRIVWEmIyTjn3NW/RLS2ZPNKy43/F7KW9QBOQqgAmeM3AQDmeM0O94quhAckxIU3RJGM4tQMmqfpNC11gFvN2ibRXtHJgTn3iab6n0h7UFnLNOAFAEZzuGGILAR/xCpfo1eSfWSRMJ48u7im07xwvnSD3PqCQDGR70vqPFF26SrgqVn0M0z8hioGIPxmol9FduhQBtH4TuZxxydqkfJzPPNb13T76EJcVkRgpkQw2EnIW2TJxMASPiazlji17gcpSJzR+IgBtuW7bSchpbLTMchZIHEfftg69bgBvLkY4X3J7P80v1K704KtsuwZBG9J8yREbgbjK0gd4OO3aFvG7P7u5uQ5U7oxwJAJg496j1CZElIe6nobd60rlbYliAVRVLbcEqyldy4JyO3fmo7qvhhLaWyjOWeQA4AVoAll2mQJMQfapnpfQdlwtevh0YGQhaS05VQoJ2/IjjgUTU2Bdm5cZlRZ2rvJMGQo95MgwPcV6Dk7+W/cUkq6+/wAP7s8+OmeT6DgkH6jkVzcUgCUIniZ4+Jq6dX0F2xZ80MB+8AS20nkCD+L8UgGD/hFVTWredh5h3N+ELjcPgKOM0035BpeAGm1T2mlCyH4x+Y7/AHqzaPxtqSNm1Sf8YXPzKg7f07VBLoXYobgYKSVJAVmBUZBWRtOMgmYk1atJoVFm6V2T5cM07QCw43EDIE/n3obQ4wlL2UT2i8SNtBKhjnJV5PcmAYHY/wCdMW/ETFo/Z7bQ2wS0mUBLkAjkEkRPYfNVCz1BABAkDuCzDGIHbif7FO6K6zkm36XAZgVtAMG3AyPrK/WpE006JLYumu27jozMGNxf3oKiBtJ2kYw0wD7zUfY1J1HquKoCghWR9jMCSYfcrhvfAEQT9W7mi1F0hrhDsAASQFO0EmJnjd8dzUQmrS1cuIN4UbQpEGSoKlvViCZwPekpqzR4ZKHJ9Enq+kWjbd4YGRJNxWA4EYRY/iMc8fSozX+GbShSt+3wJG5TknPfsIP51cdR07ZaRboguQxDEAwskAbcHBAPPNea9R0xa6tmQJP4jxAHz7CobcunVfsEeMe1fzH9P0azlW1Cq+1SVMA+oI2ATkw30wa7teGg4fbfUhAGOA07uAAGyePzFJ2emhC5LcBQGYMpG4xMETAAPvUpa6UdqmBkgCWWIPdoBIPx9Pmmm+70Nceq+4l1Hw42nJ33E3BQdoB4fC5+4mumS/pFAKAK72yWQ+lkyR27kTJyNtHudJcAwQ3pubSmZhSqjjJMCtdL17GbVwk7RsEExAWQCDOZxAzJ9xWuFSk0rvWyczxqDaTTtE90vUhdPqVVLRA8pA1y1u3As5G8d8L7kCPis8wl0UtG0LAEgKdqiQCcZz78VH6N/wDyVxve6ne4f4Lx45HPA/rUhqL1ra8qfMV3CkbgcbQsDggxn2g+9Q1aJT2ca65c81XaRdC2oJ/EcAgyTzx35qw3NO17zHu3JZQgiCgWJ5kGTMjPvyRVU0+uZ7lq9cBEOu4dyEAH3Jj9aJZ67chpXkQexwViWjOCY9qwjjXNv3aN5z/Sl7yT6lpkQF1HmH0ptfKnaQ5IiCYA9xzSXi3WJtsubSoq2FwPcM6xBM/wj8+eaL1jV23VBbyNl4mZYH92NpIxBkER8VB+Il32LGOUYTAJBW9eIzu+fnk+9dmCbhJSOTLBTTizvw54abUXSrMUcgvtgYxI98kMYPaO9AseFi5AOoVS0/iAA9In1Ek9yBPwakOh6+dSWIINryypG5ywBLCY+Cojg7R7U11mzp95uEBVYkHcH9LSd24CVM4xjv7VlklNz49N+a1+eToxrGoNtX4W6+ZXOn9HsXEBe8LbAENu2D1AD9OR9u013pOl6d7u0XiSWZPxKfVPpcEASp5pLxPbt7lKOC3DYjkBgQI4yfzFRenukZBgg9sEexmt4Rbu3XuOWSlTp7/NE3b6daCnc+oLTggWgBjuvmE85571ZeldQ0yWAvqePSsx5k5PqUAiIkfaOaj+h6VLoEgElVMRJxhj78ijWegNaubleUk7gwyPp79qzzLjNxZviXKKkiH8RRecX7cC3AU/hOxhgbhnaD6c/P5i6HcHmJcP4Q0POds4n6f51OaOyim5bOnS5L+olkViG/D+LBz8/PPNUN4W7jhB6ZYQ0zBkQ0dxMSP8IoXRMo9pno667Qh0Di2IAiEkMvuYUxBx9q6PVdJtdjcAn0qxDuixtjO0hJz6SR9K8+W7bJI4gjHAMc9mkHB4HNMLpybTKNpLD1MXiYyDBUZn/WoeNvdMSpeT0Gxct3Ei2C20Dd+7uFcxIDAdz9I/Om9d08agZDoqiZZSrqP8Qz6oGSP+GqJ4U1rqfKLAMRj1iDtEjIMTE9+wr0PTpqAMtaIiIZwJ9x6oprFJPpmjUHG+RWdfpHtYYgwdpInDCcZ+mKV6l1djbt22slgkgOtzaYYztI2EQIGasuv0BuW9m9TcHqADoS5t+gg+xKkMp/5veqr13S2yItknuQ0ypEiDAB4gx71c8akqkjBS4u0M6fwravp5iBpcctcEqcjKhIwf5VUtbpb2nby5Dd8IDHYg4MEEERU30zrh09u6SZ9I2wtxYaePUe/eP8IpfrelfUuuotWyBdTc3pP4lZkPB9kH86xhFp0+jSTTI251y+fTun4Cp/ILWarqN17gVnJeQeERFYD8W0KFMADmuNN0u6jhxEqZH1XI/UCt2elXg24GT8w0+8ggzXTknGT0qRMU0tlkua0XECHyiwJLnb+8nhnYFmiQI8xQSOxgxURr9U+5UBIuWjIc3Ayr6f4CRIBEHvyD80pe6TqWImcfhkksPoxE1tPDt9v9W/0rJqL7KTkuiT6h1FzZFxEtLgS0oLrbQQWKxJBB75zNRN/q73LAQuWiZBAVQzHaoAH4jBYz9Papy90p2srZ2Wrag7mI9TMYAGWGBjilU8NhTIJn6gYgiIApppeCuU6q3XxN9G6QWBLOLSr6ZYP6jgQFLDiSSQDFTPQrexGZWQtJUlj2EQwDHGZ/T2qH1Gju+hJZkWftuI3QAPYChroLp3bGIEiFZXz7xAIA+vvUvZWOSi9qy0W9a/lw7xbDZChQT7KIyZ/Kqfc1guakk4XdAAggRHvx2yPapM9ABnfcvkx/9tFUTH+J3mO3ApP/AMK3N25Rtjj/AFqIRjd/0a58znBQS+5ZNbr7ty2Llw+ncVTEfwiTxwQB+XxUG6o2psGJhpb2EZE/epLxHq3NixYRSPLGSwwWgCRHPeqdrQ7NyNwzOZx81pxUsbV0cruMuiz6dze1jqrIo9UuyK52qF7ESfUojiJxyaY61du2njzEdSqkt5KKDloWCDxkx/xGqzobhXe265+HbKYuGSCTk/Hv3pnUakmB5jkACN4DH8I5nvj9aeRpJKNaS8F4oJ6k39SUu626Ff8AcWwqhRC21QA3Eb1EbPZRmR+IU519rI1DEjvZc7YA2mN33x+tC1HUN2ia3uJum5KlgR6ZAGQM+kRUZdDu++5tY7VXiFIUkiRPz7/zp+j5OErZGfHyjxQ5cH/l9tvKm67qc5CKVwNw92PxERNReo15Zid/JLbd3uZif74qT02mLIbYCBZJAJ/CN+8BS5MZMcyRzNEt+GUImLf/AF2v1zJqOe22Vw0qFLLM9ouTP4jPHE1HrfAI9ZPODuz+eKlv2ZUIsYg+mJAHrHwfn6UU+G7Z4VfzA/rmpU7lJvyzScaUUvCIga7n1Y2lQJX+IEfxYjPf5rvqmoHlWrcR5e9SZtx6m3AiB8NOB3p//wAOL2GR7Hg/WcUDV9HYTL3P+pu3/wAn86rkZ8WRyalgSbZYMVQMVPKhV9hET3on7dfnd5rz3hiMj6UF9A0x5jAHBmWxM5/IUIW3TAZYExgk8/auiGWH+yJcZeByyly+5V3/AIWYkqGMIpkDiTAjmurfh9FtBrmotLvEqsEsYzE9h6hmPb2oGk1V224ZSoYSMpjIKkH1exrm9dJVBmUUqPY4A+3FZZ5c5xUHUfOkUlUHq2SXhvXW7WLjbSgK+8+tdwOPafyq29Q1IJgbjxB9IHHyaoC37qwAVZQpSGWAykAEEDPYd+1OHV3IWN0gCZ4xzHepzyeSXL4fYrClCNfmxjxcsoGGCrDvniJ/rVb0Dk3lD7m3GG5LZBBOMkjn7VMa3zXHIyMxmIkQQfpSn7CQZTerAypO0xgSOMj+4qU6jQSSbsj3Qqw3CCRB+ox/7T96LaNN6vp7OxYznJj3MTzx/pWPoSfcHvxn5IrrwekcFTMJ47AE9/bP5V3q+pOYhrnA5clY4iBHtH2o9vpZ4kx/fsKatdDBAE8D688/Snm9J5ezaFDFXZwrlCsu2dhEXWlWIJjBkYBE9o5qTt3CyyNzjIJ7kjBmczzRD0dnteUXXbA7ZEcQftUh0Ho5sqy7tysQcgSCBGMYrlc5vyW4orWptOgO22Cp5BUkj4Hr9/aO1L29ZeI9O5AJEAkDnmBj8gJ5r0hNEsfhH1710enIf4V/T/KknIKI1tIsfhn+/pXdjSYjZW6ymMMujj4+39aMmhJHf9KysoAOuh94rs6QVlZQUcfso9hRrWmE8VlZSGNppR2AoGstkDkfQA/2aysoArHU9MW54+cVEHpgBmV+Bgj/AFrKypbGdDpqjkAk8mQfyAOPvRE0dtchXDe4YQPoCs/rWVlSy0SWkDsdqG4FGTDbePtyR/ZpkaO6Wm5eaMSZzH1NZWVSSIb3ROdO6dpk0rXbtxnMM1tQxAO04Bj3MD3z81z0/oV6/BCMiMJJvNlZ7KhWcADMj61qsp8VbJtkJ1Loyr1BLHmMQblmQIWSQuYnHOOat48Nm0SrWhfQwZXFxcdkiOJOCfpWVlDSKTbK7rdDbL3VtkAZEXEgruBG2TE/BHsKW0/RLoUB2QkACRu9XyAR3+9ZWUcULkxTU9JK/iAz+X/z/lSr9KTmBWVlJvZS6BDpanMf39a6TpS+w/Kf1isrKACJ0sUVemD2/lWVlAUd/wC6x/fFdDpg9qysoEb/AN2D2/r+tabpgP8ApWVlMR1/ukf2KNb6cBz+VZWUxMct6Ef6dqaTTDk1lZQIKLM5k/auxZP95rdZTEf/2Q==" },
+//   { id: 189, title: "Solapur Bhuikot Fort", category: "Fort", district: "Solapur", image: "https://i.pinimg.com/1200x/cc/d1/aa/ccd1aae82642a16afd68ff7b64964560.jpg" },
+//   { id: 190, title: "Bahadurgad Fort", category: "Fort", district: "Ahmednagar", image: "https://i.pinimg.com/736x/bd/80/bd/bd80bdc0c103da97fe67e88619f8e794.jpg" },
+//  // { id: 191, title: "Dharashiv Caves", category: "Cave", district: "Osmanabad", image: "" },
+];
+
+const grid = document.getElementById("collectionGrid");
+
+// 🖼 Display Function
+function displayArtifacts(data){
+  grid.innerHTML = "";
+
+  if(data.length === 0){
+    grid.innerHTML = "<div class='col-12 no-results'><h3>No monuments found</h3><p>Try adjusting your filters.</p></div>";
+    return;
+  }
+
+  data.forEach(item => {
+    const card = `
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card artifact-card">
+          <div class="card-img-wrapper">
+            <img src="${item.image}" class="card-img-top" alt="${item.title}">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">${item.title}</h5>
+            <div class="card-location">${item.district}</div>
+            <a href="information.html?id=${item.id}" class="btn-heritage">View Details</a>
+          </div>
+        </div>
+      </div>
+    `;
+    grid.innerHTML += card;
+  });
+}
+
+
+// 🔎 Combined Filter Function
+function applyFilters(){
+  const searchValue = document.getElementById("searchInput").value.toLowerCase();
+  const categoryValue = document.getElementById("categoryFilter").value;
+  const districtValue = document.getElementById("districtFilter").value;
+
+  const filtered = artifacts.filter(item => {
+    const matchesSearch = item.title.toLowerCase().includes(searchValue);
+    const matchesCategory = categoryValue === "all" || item.category === categoryValue;
+    const matchesDistrict = districtValue === "all" || item.district === districtValue;
+
+    return matchesSearch && matchesCategory && matchesDistrict;
+  });
+
+  displayArtifacts(filtered);
+}
+
+// Initial Load
+displayArtifacts(artifacts);
+
+// Event Listeners
+document.getElementById("searchInput").addEventListener("keyup", applyFilters);
+document.getElementById("categoryFilter").addEventListener("change", applyFilters);
+document.getElementById("districtFilter").addEventListener("change", applyFilters);
+
+</script>
+
+</body>
+</html>
